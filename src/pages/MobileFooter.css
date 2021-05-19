@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+.connectWallet__options__MOBILE ul {
+  list-style: none;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 99999;
+}
+
+@media (min-width: 901px) {
+  .connectWallet__options__MOBILE ul {
+    display: none;
+  }
+}
+
+.connectWallet__options__MOBILE li {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.connectWallet {
+  background: #05195a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+}
+
+.connectWallet button {
+  background-color: #05195a;
+  color: #fff;
+  border: none;
+  width: 100%;
+}
+
+.claimSoku {
+  background: #05489c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+  -webkit-box-flex: 0.4;
+      -ms-flex: 0.4;
+          flex: 0.4;
+}
+
+.connectWallet__options__MOBILE li span {
+  background: #eeeeee;
+  color: #05195a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.account__footer {
+  background: #05195a !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+  color: #fff;
+  font-weight: 300;
+  cursor: none;
+}
+
+.connectWallet__options__MOBILE #hidden_navLinks {
+  display: none;
+}
+
+.connectWallet__options__MOBILE #open {
+  position: fixed;
+  left: 62.5vw;
+  bottom: 20vw;
+  background-color: #eeeeee;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  display: block;
+  width: 150px;
+}
+
+@media (min-width: 901px) {
+  .connectWallet__options__MOBILE #open {
+    display: none;
+  }
+}
+
+.connectWallet__options__MOBILE .hidden_navLinksMobile li a {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+}
+
+.connectWallet__options__MOBILE .hidden_navLinksMobile li {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 3px;
+}
+
+.connectWallet__options__MOBILE .hidden_navLinksMobile li p {
+  padding-left: 3px;
+  color: #05195a;
+  cursor: pointer !important;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.connectWallet__options__MOBILE .hidden_navLinksMobile li .material-icons {
+  color: #05195a;
+  background-color: transparent;
+}
+
+.connectWallet__options__MOBILE .hidden_navLinksMobile li p:hover,
+.connectWallet__options__MOBILE .hidden_navLinksMobile li .material-icons:hover {
+  color: #062072;
+}
+
+.connectWallet__options__MOBILE button {
+  border-radius: 6px;
+  border: none;
+}
+/*# sourceMappingURL=MobileFooter.css.map */

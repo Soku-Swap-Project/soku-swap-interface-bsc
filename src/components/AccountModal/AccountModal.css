@@ -1,0 +1,135 @@
+.account__modal {
+  border: none !important;
+  -webkit-box-shadow: 0px 0px 20px #04bbfb !important;
+  box-shadow: 0px 0px 20px #04bbfb !important;
+  border-radius: 10px !important;
+  height: auto !important;
+  background: linear-gradient(100deg, #05195a 20%, #040f31) !important;
+  color: #fff !important;
+  width: 600px;
+}
+
+.account__modal hr {
+  margin-bottom: 20px !important;
+  margin-top: 20px !important;
+}
+
+.account__modal_header {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+}
+
+.account__modal_header span {
+  cursor: pointer !important;
+}
+
+.account__modal_details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.account__modal_details button {
+  justify-content: space-evenly;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.view_on_scan,
+.account_logout {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.view_on_scan span,
+.account_logout span {
+  margin-left: 8px;
+}
+
+.view_on_scan h2,
+.account_logout h2,
+.view_on_scan span,
+.account_logout span {
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer !important;
+}
+
+.view_on_scan:hover > h2,
+.account_logout:hover > h2,
+.view_on_scan:hover > span,
+.account_logout:hover > span {
+  color: #fff;
+}
+
+.account_logout {
+  cursor: pointer !important;
+}
+
+.account_logout:hover {
+  background: #05489c;
+  border: 1px solid transparent !important;
+}
+
+.account_logout {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+.wallet_info {
+  display: flex;
+  align-items: center;
+  margin-right: -5px;
+}
+
+.account__modalContainer {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+#simple-modal-description {
+  line-height: 40px;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  #simple-modal-description {
+    line-height: 25px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  #simple-modal-description {
+    line-height: 25px;
+  }
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  .account__modal {
+    width: 300px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  .account__modal {
+    width: 330px;
+  }
+}

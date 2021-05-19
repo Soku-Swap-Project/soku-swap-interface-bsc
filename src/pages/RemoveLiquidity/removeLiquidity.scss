@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+$colors: (
+  primary: #05195a,
+  secondary: #04bbfb,
+  tertiary: #05489c,
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+// Responsiveness for desktop
+$desktop: 901px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+// Responsiveness for iPad
+$iPad_minWidth: 600px;
+$iPad_maxWidth: 900px;
+
+@mixin iPad {
+  @media (min-width: #{$iPad_minWidth}) and (max-width: #{$iPad_maxWidth}) {
+    @content;
+  }
+}
+
+// Responsiveness for smaller phone screens
+
+// $iPhone678_Height: 800px;
+// $iPhone678_Width: 415px;
+
+$mobile_Width: 650px;
+$mobile_Height: 930px;
+
+@mixin mobile {
+  @media (max-height: #{$mobile_Height}) and (max-width: #{$mobile_Width}) {
+    @content;
+  }
+}
+
+// Remove liquidity boxes
+.sc-BXqHe.johgUp {
+  @include mobile {
+    // border: 1px solid red !important;
+    padding-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.sc-dQppl.eAOCdS.sc-hJJQhR.Ebjwy {
+  @include mobile() {
+    // border: 1px solid red;
+    width: auto;
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+.sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+
+  @include mobile {
+    padding: 10px;
+  }
+}
+
+.sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph .sc-gGTGfU.guFDoz {
+  padding: 15px;
+}
+
+// .sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph .sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM {
+//   //   border: 1px solid blue;
+//   //   margin-left: 2.5vw;
+// }
+
+// Remove liquidity tokens
+.sc-hOqqkJ.sc-dacFzL.sc-fbNXWD.drKBTM.hZLFGM.fGJHEj .sc-httYMd.hEeDUj {
+  display: flex;
+  padding-right: 0 !important;
+  margin-left: 20px;
+}
+
+// Remove liqudiity boxes
+.sc-kIeTtH.betTyM .sc-biOYSp.gUHGbn,
+.sc-kIeTtH.edjgnz {
+  //   margin: 0;
+  //   padding: 0;
+  max-width: auto;
+
+  @include mobile {
+    padding: 10px;
+  }
+}
+
+div[font-size='64px'] {
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+div[font-size='24px'] {
+  @include mobile {
+    font-size: 16px;
+  }
+}
+
+.sc-hOqqkJ.sc-dacFzL.sc-jUEnpm.drKBTM.hZLFGM.gTpFSF {
+  @include mobile {
+  }
+}
+
+.sc-tkKAw.jawwJq {
+  @include mobile {
+    font-size: 16px;
+  }
+}

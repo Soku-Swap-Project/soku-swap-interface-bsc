@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.navbar__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+  list-style-type: none !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+}
+
+.navbar__items li {
+  padding: 20px 15px;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 17px;
+  -webkit-transition: color 0.5s, font-size 0.5s;
+  -webkit-transition: color 0.1s, font-size 0.1s;
+  transition: color 0.1s, font-size 0.1s;
+}
+
+.navbar__options {
+  padding-left: 20px;
+  display: flex;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .navbar__items li {
+    font-size: 14px;
+  }
+}
+
+.navbar__items li:hover,
+.active {
+  color: #fff;
+  font-size: 17.05px;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .navbar__items li:hover,
+  .active {
+    font-size: 14.5px;
+  }
+}
+
+.active {
+  color: #fff !important;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+nav {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 20px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.125) !important;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.125) !important;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.125) !important;
+  width: 100vw;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  nav {
+    -ms-flex-pack: distribute;
+    justify-content: space-around !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 10px !important;
+  }
+}
+
+.nav_logo {
+  -o-object-fit: contain;
+  object-fit: contain;
+  height: 70px;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .nav_logo {
+    display: none;
+  }
+}
+
+.connectWallet__options__DESKTOP {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 35%;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .connectWallet__options__DESKTOP {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .connectWallet__options__DESKTOP {
+    display: none;
+  }
+}
+
+.connectWallet__options__DESKTOP li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.connectWallet__nav {
+  font-family: 'Poppins', 'sans-serif';
+  background: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 8px 10px;
+  padding-right: 20px;
+  border-radius: 12px;
+  /* -webkit-box-flex: 0.5;
+  -ms-flex: 0.5;
+  flex: 0.5; */
+  color: rgba(255, 255, 255, 0.87);
+  margin-right: -20px;
+  -webkit-transition: color 0.5s, font-size 0.5s;
+  -webkit-transition: color 0.1s, font-size 0.1s;
+  transition: color 0.1s, font-size 0.1s;
+}
+
+/* @media (min-width: 653px) and (min-height: 730px) {
+  .connectWallet__nav {
+    flex: 1;
+  }
+} */
+
+.connectWallet__nav button {
+  padding: 0px 15px;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  -webkit-transition: color 0.5s, font-size 0.5s;
+  transition: color 0.1s, font-size 0.1s;
+}
+
+.connectWallet__nav button:hover {
+  font-size: 16.5px;
+  /* font-weight: 550; */
+  color: #fff;
+}
+
+/* .claimSoku__nav {
+  font-family: 'Poppins', 'sans-serif';
+
+  background: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 8px 10px;
+  font-size: 1vw !important;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-box-flex: 0.5;
+  -ms-flex: 0.5;
+  flex: 0.55;
+  color: #fff;
+} */
+
+/* .claimSoku__nav {
+  flex: 0.55;
+}
+
+.claimSoku__nav:hover {
+  background-color: #05489c;
+  border: 1px solid #05489c;
+  color: #fff;
+} */
+
+.connectWallet__options__DESKTOP li button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.87);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.connectWallet__options__DESKTOP li button:hover {
+  color: #fff;
+}
+
+.account {
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  padding: 8px 10px;
+  -webkit-box-flex: 0.3;
+  -ms-flex: 0.3;
+  flex: 0.3;
+  font-weight: bold;
+  font-size: 14px !important;
+}
+
+.account:hover {
+  color: #fff;
+}
+
+.sokuswap__navbar #hidden_navLinks {
+  display: none;
+}
+
+.sokuswap__navbar #open {
+  position: absolute;
+  right: 1%;
+  top: 0;
+  margin-top: 120px;
+  background-color: #05195a;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 1s ease-in-out;
+  display: block;
+}
+
+.sokuswap__navbar .hidden_navLinks li a {
+  cursor: pointer;
+  z-index: 99;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  background-color: transparent;
+  border: none;
+}
+
+.sokuswap__navbar .hidden_navLinks li {
+  list-style-type: none;
+  display: flex;
+  padding: 20px 25px;
+}
+
+.sokuswap__navbar .hidden_navLinks li p {
+  padding-left: 10px;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer !important;
+  font-weight: 600;
+}
+
+.hidden_navLink a {
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.hidden_navLink a:hover {
+  color: #fff !important;
+}
+
+.disabled_link {
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.disabled_link p,
+.disabled_link span {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* .hidden_navLink a {
+  border: 1px solid red !important;
+} */
+/*# sourceMappingURL=Menu.css.map */

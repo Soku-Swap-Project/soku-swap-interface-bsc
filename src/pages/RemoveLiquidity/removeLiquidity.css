@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@media (max-height: 930px) and (max-width: 650px) {
+  .sc-BXqHe.johgUp {
+    padding-left: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .sc-dQppl.eAOCdS.sc-hJJQhR.Ebjwy {
+    width: auto;
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+.sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph {
+    padding: 10px;
+  }
+}
+
+.sc-exiMuG.jOJoLv .sc-kIeTtH.betTyM .sc-iumJyn.htMwph .sc-gGTGfU.guFDoz {
+  padding: 15px;
+}
+
+.sc-hOqqkJ.sc-dacFzL.sc-fbNXWD.drKBTM.hZLFGM.fGJHEj .sc-httYMd.hEeDUj {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 0 !important;
+  margin-left: 20px;
+}
+
+.sc-kIeTtH.betTyM .sc-biOYSp.gUHGbn,
+.sc-kIeTtH.edjgnz {
+  max-width: auto;
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .sc-kIeTtH.betTyM .sc-biOYSp.gUHGbn,
+  .sc-kIeTtH.edjgnz {
+    padding: 10px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  div[font-size='64px'] {
+    font-size: 24px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  div[font-size='24px'] {
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 650px) {
+  .sc-tkKAw.jawwJq {
+    font-size: 16px;
+  }
+}
+/*# sourceMappingURL=removeLiquidity.css.map */

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+$colors: (
+  primary: #05195a,
+  secondary: #04bbfb,
+  greyColor: #c9c9c9,
+  tertiary: #05489c,
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+// Responsiveness for desktop
+$desktop: 653px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
+// Responsiveness for Galaxy and Moto and iPhone 5SE
+$smallScreen: 720px;
+
+@mixin smallScreen {
+  @media (max-height: #{$smallScreen}) {
+    @content;
+  }
+}
+
+// Responsiveness for smaller phone screens
+$iPhone678_Height: 800px;
+$iPhone678_Width: 415px;
+
+@mixin iPhone678 {
+  @media (max-height: #{$iPhone678_Height}) and (max-width: #{$iPhone678_Width}) {
+    @content;
+  }
+}
+
+.sokuswap__swapButton {
+  background-color: #04bbfb;
+  border: none;
+  padding: 10px;
+  border-radius: 25px;
+  color: #fff;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.sokuswap__swapButton:hover,
+.sokuswap__swapButton button:hover {
+  background-color: #3acaff;
+}
+
+.sokuswap__swapButton button {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}

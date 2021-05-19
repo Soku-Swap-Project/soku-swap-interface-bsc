@@ -1,0 +1,68 @@
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c9c9c9 !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #c9c9c9 !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #c9c9c9 !important;
+}
+
+.maxButton {
+  color: #04bbfb !important;
+  font-size: 10px !important;
+  margin-right: -10px;
+  display: none !important;
+}
+
+#pair {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.currencySelector svg {
+  /* border: 1px solid red !important; */
+  margin-right: 10px;
+  fill: #000;
+}
+
+.token-amount-input {
+  font-size: 12px;
+  /* border: 1px solid red !important; */
+}
+
+/* .inputPanel {
+    border: 1px solid red;
+    width: 100%;
+    margin-right: 70px;
+    padding-right: 10px;
+  } */
+
+.sokuswap__fromAmount,
+.sokuswap__fromAmount input:focus,
+.sokuswap__toAmount input,
+.sokuswap__toAmount input:focus {
+  font-family: 'Roboto Mono', monospace;
+  border: none;
+  outline: none;
+  font-size: 20px !important;
+  padding: 15px 0px !important;
+  width: 60% !important;
+  /* border: 1px solid red !important; */
+}
+
+@media (max-height: 720px) {
+  .sokuswap__fromAmount,
+  .sokuswap__fromAmount input:focus,
+  .sokuswap__toAmount input,
+  .sokuswap__toAmount input:focus {
+    font-size: 14px !important;
+  }
+}

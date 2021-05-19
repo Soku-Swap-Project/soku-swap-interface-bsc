@@ -1,0 +1,57 @@
+/* Connect to a wallet h2 */
+.sc-eCssSg.sc-jSgupP.sc-dOSReg.jnvqfy.cjuMmG.dKsJwV h2,
+h2[color='text'] {
+  color: #05195a;
+}
+
+/* 'x' and Wallet names on Connect to a Wallet */
+button[id='wallet-connect-metamask'] div,
+button[id='wallet-connect-trustwallet'] div,
+button[id='wallet-connect-mathwallet'] div,
+button[id='wallet-connect-tokenpocket'] div,
+button[id='wallet-connect-walletconnect'] div,
+button[id='wallet-connect-binance chain wallet'] div,
+button[id='wallet-connect-safepal wallet'] div,
+.fKQcGp {
+  color: #04bbfb !important;
+  fill: #04bbfb !important;
+}
+
+/* button[id="wallet-connect-binance chain wallet"] {
+  display: none;
+} */
+
+/* 'Learn how to connect' on Connect to a Wallet */
+.sc-gsTCUz.sc-bYEvPH.jukfzI.bAxdNz.sc-lcujXC.keprIM,
+.sc-gsTCUz.sc-bYEvPH.jukfzI.bAxdNz.sc-lcujXC.keprIM svg, 
+a[href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"] {
+  color: #04bbfb;
+  fill: #04bbfb;
+  display: none;
+}
+
+/* Dark background on Wallet Connect page */
+.sc-bBrOnJ.hUVHli,
+div[role='presentation'] {
+  background: rgba(0, 0, 0, 0.603);
+}
+
+/* Pricing */
+.sc-tYoTV.kRwMwX {
+  /* border: 1px solid red; */
+  margin-top: -5px;
+  padding: 10px;
+}
+
+/* Swap Button */
+.sc-gHftXq.bCCDuy {
+  margin-top: 0px;
+  padding-top: 5px;
+  margin-bottom: -30px;
+}
+
+/* From and To text */
+.sc-gsTCUz.jcQTaw {
+  color: #05195a;
+  font-weight: 600;
+}

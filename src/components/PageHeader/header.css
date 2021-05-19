@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+.sokuswap__heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  .sokuswap__heading {
+    padding-bottom: 12px;
+  }
+}
+
+.sokuswap__heading h2 {
+  font-size: 20px;
+  color: #05195a;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  .sokuswap__heading h2 {
+    font-size: 16px;
+  }
+}
+
+.sokuswap__heading span {
+  font-size: 25px;
+  color: #d8d8d8;
+  cursor: pointer;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  .sokuswap__heading span {
+    font-size: 20px;
+  }
+}
+
+.sokuswap__heading button {
+  background: transparent;
+  border: none;
+}
+
+.sokuswap__heading span:hover {
+  color: #b8b8b8;
+}
+
+.sc-gsTCUz.cUMPjy {
+  color: #05195a;
+}
+
+.sc-dlfnbm.eZqaVE {
+  background-color: #04bbfb;
+  color: #fff;
+}
+
+.sc-dlfnbm.eZqaVE.sc-hKgILt.hFmlgK {
+  background-color: transparent;
+}
+
+.sc-dlfnbm.eZqaVE.sc-hKgILt.hFmlgK svg {
+  fill: #05195a;
+}
+/*# sourceMappingURL=header.css.map */

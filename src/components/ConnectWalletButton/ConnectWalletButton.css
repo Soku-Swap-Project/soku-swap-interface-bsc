@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+.sokuswap__swapButton {
+  background-color: #04bbfb;
+  border: none;
+  padding: 10px;
+  border-radius: 25px;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: 550;
+  cursor: pointer;
+  height: 48px !important;
+  font-size: 16px !important;
+}
+
+.sokuswap__swapButton:hover,
+.sokuswap__swapButton button:hover {
+  background-color: #3acaff;
+}
+
+.sokuswap__swapButton button {
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+}
+/*# sourceMappingURL=ConnectWalletButton.css.map */

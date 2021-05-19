@@ -1,0 +1,206 @@
+.claimSoku__modal {
+  border: none !important;
+  -webkit-box-shadow: 0px 0px 20px #04bbfb !important;
+          box-shadow: 0px 0px 20px #04bbfb !important;
+  border-radius: 10px !important;
+  height: auto !important;
+  background: linear-gradient(100deg, #05195a 20%, #040f31) !important;
+  color: #fff !important;
+  width: 600px;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  .claimSoku__modal {
+    width: 300px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  .claimSoku__modal {
+    width: 330px;
+  }
+}
+
+.claimSoku__modal hr {
+  margin-bottom: 20px !important;
+  margin-top: 20px !important;
+}
+
+.claimSoku__modal_header {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+.claimSoku__modal_header span {
+  cursor: pointer !important;
+}
+
+.claimSoku__modalContainer {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
+
+.claimSoku__noRewards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.claimSoku__noRewards a {
+  padding-top: 10px;
+  text-align: center;
+  color: #04bbfb;
+}
+
+.claimSoku__noRewards a:hover {
+  color: #3acaff;
+}
+
+#simple-modal-description {
+  line-height: 40px;
+}
+
+@media (max-height: 800px) and (max-width: 415px) {
+  #simple-modal-description {
+    line-height: 25px;
+  }
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  #simple-modal-description {
+    line-height: 25px;
+  }
+}
+
+.claimSoku__navButton {
+  font-family: 'Poppins', 'sans-serif';
+  background: transparent;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 40px !important;
+  font-size: 16px !important;
+  border-radius: 25px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  width: auto;
+  color: #fff;
+  -webkit-transition: color 0.1s, font-size 0.1s;
+  transition: color 0.1s, font-size 0.1s;
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  .claimSoku__navButton {
+    background: #05489c !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+    -webkit-box-flex: 0.4 !important;
+        -ms-flex: 0.4 !important;
+            flex: 0.4 !important;
+    border: none !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .claimSoku__navButton {
+    background: #05489c !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+    -webkit-box-flex: 0.4 !important;
+        -ms-flex: 0.4 !important;
+            flex: 0.4 !important;
+    border: none !important;
+  }
+}
+
+@media (max-height: 720px) {
+  .claimSoku__navButton {
+    background: #05489c !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+    border-radius: 12px !important;
+    -webkit-box-flex: 0.4 !important;
+        -ms-flex: 0.4 !important;
+            flex: 0.4 !important;
+    border: none !important;
+  }
+}
+
+.claimSoku__navButton:hover {
+  background-color: #05489c;
+  border: 1px solid #05489c !important;
+  color: #fff;
+}
+
+@media (max-height: 930px) and (max-width: 500px) {
+  .claimSoku__navButton:hover {
+    border: none !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .claimSoku__navButton:hover {
+    border: none !important;
+  }
+}
+
+@media (max-height: 720px) {
+  .claimSoku__navButton:hover {
+    border: none !important;
+  }
+}
+
+.soku_rewarded {
+  font-weight: bolder !important;
+  text-shadow: 0.5px 0 #fff;
+}
+/*# sourceMappingURL=ClaimSoku.css.map */
