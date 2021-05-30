@@ -43,7 +43,8 @@ const GlobalStyle = createGlobalStyle`
     color: #04bbfb;
   }
 
-  div[color="text"] {
+
+  div[color="text"], p[color="text"] {
     color: #05195a;
   }
 

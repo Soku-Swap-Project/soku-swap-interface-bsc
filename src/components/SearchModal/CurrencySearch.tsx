@@ -184,7 +184,7 @@ export function CurrencySearch({
       <Separator />
 
       <div style={{ flex: '1' }}>
-        <AutoSizer disableWidth style={{ border: '1px solid red' }}>
+        <AutoSizer disableWidth>
           {({ height }) => (
             <CurrencyList
               height={height}

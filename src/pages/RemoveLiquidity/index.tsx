@@ -14,6 +14,8 @@ import useI18n from 'hooks/useI18n'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import CardNav from '../../components/CardNav'
+
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
@@ -50,8 +52,8 @@ const OutlineCard = styled.div`
 `
 
 const Body = styled.div`
-  padding-left: 24px;
-  padding-right: 204px;
+  // padding-left: 24px;
+  // padding-right: 204px;
 `
 
 export default function RemoveLiquidity({
@@ -359,8 +361,8 @@ export default function RemoveLiquidity({
 
   function modalBottom() {
     return (
-      <>
-        <RowBetween>
+      <div style={{ background: '#E9EAEB', width: '100%', padding: '20px' }}>
+        <RowBetween style={{ padding: '0.5rem' }}>
           <Text color="textSubtle">{`LP ${currencyA?.symbol}/${currencyB?.symbol}`} Burned</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
@@ -369,13 +371,13 @@ export default function RemoveLiquidity({
         </RowBetween>
         {pair && (
           <>
-            <RowBetween>
+            <RowBetween style={{ padding: '0.5rem' }}>
               <Text color="textSubtle">{TranslateString(1182, 'Price')}</Text>
               <Text>
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
             </RowBetween>
-            <RowBetween>
+            <RowBetween style={{ padding: '0.5rem' }}>
               <div />
               <Text>
                 1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
@@ -383,10 +385,14 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
+        <Button
+          style={{ background: '#04bbfb', width: '100%' }}
+          disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
+          onClick={onRemove}
+        >
           {TranslateString(1136, 'Confirm')}
         </Button>
-      </>
+      </div>
     )
   }
 
@@ -448,6 +454,8 @@ export default function RemoveLiquidity({
 
   return (
     <>
+      <CardNav />
+
       <AppBody>
         <AddRemoveTabs adding={false} />
         <Wrapper>
@@ -490,28 +498,28 @@ export default function RemoveLiquidity({
                       </Flex>
                       <Flex justifyContent="space-around">
                         <Button
-                          variant="tertiary"
+                          style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
                         >
                           25%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
                         >
                           50%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
                         >
                           75%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                         >
@@ -636,14 +644,14 @@ export default function RemoveLiquidity({
                   </Flex>
                 </div>
               )}
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: 'relative', paddingTop: '20px' }}>
                 {!account ? (
                   <ConnectWalletButton />
                 ) : (
                   <RowBetween>
                     <Button
                       onClick={onAttemptToApprove}
-                      variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
+                      style={{ background: '#04bbfb', width: '50%' }}
                       disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                       mr="8px"
                     >
@@ -660,11 +668,7 @@ export default function RemoveLiquidity({
                         setShowConfirm(true)
                       }}
                       disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
-                      variant={
-                        !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
-                          ? 'danger'
-                          : 'primary'
-                      }
+                      style={{ background: '#05195a', width: '50%' }}
                     >
                       {error || 'Remove'}
                     </Button>
