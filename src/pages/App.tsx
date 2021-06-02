@@ -3,7 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
 
-import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
+import { useWalletModal } from '@pancakeswap-libs/uikit'
 import ClaimSokuModal from 'components/ClaimSokuModal'
 import AccountModal from 'components/AccountModal'
 
@@ -18,7 +18,7 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
-import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
+import { RedirectHashRoutes } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
@@ -154,9 +154,9 @@ export default function App() {
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
-  const truncatedFirstHalf = account?.substring(0, 5)
-  const truncatedLastHalf = account?.substring(account.length - 5, account.length)
-  const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
+  // const truncatedFirstHalf = account?.substring(0, 5)
+  // const truncatedLastHalf = account?.substring(account.length - 5, account.length)
+  // const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinksMobile')

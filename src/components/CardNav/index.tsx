@@ -1,8 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
+// import styled from 'styled-components'
+// import { Link } from 'react-router-dom'
+// import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
+// import useI18n from 'hooks/useI18n'
 
 import './SokuSwap.css'
 
@@ -10,8 +10,8 @@ import './SokuSwap.css'
 //   margin-bottom: 40px;
 // `
 
-function SokuSwapLogo({ activeIndex = 0 }: { activeIndex?: number }) {
-  const TranslateString = useI18n()
+function SokuSwapLogo() {
+  // const TranslateString = useI18n()
 
   return (
     <div>
