@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react'
 import { Currency } from '@pancakeswap-libs/sdk'
-import { Pair } from '../../entities/pair'
+import Pair from '../../entities/pair'
 import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { darken } from 'polished'

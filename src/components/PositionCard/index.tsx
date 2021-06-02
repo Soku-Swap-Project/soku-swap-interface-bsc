@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 import React, { useState } from 'react'
-import { JSBI, Percent } from '@pancakeswap-libs/sdk'
-import { Pair } from '../../entities/pair'
+import { JSBI, Percent, Pair } from '@pancakeswap-libs/sdk'
+// import { Pair } from '../../entities/pair'
 import { Button, Card as UIKitCard, CardBody, Text } from '@pancakeswap-libs/uikit'
 import { darken } from 'polished'
 import { ChevronDown, ChevronUp } from 'react-feather'
@@ -57,7 +57,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
     JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
           pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
         ]
       : [undefined, undefined]
 
@@ -143,7 +143,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
     JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
           pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
         ]
       : [undefined, undefined]
 

@@ -11,7 +11,7 @@ import { Fraction } from './fractions/fraction'
 import { Percent } from './fractions/percent'
 import { Price } from './fractions/price'
 import { TokenAmount } from './fractions/tokenAmount'
-import { Pair } from './pair'
+import Pair from './pair'
 import { Route } from './route'
 import { currencyEquals, Token, WETH } from './token'
 

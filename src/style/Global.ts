@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: none !important;
   }
 
-  svg[color="textSubtle"] {
+  svg[color="textSubtle"], button svg[color="currentColor"] {
     fill: #04bbfb
 
   }
