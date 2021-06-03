@@ -20,6 +20,15 @@
       ]
     },
     {
+      "source": "/(.*).mp3",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "audio/mpeg"
+        }
+      ]
+    },
+    {
       "source": "/(.*).html",
       "headers": [
         {
