@@ -33,7 +33,7 @@
       "headers": [
         {
           "key": "Content-Type",
-          "value": "text/hmtl"
+          "value": "text/html"
         }
       ]
     },
