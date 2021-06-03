@@ -1,5 +1,4 @@
 {
-  "rewrites": [{ "source": "/((?!bsc).*)", "destination": "/bsc/$1" }],
   "headers": [
     {
       "source": "/service-worker.js",
