@@ -1,4 +1,5 @@
 {
+  "rewrites": [{ "source": "/bsc", "destination": "/" }],
   "headers": [
     {
       "source": "/service-worker.js",
