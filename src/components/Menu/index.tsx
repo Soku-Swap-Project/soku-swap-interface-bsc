@@ -1,10 +1,19 @@
-import { useWalletModal } from '@pancakeswap-libs/uikit'
-import { useWeb3React } from '@web3-react/core'
-import AccountModal from 'components/AccountModal'
-import ClaimSokuModal from 'components/ClaimSokuModal'
-import useAuth from 'hooks/useAuth'
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
+import { useWeb3React } from '@web3-react/core'
+import { allLanguages } from 'constants/localisation/languageCodes'
+import { LanguageContext } from 'hooks/LanguageContext'
+
+import ClaimSokuModal from 'components/ClaimSokuModal'
+import AccountModal from 'components/AccountModal'
+
+import useTheme from 'hooks/useTheme'
+import useGetPriceData from 'hooks/useGetPriceData'
+import useGetLocalProfile from 'hooks/useGetLocalProfile'
+import useAuth from 'hooks/useAuth'
+import links from './config'
+
 import './Menu.css'
 
 /* eslint-disable */

@@ -1,10 +1,10 @@
-import { Button, CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Modal, Text } from '@pancakeswap-libs/uikit'
-import Loader from 'components/Loader'
-import { useActiveWeb3React } from 'hooks'
 import React, { useMemo } from 'react'
+import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Text, Modal, Button } from '@pancakeswap-libs/uikit'
+import { useActiveWeb3React } from 'hooks'
+import { getBscScanLink } from 'utils'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
 import { TransactionDetails } from 'state/transactions/reducer'
-import { getBscScanLink } from 'utils'
+import Loader from 'components/Loader'
 
 type RecentTransactionsModalProps = {
   onDismiss?: () => void
@@ -65,7 +65,7 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss, translateString
       )}
       {account &&
         chainId &&
-        sortedRecentTransactions.map((sortedRecentTransaction) => {
+        sortedRecentTransactions.map(sortedRecentTransaction => {
           const { hash, summary } = sortedRecentTransaction
           const { icon, color } = getRowStatus(sortedRecentTransaction)
 

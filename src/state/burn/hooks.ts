@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePair } from '../../data/Reserves'
 import { useTotalSupply } from '../../data/TotalSupply'
+
 import { useActiveWeb3React } from '../../hooks'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import { AppDispatch, AppState } from '../index'
@@ -11,7 +12,7 @@ import { useTokenBalances } from '../wallet/hooks'
 import { Field, typeInput } from './actions'
 
 export function useBurnState(): AppState['burn'] {
-  return useSelector<AppState, AppState['burn']>((state) => state.burn)
+  return useSelector<AppState, AppState['burn']>(state => state.burn)
 }
 
 export function useDerivedBurnInfo(
@@ -86,12 +87,12 @@ export function useDerivedBurnInfo(
   }
   // user specified a specific amount of token a or b
   else if (tokens[independentField]) {
-    const independentAmount = tryParseAmount(typedValue, tokens[independentField])
-    const liquidityValue = liquidityValues[independentField]
-    if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
-      percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
+      const independentAmount = tryParseAmount(typedValue, tokens[independentField])
+      const liquidityValue = liquidityValues[independentField]
+      if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
+        percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
+      }
     }
-  }
 
   const parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent

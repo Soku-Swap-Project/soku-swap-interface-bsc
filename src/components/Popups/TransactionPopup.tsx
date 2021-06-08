@@ -1,12 +1,12 @@
-import { Text } from '@pancakeswap-libs/uikit'
 import React, { useContext } from 'react'
 import { AlertCircle, CheckCircle } from 'react-feather'
+import { Text } from '@pancakeswap-libs/uikit'
 import styled, { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { getBscScanLink } from '../../utils'
+import { ExternalLink } from '../Shared'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
-import { ExternalLink } from '../Shared'
 
 const RowNoFlex = styled(AutoRow)`
   flex-wrap: nowrap;
@@ -15,7 +15,7 @@ const RowNoFlex = styled(AutoRow)`
 export default function TransactionPopup({
   hash,
   success,
-  summary
+  summary,
 }: {
   hash: string
   success?: boolean

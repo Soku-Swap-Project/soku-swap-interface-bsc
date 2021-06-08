@@ -2,10 +2,11 @@
 
 import { ChainId } from '@pancakeswap-libs/sdk'
 import invariant from 'tiny-invariant'
+
 import { Currency, ETHER } from './currency'
-import { Price } from './fractions/price'
-import Pair from './pair'
 import { Token, WETH } from './token'
+import Pair from './pair'
+import { Price } from './fractions/price'
 
 export class Route {
   public readonly pairs: Pair[]

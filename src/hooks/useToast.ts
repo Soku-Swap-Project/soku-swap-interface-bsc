@@ -1,8 +1,13 @@
-import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
-import { kebabCase } from 'lodash'
 import { useMemo } from 'react'
+import { kebabCase } from 'lodash'
+import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
 import { useDispatch } from 'react-redux'
-import { clear as clearToast, push as pushToast, remove as removeToast } from 'state/actions'
+
+import {
+  push as pushToast,
+  remove as removeToast,
+  clear as clearToast
+} from 'state/actions'
 
 // Toasts
 const useToast = () => {
@@ -25,7 +30,7 @@ const useToast = () => {
       },
       push,
       remove: (id: string) => dispatch(removeToast(id)),
-      clear: () => dispatch(clearToast())
+      clear: () => dispatch(clearToast()),
     }
   }, [dispatch])
 

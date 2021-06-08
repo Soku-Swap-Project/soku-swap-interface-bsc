@@ -1,19 +1,20 @@
 /* eslint-disable */
 
+import React, { useState, useCallback } from 'react'
 import { Currency } from '@pancakeswap-libs/sdk'
-import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
-import { darken } from 'polished'
-import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
 import Pair from '../../entities/pair'
-import { useActiveWeb3React } from '../../hooks'
+import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
+import styled from 'styled-components'
+import { darken } from 'polished'
+import useI18n from 'hooks/useI18n'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
+import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
-import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween } from '../Row'
-import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
+import { Input as NumericalInput } from '../NumericalInput'
+import { useActiveWeb3React } from '../../hooks'
+
 import './CurrencyInputPanel.css'
 
 const InputRow = styled.div<{ selected: boolean }>`
@@ -102,7 +103,7 @@ export default function CurrencyInputPanel({
   hideInput = false,
   otherCurrency,
   id,
-  showCommonBases
+  showCommonBases,
 }: CurrencyInputPanelProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()

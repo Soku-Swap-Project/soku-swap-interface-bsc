@@ -1,9 +1,10 @@
-import { DialogContent, DialogOverlay } from '@reach/dialog'
-import '@reach/dialog/styles.css'
 import React from 'react'
-import { isMobile } from 'react-device-detect'
-import { animated, useTransition } from 'react-spring'
 import styled, { css } from 'styled-components'
+import { animated, useTransition } from 'react-spring'
+import { DialogOverlay, DialogContent } from '@reach/dialog'
+import { isMobile } from 'react-device-detect'
+import '@reach/dialog/styles.css'
+import { transparentize } from 'polished'
 
 const AnimatedDialogOverlay = animated(DialogOverlay)
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,7 +28,7 @@ const AnimatedDialogContent = animated(DialogContent)
 const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...rest }) => (
   <AnimatedDialogContent {...rest} />
 )).attrs({
-  'aria-label': 'dialog'
+  'aria-label': 'dialog',
 })`
   &[data-reach-dialog-content] {
     margin: 0 0 2rem 0;
@@ -78,13 +79,13 @@ export default function Modal({
   minHeight = false,
   maxHeight = 50,
   initialFocusRef,
-  children
+  children,
 }: ModalProps) {
   const fadeTransition = useTransition(isOpen, null, {
     config: { duration: 200 },
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 }
+    leave: { opacity: 0 },
   })
 
   return (

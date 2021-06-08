@@ -1,7 +1,7 @@
-import { Input, Text } from '@pancakeswap-libs/uikit'
 import React, { useEffect, useState } from 'react'
-import { useUserDeadline } from 'state/user/hooks'
 import styled from 'styled-components'
+import { Input, Text } from '@pancakeswap-libs/uikit'
+import { useUserDeadline } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'
 
 const StyledTransactionDeadlineSetting = styled.div`

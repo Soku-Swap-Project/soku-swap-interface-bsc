@@ -1,5 +1,5 @@
-import { TranslationsContext } from 'hooks/TranslationsContext'
 import { useCallback, useContext } from 'react'
+import { TranslationsContext } from 'hooks/TranslationsContext'
 import { getTranslation } from 'utils/translateTextHelpers'
 
 const useI18n = () => {

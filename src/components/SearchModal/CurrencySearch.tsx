@@ -1,24 +1,26 @@
 /* eslint-disable */
 import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
-import { CloseIcon, Text } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next'
+import { Tooltip, OverlayTrigger, Button } from 'react-bootstrap'
+
+import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'
-import AutoSizer from 'react-virtualized-auto-sizer'
+import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
 import { ThemeContext } from 'styled-components'
+import AutoSizer from 'react-virtualized-auto-sizer'
+import useI18n from 'hooks/useI18n'
 import { useActiveWeb3React } from '../../hooks'
-import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { AppState } from '../../state'
+import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
+import { LinkStyledButton } from '../Shared'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
 import ListLogo from '../ListLogo'
+import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
-import { LinkStyledButton } from '../Shared'
 import CommonBases from './CommonBases'
 import CurrencyList from './CurrencyList'
 import { filterTokens } from './filtering'
@@ -43,7 +45,7 @@ export function CurrencySearch({
   showCommonBases,
   onDismiss,
   isOpen,
-  onChangeList
+  onChangeList,
 }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
@@ -85,7 +87,7 @@ export function CurrencySearch({
       ...(searchToken ? [searchToken] : []),
       // sort any exact symbol matches first
       ...sorted.filter((token) => token.symbol?.toLowerCase() === symbolMatch[0]),
-      ...sorted.filter((token) => token.symbol?.toLowerCase() !== symbolMatch[0])
+      ...sorted.filter((token) => token.symbol?.toLowerCase() !== symbolMatch[0]),
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
 

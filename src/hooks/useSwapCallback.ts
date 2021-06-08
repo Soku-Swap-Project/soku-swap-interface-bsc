@@ -9,10 +9,10 @@ import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 
-enum SwapCallbackState {
+ enum SwapCallbackState {
   INVALID,
   LOADING,
-  VALID
+  VALID,
 }
 
 interface SwapCall {
@@ -66,7 +66,7 @@ function useSwapCallArguments(
         feeOnTransfer: false,
         allowedSlippage: new Percent(JSBI.BigInt(Math.floor(allowedSlippage)), BIPS_BASE),
         recipient,
-        ttl: deadline
+        ttl: deadline,
       })
     )
 
@@ -77,7 +77,7 @@ function useSwapCallArguments(
           feeOnTransfer: true,
           allowedSlippage: new Percent(JSBI.BigInt(Math.floor(allowedSlippage)), BIPS_BASE),
           recipient,
-          ttl: deadline
+          ttl: deadline,
         })
       )
     }
@@ -121,7 +121,7 @@ export function useSwapCallback(
           swapCalls.map((call) => {
             const {
               parameters: { methodName, args, value },
-              contract
+              contract,
             } = call
             const options = !value || isZero(value) ? {} : { value }
 
@@ -129,7 +129,7 @@ export function useSwapCallback(
               .then((gasEstimate) => {
                 return {
                   call,
-                  gasEstimate
+                  gasEstimate,
                 }
               })
               .catch((gasError) => {
@@ -173,14 +173,14 @@ export function useSwapCallback(
         const {
           call: {
             contract,
-            parameters: { methodName, args, value }
+            parameters: { methodName, args, value },
           },
-          gasEstimate
+          gasEstimate,
         } = successfulEstimation
 
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
-          ...(value && !isZero(value) ? { value, from: account } : { from: account })
+          ...(value && !isZero(value) ? { value, from: account } : { from: account }),
         })
           .then((response: any) => {
             const inputSymbol = trade.inputAmount.currency.symbol
@@ -199,7 +199,7 @@ export function useSwapCallback(
                   }`
 
             addTransaction(response, {
-              summary: withRecipient
+              summary: withRecipient,
             })
 
             return response.hash
@@ -215,7 +215,7 @@ export function useSwapCallback(
             }
           })
       },
-      error: null
+      error: null,
     }
   }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
 }

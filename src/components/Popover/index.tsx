@@ -1,9 +1,9 @@
 import { Placement } from '@popperjs/core'
-import Portal from '@reach/portal'
 import { transparentize } from 'polished'
 import React, { useCallback, useState } from 'react'
 import { usePopper } from 'react-popper'
 import styled from 'styled-components'
+import Portal from '@reach/portal'
 import useInterval from '../../hooks/useInterval'
 
 const PopoverContainer = styled.div<{ show: boolean }>`
@@ -91,8 +91,8 @@ export default function Popover({ content, show, children, placement = 'auto' }:
     strategy: 'fixed',
     modifiers: [
       { name: 'offset', options: { offset: [8, 8] } },
-      { name: 'arrow', options: { element: arrowElement } }
-    ]
+      { name: 'arrow', options: { element: arrowElement } },
+    ],
   })
   const updateCallback = useCallback(() => {
     if (update) {

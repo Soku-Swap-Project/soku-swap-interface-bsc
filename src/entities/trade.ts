@@ -1,7 +1,8 @@
 /* eslint-disable */
 
-import { ChainId } from '@pancakeswap-libs/sdk'
 import invariant from 'tiny-invariant'
+
+import { ChainId } from '@pancakeswap-libs/sdk'
 import { ONE, TradeType, ZERO } from '../constants'
 import { sortedInsert } from '../utils'
 import { Currency, ETHER } from './currency'
@@ -310,7 +311,7 @@ export class Trade {
           currencyOut,
           {
             maxNumResults,
-            maxHops: maxHops - 1
+            maxHops: maxHops - 1,
           },
           [...currentPairs, pair],
           originalAmountIn,
@@ -398,7 +399,7 @@ export class Trade {
           amountIn,
           {
             maxNumResults,
-            maxHops: maxHops - 1
+            maxHops: maxHops - 1,
           },
           [pair, ...currentPairs],
           originalAmountOut,

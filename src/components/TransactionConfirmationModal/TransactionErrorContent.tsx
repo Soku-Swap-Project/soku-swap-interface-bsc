@@ -1,9 +1,9 @@
-import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useContext } from 'react'
-import { AlertTriangle } from 'react-feather'
 import { ThemeContext } from 'styled-components'
+import { Button, Text } from '@pancakeswap-libs/uikit'
+import { AlertTriangle } from 'react-feather'
 import { AutoColumn } from '../Column'
-import { BottomSection, ContentHeader, Section, Wrapper } from './helpers'
+import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
 
 type TransactionErrorContentProps = { message: string; onDismiss: () => void }
 

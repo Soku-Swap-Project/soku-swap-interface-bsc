@@ -1,1 +1,1 @@
-export { clear, push, remove } from './toasts'
+export { clear, remove, push } from './toasts'

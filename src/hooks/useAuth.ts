@@ -1,17 +1,17 @@
+import { useCallback } from 'react'
+import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core'
 import { NoBscProviderError } from '@binance-chain/bsc-connector'
-import { connectorLocalStorageKey, ConnectorNames } from '@pancakeswap-libs/uikit'
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import {
   NoEthereumProviderError,
-  UserRejectedRequestError as UserRejectedRequestErrorInjected
+  UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector'
 import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
-  WalletConnectConnector
+  WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { connectorsByName } from 'connectors'
+import { connectorLocalStorageKey, ConnectorNames } from '@pancakeswap-libs/uikit'
 import useToast from 'hooks/useToast'
-import { useCallback } from 'react'
+import { connectorsByName } from 'connectors'
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()

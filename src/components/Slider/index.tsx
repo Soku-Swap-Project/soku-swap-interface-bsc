@@ -2,6 +2,7 @@
 
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
+import { Slider as AntSlider } from 'antd'
 
 const StyledRangeInput = styled.input<{ size: number }>`
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
