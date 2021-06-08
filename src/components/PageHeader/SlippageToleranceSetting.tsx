@@ -1,7 +1,7 @@
-import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
 import React, { useEffect, useState } from 'react'
-import { useUserSlippageTolerance } from 'state/user/hooks'
 import styled from 'styled-components'
+import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
+import { useUserSlippageTolerance } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'
 
 const MAX_SLIPPAGE = 5000

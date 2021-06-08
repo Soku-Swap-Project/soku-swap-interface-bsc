@@ -1,12 +1,14 @@
 /* eslint-disable */
 
-import { LoadingOutlined } from '@ant-design/icons'
-import { Text } from '@pancakeswap-libs/uikit'
 import React from 'react'
 import styled from 'styled-components'
-import { AutoColumn } from '../Column'
+
+import { Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
+import { Text } from '@pancakeswap-libs/uikit'
 import { Spinner } from '../Shared'
-import { ConfirmedIcon, ContentHeader, Section, Wrapper } from './helpers'
+import { AutoColumn } from '../Column'
+import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
 

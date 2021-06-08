@@ -1,8 +1,8 @@
+import React, { useContext, useMemo } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { Trade, TradeType } from '@pancakeswap-libs/sdk'
 import { Button, Text } from '@pancakeswap-libs/uikit'
-import React, { useContext, useMemo } from 'react'
-import { AlertTriangle, ArrowDown } from 'react-feather'
-import styled, { ThemeContext } from 'styled-components'
+import { ArrowDown, AlertTriangle } from 'react-feather'
 import { Field } from '../../state/swap/actions'
 import { isAddress, shortenAddress } from '../../utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
@@ -26,7 +26,7 @@ export default function SwapModalHeader({
   allowedSlippage,
   recipient,
   showAcceptChanges,
-  onAcceptChanges
+  onAcceptChanges,
 }: {
   trade: Trade
   allowedSlippage: number
@@ -34,10 +34,10 @@ export default function SwapModalHeader({
   showAcceptChanges: boolean
   onAcceptChanges: () => void
 }) {
-  const slippageAdjustedAmounts = useMemo(
-    () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
-    [trade, allowedSlippage]
-  )
+  const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
+    trade,
+    allowedSlippage,
+  ])
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 

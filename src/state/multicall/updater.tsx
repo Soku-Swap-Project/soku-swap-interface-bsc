@@ -13,7 +13,7 @@ import {
   errorFetchingMulticallResults,
   fetchingMulticallResults,
   parseCallKey,
-  updateMulticallResults
+  updateMulticallResults,
 } from './actions'
 
 // chunk calls so we do not exceed the gas limit
@@ -129,10 +129,9 @@ export default function Updater(): null {
     return outdatedListeningKeys(state.callResults, listeningKeys, chainId, latestBlockNumber)
   }, [chainId, state.callResults, listeningKeys, latestBlockNumber])
 
-  const serializedOutdatedCallKeys = useMemo(
-    () => JSON.stringify(unserializedOutdatedCallKeys.sort()),
-    [unserializedOutdatedCallKeys]
-  )
+  const serializedOutdatedCallKeys = useMemo(() => JSON.stringify(unserializedOutdatedCallKeys.sort()), [
+    unserializedOutdatedCallKeys,
+  ])
 
   useEffect(() => {
     if (!latestBlockNumber || !chainId || !multicallContract) return
@@ -152,7 +151,7 @@ export default function Updater(): null {
       fetchingMulticallResults({
         calls,
         chainId,
-        fetchingBlockNumber: latestBlockNumber
+        fetchingBlockNumber: latestBlockNumber,
       })
     )
 
@@ -162,7 +161,7 @@ export default function Updater(): null {
         const { cancel, promise } = retry(() => fetchChunk(multicallContract, chunk, latestBlockNumber), {
           n: Infinity,
           minWait: 2500,
-          maxWait: 3500
+          maxWait: 3500,
         })
         promise
           .then(({ results: returnData, blockNumber: fetchBlockNumber }) => {
@@ -181,7 +180,7 @@ export default function Updater(): null {
                     memo[callKey] = returnData[i] ?? null
                     return memo
                   }, {}),
-                blockNumber: fetchBlockNumber
+                blockNumber: fetchBlockNumber,
               })
             )
           })
@@ -195,12 +194,12 @@ export default function Updater(): null {
               errorFetchingMulticallResults({
                 calls: chunk,
                 chainId,
-                fetchingBlockNumber: latestBlockNumber
+                fetchingBlockNumber: latestBlockNumber,
               })
             )
           })
         return cancel
-      })
+      }),
     }
   }, [chainId, multicallContract, dispatch, serializedOutdatedCallKeys, latestBlockNumber])
 

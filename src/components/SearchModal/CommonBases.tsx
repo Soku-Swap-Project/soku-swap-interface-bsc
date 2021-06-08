@@ -1,13 +1,14 @@
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@pancakeswap-libs/sdk'
-import { Text } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
 import React from 'react'
+import { Text } from '@pancakeswap-libs/uikit'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from '@pancakeswap-libs/sdk'
 import styled from 'styled-components'
+
+import useI18n from 'hooks/useI18n'
 import { SUGGESTED_BASES } from '../../constants'
 import { AutoColumn } from '../Column'
-import CurrencyLogo from '../CurrencyLogo'
 import QuestionHelper from '../QuestionHelper'
 import { AutoRow } from '../Row'
+import CurrencyLogo from '../CurrencyLogo'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.tertiary)};
@@ -28,7 +29,7 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
 export default function CommonBases({
   chainId,
   onSelect,
-  selectedCurrency
+  selectedCurrency,
 }: {
   chainId?: ChainId
   selectedCurrency?: Currency | null

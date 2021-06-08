@@ -1,27 +1,28 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap-libs/sdk'
-import { AddIcon, Button, CardBody, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
-import { LightCard } from 'components/Card'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from '@pancakeswap-libs/uikit'
 import CardNav from 'components/CardNav'
+import { LightCard } from 'components/Card'
 import { AutoColumn, ColumnCenter } from 'components/Column'
 import CurrencyLogo from 'components/CurrencyLogo'
 import { FindPoolTabs } from 'components/NavigationTabs'
 import { MinimalPositionCard } from 'components/PositionCard'
 import CurrencySearchModal from 'components/SearchModal/CurrencySearchModal'
-import { StyledInternalLink } from 'components/Shared'
 import { PairState, usePair } from 'data/Reserves'
 import { useActiveWeb3React } from 'hooks'
-import useI18n from 'hooks/useI18n'
-import React, { useCallback, useEffect, useState } from 'react'
 import { usePairAdder } from 'state/user/hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
+import { StyledInternalLink } from 'components/Shared'
 import { currencyId } from 'utils/currencyId'
+import useI18n from 'hooks/useI18n'
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
+
 import './poolFinder.css'
 
 enum Fields {
   TOKEN0 = 0,
-  TOKEN1 = 1
+  TOKEN1 = 1,
 }
 
 export default function PoolFinder() {

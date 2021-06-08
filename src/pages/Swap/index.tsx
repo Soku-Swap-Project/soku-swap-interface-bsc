@@ -1,39 +1,42 @@
 /* eslint-disable */
 
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
-import { ArrowDownIcon, Button, CardBody, IconButton, Text } from '@pancakeswap-libs/uikit'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { ArrowDown } from 'react-feather'
+import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
+import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
-import CardNav from 'components/CardNav'
 import { AutoColumn } from 'components/Column'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
 import CurrencyInputPanel from 'components/CurrencyInputPanel'
-import Loader from 'components/Loader'
-import PageHeader from 'components/PageHeader'
-import ProgressSteps from 'components/ProgressSteps'
+import CardNav from 'components/CardNav'
 import { AutoRow, RowBetween } from 'components/Row'
-import { LinkStyledButton } from 'components/Shared'
 import AdvancedSwapDetailsDropdown from 'components/swap/AdvancedSwapDetailsDropdown'
 import confirmPriceImpactWithoutFee from 'components/swap/confirmPriceImpactWithoutFee'
-import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from 'components/swap/styleds'
 import TradePrice from 'components/swap/TradePrice'
-import Toggle from 'components/Toggle'
+import TokenWarningModal from 'components/TokenWarningModal'
+import SyrupWarningModal from 'components/SyrupWarningModal'
+import ProgressSteps from 'components/ProgressSteps'
+
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
-import useI18n from 'hooks/useI18n'
 import { useSwapCallback } from 'hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { ArrowDown } from 'react-feather'
 import { Field } from 'state/swap/actions'
 import { useDefaultsFromURLSearch, useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from 'state/swap/hooks'
 import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
-import { ThemeContext } from 'styled-components'
+import { LinkStyledButton } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
+import Toggle from 'components/Toggle'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
+import Loader from 'components/Loader'
+import useI18n from 'hooks/useI18n'
+import PageHeader from 'components/PageHeader'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
 
 const Swap = () => {
@@ -43,7 +46,7 @@ const Swap = () => {
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
-    useCurrency(loadedUrlParams?.outputCurrencyId)
+    useCurrency(loadedUrlParams?.outputCurrencyId),
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const [isSyrup, setIsSyrup] = useState<boolean>(false)
@@ -76,7 +79,7 @@ const Swap = () => {
   const {
     wrapType,
     execute: onWrap,
-    inputError: wrapInputError
+    inputError: wrapInputError,
   } = useWrapCallback(currencies[Field.INPUT], currencies[Field.OUTPUT], typedValue)
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
@@ -84,11 +87,11 @@ const Swap = () => {
   const parsedAmounts = showWrap
     ? {
         [Field.INPUT]: parsedAmount,
-        [Field.OUTPUT]: parsedAmount
+        [Field.OUTPUT]: parsedAmount,
       }
     : {
         [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount
+        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
       }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
@@ -120,14 +123,14 @@ const Swap = () => {
     tradeToConfirm: undefined,
     attemptingTxn: false,
     swapErrorMessage: undefined,
-    txHash: undefined
+    txHash: undefined,
   })
 
   const formattedAmounts = {
     [independentField]: typedValue,
     [dependentField]: showWrap
       ? parsedAmounts[independentField]?.toExact() ?? ''
-      : parsedAmounts[dependentField]?.toSignificant(6) ?? ''
+      : parsedAmounts[dependentField]?.toSignificant(6) ?? '',
   }
 
   const route = trade?.route
@@ -176,7 +179,7 @@ const Swap = () => {
           ...prevState,
           attemptingTxn: false,
           swapErrorMessage: undefined,
-          txHash: hash
+          txHash: hash,
         }))
       })
       .catch((error) => {
@@ -184,7 +187,7 @@ const Swap = () => {
           ...prevState,
           attemptingTxn: false,
           swapErrorMessage: error.message,
-          txHash: undefined
+          txHash: undefined,
         }))
       })
   }, [priceImpactWithoutFee, swapCallback, setSwapState])
@@ -407,7 +410,7 @@ const Swap = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '16px'
+                    borderRadius: '16px',
                   }}
                 >
                   <Text mb="4px" color="#BDC2C4" fontWeight="bold">
@@ -442,7 +445,7 @@ const Swap = () => {
                           attemptingTxn: false,
                           swapErrorMessage: undefined,
                           showConfirm: true,
-                          txHash: undefined
+                          txHash: undefined,
                         })
                       }
                     }}
@@ -469,7 +472,7 @@ const Swap = () => {
                         attemptingTxn: false,
                         swapErrorMessage: undefined,
                         showConfirm: true,
-                        txHash: undefined
+                        txHash: undefined,
                       })
                     }
                   }}

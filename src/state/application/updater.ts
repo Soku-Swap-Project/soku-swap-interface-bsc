@@ -13,7 +13,7 @@ export default function Updater(): null {
 
   const [state, setState] = useState<{ chainId: number | undefined; blockNumber: number | null }>({
     chainId,
-    blockNumber: null
+    blockNumber: null,
   })
 
   const blockNumberCallback = useCallback(

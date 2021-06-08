@@ -3,9 +3,9 @@ import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists'
 // eslint-disable-next-line import/no-unresolved
 import { TokenList } from '@uniswap/token-lists/dist/types'
 import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
-import DEFAULT_LIST from '../../constants/token/sokuswap.json'
 import { updateVersion } from '../global/actions'
 import { acceptListUpdate, addList, fetchTokenList, removeList, selectList } from './actions'
+import DEFAULT_LIST from '../../constants/token/sokuswap.json'
 
 export interface ListsState {
   readonly byUrl: {
@@ -25,7 +25,7 @@ const NEW_LIST_STATE: ListsState['byUrl'][string] = {
   error: null,
   current: null,
   loadingRequestId: null,
-  pendingUpdate: null
+  pendingUpdate: null,
 }
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
@@ -41,10 +41,10 @@ const initialState: ListsState = {
       error: null,
       current: DEFAULT_LIST,
       loadingRequestId: null,
-      pendingUpdate: null
-    }
+      pendingUpdate: null,
+    },
   },
-  selectedListUrl: DEFAULT_TOKEN_LIST_URL
+  selectedListUrl: DEFAULT_TOKEN_LIST_URL,
 }
 
 export default createReducer(initialState, (builder) =>
@@ -55,7 +55,7 @@ export default createReducer(initialState, (builder) =>
         pendingUpdate: null,
         ...state.byUrl[url],
         loadingRequestId: requestId,
-        error: null
+        error: null,
       }
     })
     .addCase(fetchTokenList.fulfilled, (state, { payload: { requestId, tokenList, url } }) => {
@@ -72,7 +72,7 @@ export default createReducer(initialState, (builder) =>
             loadingRequestId: null,
             error: null,
             current,
-            pendingUpdate: tokenList
+            pendingUpdate: tokenList,
           }
         }
       } else {
@@ -81,7 +81,7 @@ export default createReducer(initialState, (builder) =>
           loadingRequestId: null,
           error: null,
           current: tokenList,
-          pendingUpdate: null
+          pendingUpdate: null,
         }
       }
     })
@@ -96,7 +96,7 @@ export default createReducer(initialState, (builder) =>
         loadingRequestId: null,
         error: errorMessage,
         current: null,
-        pendingUpdate: null
+        pendingUpdate: null,
       }
     })
     .addCase(selectList, (state, { payload: url }) => {
@@ -126,7 +126,7 @@ export default createReducer(initialState, (builder) =>
       state.byUrl[url] = {
         ...state.byUrl[url],
         pendingUpdate: null,
-        current: state.byUrl[url].pendingUpdate
+        current: state.byUrl[url].pendingUpdate,
       }
     })
     .addCase(updateVersion, (state) => {

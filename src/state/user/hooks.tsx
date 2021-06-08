@@ -3,24 +3,25 @@ import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants'
+
 import { useActiveWeb3React } from '../../hooks'
 // eslint-disable-next-line import/no-cycle
 import { useAllTokens } from '../../hooks/Tokens'
-import { setThemeCache } from '../../utils/theme'
 import { AppDispatch, AppState } from '../index'
 import {
   addSerializedPair,
   addSerializedToken,
-  muteAudio,
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
-  unmuteAudio,
   updateUserDarkMode,
   updateUserDeadline,
   updateUserExpertMode,
-  updateUserSlippageTolerance
+  updateUserSlippageTolerance,
+  muteAudio,
+  unmuteAudio,
 } from './actions'
+import { setThemeCache } from '../../utils/theme'
 
 function serializeToken(token: Token): SerializedToken {
   return {
@@ -28,7 +29,7 @@ function serializeToken(token: Token): SerializedToken {
     address: token.address,
     decimals: token.decimals,
     symbol: token.symbol,
-    name: token.name
+    name: token.name,
   }
 }
 
@@ -50,7 +51,7 @@ export function useIsDarkMode(): boolean {
     // eslint-disable-next-line @typescript-eslint/no-shadow
     ({ user: { matchesDarkMode, userDarkMode } }) => ({
       userDarkMode,
-      matchesDarkMode
+      matchesDarkMode,
     }),
     shallowEqual
   )
@@ -62,7 +63,7 @@ export function useDarkModeManager(): [boolean, () => void] {
   const { userDarkMode } = useSelector<AppState, { userDarkMode: boolean | null }>(
     // eslint-disable-next-line @typescript-eslint/no-shadow
     ({ user: { userDarkMode } }) => ({
-      userDarkMode
+      userDarkMode,
     }),
     shallowEqual
   )
@@ -170,7 +171,7 @@ export function useUserAddedTokens(): Token[] {
 function serializePair(pair: Pair): SerializedPair {
   return {
     token0: serializeToken(pair.token0),
-    token1: serializeToken(pair.token1)
+    token1: serializeToken(pair.token1),
   }
 }
 
@@ -241,10 +242,11 @@ export function useTrackedTokenPairs(): [Token, Token][] {
     })
   }, [savedSerializedPairs, chainId])
 
-  const combinedList = useMemo(
-    () => userPairs.concat(generatedPairs).concat(pinnedPairs),
-    [generatedPairs, pinnedPairs, userPairs]
-  )
+  const combinedList = useMemo(() => userPairs.concat(generatedPairs).concat(pinnedPairs), [
+    generatedPairs,
+    pinnedPairs,
+    userPairs,
+  ])
 
   return useMemo(() => {
     // dedupes pairs of tokens in the combined list

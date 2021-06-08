@@ -1,9 +1,11 @@
 import { Currency, CurrencyAmount, Pair, Token, Trade } from '@pancakeswap-libs/sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
+
 import { BASES_TO_CHECK_TRADES_AGAINST, CUSTOM_BASES } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
+
 import { useActiveWeb3React } from './index'
 
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
@@ -36,7 +38,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
             // token B against all bases
             ...bases.map((base): [Token, Token] => [tokenB, base]),
             // each base against all bases
-            ...basePairs
+            ...basePairs,
           ]
             .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
             .filter(([t0, t1]) => t0.address !== t1.address)

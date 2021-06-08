@@ -18,12 +18,12 @@ const initialState: SwapState = {
   independentField: Field.INPUT,
   typedValue: '',
   [Field.INPUT]: {
-    currencyId: ''
+    currencyId: '',
   },
   [Field.OUTPUT]: {
-    currencyId: ''
+    currencyId: '',
   },
-  recipient: null
+  recipient: null,
 }
 
 export default createReducer<SwapState>(initialState, (builder) =>
@@ -33,14 +33,14 @@ export default createReducer<SwapState>(initialState, (builder) =>
       (state, { payload: { typedValue, recipient, field, inputCurrencyId, outputCurrencyId } }) => {
         return {
           [Field.INPUT]: {
-            currencyId: inputCurrencyId
+            currencyId: inputCurrencyId,
           },
           [Field.OUTPUT]: {
-            currencyId: outputCurrencyId
+            currencyId: outputCurrencyId,
           },
           independentField: field,
           typedValue,
-          recipient
+          recipient,
         }
       }
     )
@@ -52,13 +52,13 @@ export default createReducer<SwapState>(initialState, (builder) =>
           ...state,
           independentField: state.independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT,
           [field]: { currencyId },
-          [otherField]: { currencyId: state[field].currencyId }
+          [otherField]: { currencyId: state[field].currencyId },
         }
       }
       // the normal case
       return {
         ...state,
-        [field]: { currencyId }
+        [field]: { currencyId },
       }
     })
     .addCase(switchCurrencies, (state) => {
@@ -66,14 +66,14 @@ export default createReducer<SwapState>(initialState, (builder) =>
         ...state,
         independentField: state.independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT,
         [Field.INPUT]: { currencyId: state[Field.OUTPUT].currencyId },
-        [Field.OUTPUT]: { currencyId: state[Field.INPUT].currencyId }
+        [Field.OUTPUT]: { currencyId: state[Field.INPUT].currencyId },
       }
     })
     .addCase(typeInput, (state, { payload: { field, typedValue } }) => {
       return {
         ...state,
         independentField: field,
-        typedValue
+        typedValue,
       }
     })
     .addCase(setRecipient, (state, { payload: { recipient } }) => {

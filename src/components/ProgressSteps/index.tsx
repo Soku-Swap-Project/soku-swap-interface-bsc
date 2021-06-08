@@ -1,8 +1,8 @@
-import { transparentize } from 'polished'
 import React from 'react'
 import styled from 'styled-components'
-import { AutoColumn } from '../Column'
+import { transparentize } from 'polished'
 import { RowBetween } from '../Row'
+import { AutoColumn } from '../Column'
 
 const Wrapper = styled(AutoColumn)`
   margin-top: 1.25rem;

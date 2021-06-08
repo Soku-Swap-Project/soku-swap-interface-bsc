@@ -5,16 +5,12 @@
  */
 export declare class Currency {
   readonly decimals: number
-
   readonly symbol?: string
-
   readonly name?: string
-
   /**
    * The only instance of the base class `Currency`.
    */
   static readonly ETHER: Currency
-
   /**
    * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.ETHER`.
    * @param decimals decimals of the currency

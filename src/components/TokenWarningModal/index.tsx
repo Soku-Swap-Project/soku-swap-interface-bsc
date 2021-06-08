@@ -1,18 +1,18 @@
 import { Token } from '@pancakeswap-libs/sdk'
-import { Button, Text } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
 import { transparentize } from 'polished'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
-import { AlertTriangle } from 'react-feather'
 import styled from 'styled-components'
+import { AlertTriangle } from 'react-feather'
+import useI18n from 'hooks/useI18n'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
 import { getBscScanLink, shortenAddress } from '../../utils'
-import { AutoColumn } from '../Column'
+import { ExternalLink } from '../Shared'
 import CurrencyLogo from '../CurrencyLogo'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
-import { ExternalLink } from '../Shared'
+import { AutoColumn } from '../Column'
 
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.colors.tertiary)};
@@ -89,7 +89,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
 export default function TokenWarningModal({
   isOpen,
   tokens,
-  onConfirm
+  onConfirm,
 }: {
   isOpen: boolean
   tokens: Token[]
