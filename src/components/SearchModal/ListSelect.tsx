@@ -1,17 +1,16 @@
+import { Button, ChevronDownIcon, CloseIcon, Text } from '@pancakeswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Text, ChevronDownIcon, CloseIcon } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
 import { AppDispatch, AppState } from '../../state'
 import { acceptListUpdate, removeList, selectList } from '../../state/lists/actions'
 import { useSelectedListUrl } from '../../state/lists/hooks'
-import { ExternalLink, LinkStyledButton } from '../Shared'
 import listVersionLabel from '../../utils/listVersionLabel'
 import { parseENSAddress } from '../../utils/parseENSAddress'
 import uriToHttp from '../../utils/uriToHttp'
@@ -19,9 +18,9 @@ import Column from '../Column'
 import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
-import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
-
+import { ExternalLink, LinkStyledButton } from '../Shared'
 import './CurrencyList.css'
+import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
@@ -103,7 +102,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'auto',
     strategy: 'fixed',
-    modifiers: [{ name: 'offset', options: { offset: [8, 8] } }],
+    modifiers: [{ name: 'offset', options: { offset: [8, 8] } }]
   })
 
   useOnClickOutside(node, open ? toggle : undefined)
@@ -143,7 +142,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         </Row>
         <Row
           style={{
-            marginTop: '4px',
+            marginTop: '4px'
           }}
         >
           <StyledListUrlText title={listUrl}>
@@ -156,7 +155,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
           <Button
             style={{
               width: '32px',
-              marginRight: '8px',
+              marginRight: '8px'
             }}
             onClick={toggle}
             variant="secondary"
@@ -191,7 +190,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
             className="select-button"
             style={{
               width: '5rem',
-              minWidth: '4.5rem',
+              minWidth: '4.5rem'
             }}
             onClick={selectThisList}
           >

@@ -1,8 +1,7 @@
-import React from 'react'
-import { Button, ButtonProps, useWalletModal } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
+import { useWalletModal } from '@pancakeswap-libs/uikit'
 import useAuth from 'hooks/useAuth'
-
+import useI18n from 'hooks/useI18n'
+import React from 'react'
 import './ConnectWalletButton.css'
 
 const UnlockButton = () => {

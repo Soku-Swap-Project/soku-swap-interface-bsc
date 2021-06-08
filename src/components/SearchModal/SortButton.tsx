@@ -1,5 +1,5 @@
-import React from 'react'
 import { Text } from '@pancakeswap-libs/uikit'
+import React from 'react'
 import styled from 'styled-components'
 import { RowFixed } from '../Row'
 
@@ -19,7 +19,7 @@ export const FilterWrapper = styled(RowFixed)`
 
 export default function SortButton({
   toggleSortOrder,
-  ascending,
+  ascending
 }: {
   toggleSortOrder: () => void
   ascending: boolean

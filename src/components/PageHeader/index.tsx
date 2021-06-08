@@ -1,11 +1,10 @@
+import { Svg, useModal } from '@pancakeswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Heading, IconButton, Text, Flex, useModal, CogIcon, Svg } from '@pancakeswap-libs/uikit'
-import useI18n from 'hooks/useI18n'
-import SettingsModal from './SettingsModal'
-import RecentTransactionsModal from './RecentTransactionsModal'
-
 import './header.css'
+import RecentTransactionsModal from './RecentTransactionsModal'
+import SettingsModal from './SettingsModal'
 
 interface PageHeaderProps {
   title: ReactNode

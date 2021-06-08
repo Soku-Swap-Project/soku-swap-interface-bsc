@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 import './Card.css'
 
 const Card = styled.div<any>`

@@ -62,9 +62,9 @@ export default function Updater(): null {
                       listUrl,
                       oldList: list.current,
                       newList: list.pendingUpdate,
-                      auto: true,
-                    },
-                  },
+                      auto: true
+                    }
+                  }
                 })
               )
             } else {
@@ -83,10 +83,10 @@ export default function Updater(): null {
                     listUrl,
                     auto: false,
                     oldList: list.current,
-                    newList: list.pendingUpdate,
-                  },
+                    newList: list.pendingUpdate
+                  }
                 },
-                removeAfterMs: null,
+                removeAfterMs: null
               })
             )
         }

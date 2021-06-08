@@ -1,23 +1,22 @@
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@pancakeswap-libs/sdk'
+import { Text } from '@pancakeswap-libs/uikit'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import styled from 'styled-components'
-import { Text } from '@pancakeswap-libs/uikit'
 import { useActiveWeb3React } from '../../hooks'
+import { useIsUserAddedToken } from '../../hooks/Tokens'
 import { useSelectedTokenList, WrappedTokenInfo } from '../../state/lists/hooks'
 import { useAddUserToken, useRemoveUserAddedToken } from '../../state/user/hooks'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
-import { LinkStyledButton } from '../Shared'
-import { useIsUserAddedToken } from '../../hooks/Tokens'
-import Column from '../Column'
-import { RowFixed } from '../Row'
-import CurrencyLogo from '../CurrencyLogo'
-import { MouseoverTooltip } from '../Tooltip'
-import { FadedSpan, MenuItem } from './styleds'
-import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
-
+import Column from '../Column'
+import CurrencyLogo from '../CurrencyLogo'
+import Loader from '../Loader'
+import { RowFixed } from '../Row'
+import { LinkStyledButton } from '../Shared'
+import { MouseoverTooltip } from '../Tooltip'
 import './CurrencyList.css'
+import { FadedSpan, MenuItem } from './styleds'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -88,7 +87,7 @@ function CurrencyRow({
   onSelect,
   isSelected,
   otherSelected,
-  style,
+  style
 }: {
   currency: Currency
   onSelect: () => void
@@ -164,7 +163,7 @@ export default function CurrencyList({
   onCurrencySelect,
   otherCurrency,
   fixedListRef,
-  showETH,
+  showETH
 }: {
   height: number
   currencies: Currency[]

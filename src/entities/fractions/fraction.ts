@@ -1,10 +1,9 @@
-import invariant from 'tiny-invariant'
-import JSBI from 'jsbi'
+import _Big from 'big.js'
 import _Decimal from 'decimal.js-light'
-import _Big, { RoundingMode } from 'big.js'
+import JSBI from 'jsbi'
+import invariant from 'tiny-invariant'
 import toFormat from 'toformat'
-
-import { BigintIsh, Rounding, ONE } from '../../constants'
+import { BigintIsh, ONE, Rounding } from '../../constants'
 import { parseBigintIsh } from '../../utils'
 
 const Decimal = toFormat(_Decimal)
@@ -13,7 +12,7 @@ const Big = toFormat(_Big)
 const toSignificantRounding = {
   [Rounding.ROUND_DOWN]: Decimal.ROUND_DOWN,
   [Rounding.ROUND_HALF_UP]: Decimal.ROUND_HALF_UP,
-  [Rounding.ROUND_UP]: Decimal.ROUND_UP,
+  [Rounding.ROUND_UP]: Decimal.ROUND_UP
 }
 
 const toFixedRounding = {

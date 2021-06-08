@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
 import { useActiveWeb3React } from 'hooks'
+import Cookies from 'js-cookie'
+import { useEffect, useState } from 'react'
 
 const initialState = {
   profileLink: 'https://pancakeswap.finance/profile',
-  noProfileLink: 'https://pancakeswap.finance/profile',
+  noProfileLink: 'https://pancakeswap.finance/profile'
 }
 
 /**
@@ -25,7 +25,7 @@ const useGetLocalProfile = () => {
           setProfile((prevProfile) => ({
             ...prevProfile,
             username: localProfile.username,
-            image: localProfile.avatar,
+            image: localProfile.avatar
           }))
         }
       } catch (error) {

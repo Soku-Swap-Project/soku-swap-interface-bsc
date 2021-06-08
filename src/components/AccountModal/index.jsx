@@ -1,12 +1,10 @@
-import React from 'react'
+import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 import { useWeb3React } from '@web3-react/core'
 import useAuth from 'hooks/useAuth'
-
-import Modal from '@material-ui/core/Modal'
-import { getBscScanLink } from '../../utils'
+import React from 'react'
 import { useActiveWeb3React } from '../../hooks'
-
+import { getBscScanLink } from '../../utils'
 import './AccountModal.css'
 
 /* eslint-disable */
@@ -17,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[10],
-    padding: theme.spacing(2, 4, 3),
-  },
+    padding: theme.spacing(2, 4, 3)
+  }
 }))
 
 export default function AccountModal() {

@@ -1,12 +1,11 @@
-import invariant from 'tiny-invariant'
-import JSBI from 'jsbi'
 import _Big from 'big.js'
+import JSBI from 'jsbi'
+import invariant from 'tiny-invariant'
 import toFormat from 'toformat'
-import { currencyEquals } from '../token'
-import { Currency, ETHER } from '../currency'
-
-import { BigintIsh, Rounding, TEN, SolidityType } from '../../constants'
+import { BigintIsh, Rounding, SolidityType, TEN } from '../../constants'
 import { parseBigintIsh, validateSolidityTypeInstance } from '../../utils'
+import { Currency, ETHER } from '../currency'
+import { currencyEquals } from '../token'
 import { Fraction } from './fraction'
 
 const Big = toFormat(_Big)

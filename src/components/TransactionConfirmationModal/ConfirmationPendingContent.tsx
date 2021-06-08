@@ -1,14 +1,12 @@
 /* eslint-disable */
 
-import React from 'react'
-import styled from 'styled-components'
-
-import { Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Text } from '@pancakeswap-libs/uikit'
-import { Spinner } from '../Shared'
+import React from 'react'
+import styled from 'styled-components'
 import { AutoColumn } from '../Column'
-import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
+import { Spinner } from '../Shared'
+import { ConfirmedIcon, ContentHeader, Section, Wrapper } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
 

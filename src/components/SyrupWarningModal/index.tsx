@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
 import { Button, Text } from '@pancakeswap-libs/uikit'
+import React, { useCallback, useState } from 'react'
 import { AlertTriangle } from 'react-feather'
+import styled from 'styled-components'
+import { AutoColumn } from '../Column'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
-import { AutoColumn } from '../Column'
 
 const WarningContainer = styled.div`
   max-width: 420px;
@@ -23,7 +23,7 @@ const StyledWarningIcon = styled(AlertTriangle)`
 export default function SyrupWarningModal({
   isOpen,
   transactionType,
-  onConfirm,
+  onConfirm
 }: {
   isOpen: boolean
   transactionType: string

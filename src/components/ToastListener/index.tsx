@@ -1,7 +1,7 @@
+import { Toast, ToastContainer } from '@pancakeswap-libs/uikit'
+import useToast from 'hooks/useToast'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { ToastContainer, Toast } from '@pancakeswap-libs/uikit'
-import useToast from 'hooks/useToast'
 import { AppState } from '../../state'
 
 const ToastListener = () => {
