@@ -1,11 +1,11 @@
 import { ChainId } from '@pancakeswap-libs/sdk'
-import React, { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
 import { Button, LinkExternal } from '@pancakeswap-libs/uikit'
+import React, { useContext } from 'react'
 import { ArrowUpCircle } from 'react-feather'
-import { AutoColumn } from '../Column'
+import { ThemeContext } from 'styled-components'
 import { getBscScanLink } from '../../utils'
-import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
+import { AutoColumn } from '../Column'
+import { ConfirmedIcon, ContentHeader, Section, Wrapper } from './helpers'
 
 type TransactionSubmittedContentProps = {
   onDismiss: () => void

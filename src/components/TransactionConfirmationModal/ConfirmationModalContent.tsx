@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
+import { BottomSection, ContentHeader, Section, Wrapper } from './helpers'
 
 type ConfirmationModalContentProps = {
   title: string

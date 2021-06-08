@@ -1,11 +1,10 @@
 /* eslint-disable */
 
-import CurrencyAmount from './currencyAmount'
-import { Token } from '../token'
-import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
-
+import invariant from 'tiny-invariant'
 import { BigintIsh } from '../../constants'
+import { Token } from '../token'
+import CurrencyAmount from './currencyAmount'
 
 export class TokenAmount extends CurrencyAmount {
   public readonly token: Token

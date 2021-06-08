@@ -1,15 +1,13 @@
-import React from 'react'
+import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 import { useWeb3React } from '@web3-react/core'
 import useAuth from 'hooks/useAuth'
-
-import Modal from '@material-ui/core/Modal'
-
+import React from 'react'
 import './ClaimSoku.css'
 
 /* eslint-disable */
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     backgroundColor: theme.palette.background.paper,

@@ -1,20 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { INITIAL_ALLOWED_SLIPPAGE, DEFAULT_DEADLINE_FROM_NOW } from '../../constants'
+import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { updateVersion } from '../global/actions'
 import {
   addSerializedPair,
   addSerializedToken,
+  muteAudio,
   removeSerializedPair,
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
+  unmuteAudio,
   updateMatchesDarkMode,
   updateUserDarkMode,
-  updateUserExpertMode,
-  updateUserSlippageTolerance,
   updateUserDeadline,
-  muteAudio,
-  unmuteAudio
+  updateUserExpertMode,
+  updateUserSlippageTolerance
 } from './actions'
 
 const currentTimestamp = () => new Date().getTime()
@@ -68,9 +68,9 @@ export const initialState: UserState = {
   audioPlay: true
 }
 
-export default createReducer(initialState, builder =>
+export default createReducer(initialState, (builder) =>
   builder
-    .addCase(updateVersion, state => {
+    .addCase(updateVersion, (state) => {
       // slippage isnt being tracked in local storage, reset to default
       // noinspection SuspiciousTypeOfGuard
       if (typeof state.userSlippageTolerance !== 'number') {
@@ -120,7 +120,7 @@ export default createReducer(initialState, builder =>
         serializedPair.token0.chainId === serializedPair.token1.chainId &&
         serializedPair.token0.address !== serializedPair.token1.address
       ) {
-        const {chainId} = serializedPair.token0
+        const { chainId } = serializedPair.token0
         state.pairs[chainId] = state.pairs[chainId] || {}
         state.pairs[chainId][pairKey(serializedPair.token0.address, serializedPair.token1.address)] = serializedPair
       }
@@ -134,10 +134,10 @@ export default createReducer(initialState, builder =>
       }
       state.timestamp = currentTimestamp()
     })
-    .addCase(muteAudio, state => {
+    .addCase(muteAudio, (state) => {
       state.audioPlay = false
     })
-    .addCase(unmuteAudio, state => {
+    .addCase(unmuteAudio, (state) => {
       state.audioPlay = true
     })
 )

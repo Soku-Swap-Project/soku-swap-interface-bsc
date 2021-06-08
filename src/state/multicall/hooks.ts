@@ -1,4 +1,4 @@
-import { Interface, FunctionFragment } from '@ethersproject/abi'
+import { FunctionFragment, Interface } from '@ethersproject/abi'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
 import { useEffect, useMemo } from 'react'
@@ -9,10 +9,10 @@ import { AppDispatch, AppState } from '../index'
 import {
   addMulticallListeners,
   Call,
-  removeMulticallListeners,
-  parseCallKey,
-  toCallKey,
   ListenerOptions,
+  parseCallKey,
+  removeMulticallListeners,
+  toCallKey
 } from './actions'
 
 export interface Result extends ReadonlyArray<any> {
@@ -45,7 +45,7 @@ const INVALID_RESULT: CallResult = { valid: false, blockNumber: undefined, data:
 
 // use this options object
 export const NEVER_RELOAD: ListenerOptions = {
-  blocksPerFetch: Infinity,
+  blocksPerFetch: Infinity
 }
 
 // the lowest level call for subscribing to contract data
@@ -77,7 +77,7 @@ function useCallsData(calls: (Call | undefined)[], options?: ListenerOptions): C
       addMulticallListeners({
         chainId,
         calls,
-        options,
+        options
       })
     )
 
@@ -86,7 +86,7 @@ function useCallsData(calls: (Call | undefined)[], options?: ListenerOptions): C
         removeMulticallListeners({
           chainId,
           calls,
-          options,
+          options
         })
       )
     }
@@ -146,7 +146,7 @@ function toCallState(
         loading: false,
         error: true,
         syncing,
-        result,
+        result
       }
     }
   }
@@ -155,7 +155,7 @@ function toCallState(
     loading: false,
     syncing,
     result,
-    error: !success,
+    error: !success
   }
 }
 
@@ -173,7 +173,7 @@ export function useSingleContractMultipleData(
         ? callInputs.map<Call>((inputs) => {
             return {
               address: contract.address,
-              callData: contract.interface.encodeFunctionData(fragment, inputs),
+              callData: contract.interface.encodeFunctionData(fragment, inputs)
             }
           })
         : [],
@@ -212,7 +212,7 @@ export function useMultipleContractSingleData(
             return address && callData
               ? {
                   address,
-                  callData,
+                  callData
                 }
               : undefined
           })
@@ -242,8 +242,8 @@ export function useSingleCallResult(
       ? [
           {
             address: contract.address,
-            callData: contract.interface.encodeFunctionData(fragment, inputs),
-          },
+            callData: contract.interface.encodeFunctionData(fragment, inputs)
+          }
         ]
       : []
   }, [contract, fragment, inputs])

@@ -1,9 +1,9 @@
 import { createStore, Store } from 'redux'
 import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
-import { updateVersion } from '../global/actions'
-import { fetchTokenList, acceptListUpdate, addList, removeList, selectList } from './actions'
-import reducer, { ListsState } from './reducer'
 import PANCAKESWAP_DEFAULT_TOKEN_LIST from '../../constants/token/sokuswap.json'
+import { updateVersion } from '../global/actions'
+import { acceptListUpdate, addList, fetchTokenList, removeList, selectList } from './actions'
+import reducer, { ListsState } from './reducer'
 
 const STUB_TOKEN_LIST = {
   name: '',
@@ -445,7 +445,7 @@ describe('list reducer', () => {
       })
       it('all lists are empty', () => {
         const s = store.getState()
-        Object.keys(s.byUrl).forEach(url => {
+        Object.keys(s.byUrl).forEach((url) => {
           if (url === DEFAULT_TOKEN_LIST_URL) {
             expect(s.byUrl[url]).toEqual({
               error: null,
@@ -509,10 +509,10 @@ describe('list reducer', () => {
       })
 
       it('each of those initialized lists is empty', () => {
-        const {byUrl} = store.getState()
+        const { byUrl } = store.getState()
         // note we don't expect the uniswap default list to be prepopulated
         // this is ok.
-        Object.keys(byUrl).forEach(url => {
+        Object.keys(byUrl).forEach((url) => {
           if (url !== 'https://unpkg.com/@uniswap/default-token-list@latest/uniswap-default.tokenlist.json') {
             expect(byUrl[url]).toEqual({
               error: null,

@@ -1,16 +1,14 @@
 /* eslint-disable */
 
-import { Token } from '../token'
-import { TokenAmount } from './tokenAmount'
-import { currencyEquals } from '../token'
-import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
-
+import invariant from 'tiny-invariant'
 import { BigintIsh, Rounding, TEN } from '../../constants'
 import { Currency } from '../currency'
 import { Route } from '../route'
-import { Fraction } from './fraction'
+import { currencyEquals, Token } from '../token'
 import CurrencyAmount from './currencyAmount'
+import { Fraction } from './fraction'
+import { TokenAmount } from './tokenAmount'
 
 export class Price extends Fraction {
   public readonly baseCurrency: Currency // input i.e. denominator

@@ -1,33 +1,28 @@
+import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import { useWalletModal } from '@pancakeswap-libs/uikit'
+import { useWeb3React } from '@web3-react/core'
+import AccountModal from 'components/AccountModal'
+import ClaimSokuModal from 'components/ClaimSokuModal'
+import useAuth from 'hooks/useAuth'
 import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import useAuth from 'hooks/useAuth'
-
-import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
-import ClaimSokuModal from 'components/ClaimSokuModal'
-import AccountModal from 'components/AccountModal'
-
-import { useWeb3React } from '@web3-react/core'
-import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import Menu from '../components/Menu'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
-import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
-import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
+import { allLanguages, EN } from '../constants/localisation/languageCodes'
+import { LanguageContext } from '../hooks/LanguageContext'
+import { TranslationsContext } from '../hooks/TranslationsContext'
+import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 import AddLiquidity from './AddLiquidity'
+import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
+import './MobileFooter.css'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
+import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
-import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
-import { EN, allLanguages } from '../constants/localisation/languageCodes'
-import { LanguageContext } from '../hooks/LanguageContext'
-import { TranslationsContext } from '../hooks/TranslationsContext'
-
-import Menu from '../components/Menu'
-
-import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
-
-import './MobileFooter.css'
+import { RedirectHashRoutes } from './Swap/redirects'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -103,7 +98,7 @@ export default function App() {
   const fileId = 6
 
   const credentials: Credentials = {
-    token: apiKey,
+    token: apiKey
   }
 
   const stringTranslationsApi = new StringTranslations(credentials)
