@@ -24,6 +24,8 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
 
+import './pools.css'
+
 export default function Pool() {
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
@@ -61,18 +63,20 @@ export default function Pool() {
 
   document.title = 'SokuSwap | Pools'
 
+  console.log(allV2PairsWithLiquidity)
+
   return (
     <>
       <CardNav activeIndex={1} />
       <AppBody>
-        <PageHeader
-          title={TranslateString(262, 'Liquidity')}
-          description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
-        >
-          <Button id="join-pool-button" as={Link} to="/add/BNB">
-            {TranslateString(168, 'Add Liquidity')}
-          </Button>
-        </PageHeader>
+        <div className="sokuswap__heading">
+          <h2>Liquidity</h2>
+          <div>
+            <Button id="join-pool-button" as={Link} to="/add/">
+              {TranslateString(168, 'Add Liquidity')}
+            </Button>
+          </div>
+        </div>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>

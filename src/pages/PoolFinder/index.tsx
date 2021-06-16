@@ -81,7 +81,7 @@ export default function PoolFinder() {
     </LightCard>
   )
 
-  document.title = 'SokuSwap | Pool Finder'
+  document.title = 'SokuSwap | BSC | Pool Finder'
 
   return (
     <>

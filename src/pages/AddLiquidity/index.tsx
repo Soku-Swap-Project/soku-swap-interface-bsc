@@ -300,7 +300,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <title>SokuSwap | Add Liquidity</title>
+      <title>SokuSwap | BSC | Add Liquidity</title>
       <CardNav activeIndex={1} />
       <AppBody>
         <div className="add_liquidity_box">
