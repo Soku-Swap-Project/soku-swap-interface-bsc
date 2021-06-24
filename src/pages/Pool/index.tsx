@@ -2,7 +2,7 @@
 
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Pair } from '@pancakeswap-libs/sdk'
+import { Pair } from '@pancakeswap-libs/sdk-v2'
 
 // import { Pair } from '../../entities/pair'
 import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
@@ -56,14 +56,14 @@ export default function Pool() {
   )
 
   const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
+
+  console.log(liquidityTokensWithBalances)
   const v2IsLoading =
     fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
-  document.title = 'SokuSwap | Pools'
-
-  console.log(allV2PairsWithLiquidity)
+  document.title = 'SokuSwap | BSC | Pools'
 
   return (
     <>

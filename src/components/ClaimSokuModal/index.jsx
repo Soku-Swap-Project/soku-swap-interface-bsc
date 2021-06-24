@@ -47,8 +47,8 @@ export default function ClaimSokuModal() {
   const year = date.getFullYear()
 
   const earnedAmount = 50
-  console.log('NumOfSwap', numofSwap)
-  console.log('localStorage', localStorage.getItem('userValue'))
+  // console.log('NumOfSwap', numofSwap)
+  // console.log('localStorage', localStorage.getItem('userValue'))
 
   const body = (
     <div className={`claimSoku__modal ${classes.paper}`}>
