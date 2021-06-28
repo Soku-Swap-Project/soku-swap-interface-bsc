@@ -38,3 +38,4 @@ cypress/fixtures/example.json
 
 .eslintcache
 .vercel
+yarn.lock

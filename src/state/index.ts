@@ -14,18 +14,18 @@ import toasts from './toasts'
 import { getThemeCache } from '../utils/theme'
 
 type MergedState = {
-  user: {
-    [key: string]: any
-  }
+  // user: {
+  //   [key: string]: any
+  // }
   transactions: {
     [key: string]: any
   }
 }
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 const loadedState = load({ states: PERSISTED_KEYS }) as MergedState
-if (loadedState.user) {
-  loadedState.user.userDarkMode = getThemeCache()
-}
+// if (loadedState.user) {
+//   loadedState.user.userDarkMode = getThemeCache()
+// }
 
 const store = configureStore({
   reducer: {
