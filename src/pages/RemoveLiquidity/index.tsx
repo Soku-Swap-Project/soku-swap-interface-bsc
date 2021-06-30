@@ -126,7 +126,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Soku LPs',
+      name: 'Pancake LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -304,7 +304,7 @@ export default function RemoveLiquidity({
 
       setAttemptingTxn(true)
       await router[methodName](...args, {
-        gasLimit: '3000000',
+        gasLimit: safeGasEstimate,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)
