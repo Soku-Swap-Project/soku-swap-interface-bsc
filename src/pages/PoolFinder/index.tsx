@@ -1,4 +1,4 @@
-import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap-libs/sdk'
+import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from '@pancakeswap-libs/uikit'
 import CardNav from 'components/CardNav'
@@ -81,7 +81,7 @@ export default function PoolFinder() {
     </LightCard>
   )
 
-  document.title = 'SokuSwap | Pool Finder'
+  document.title = 'SokuSwap | BSC | Pool Finder'
 
   return (
     <>

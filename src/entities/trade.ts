@@ -2,7 +2,7 @@
 
 import invariant from 'tiny-invariant'
 
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 import { ONE, TradeType, ZERO } from '../constants'
 import { sortedInsert } from '../utils'
 import { Currency, ETHER } from './currency'

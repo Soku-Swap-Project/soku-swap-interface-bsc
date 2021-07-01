@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk-v2'
 import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
@@ -126,7 +126,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Soku LPs',
+      name: 'Pancake LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -304,7 +304,7 @@ export default function RemoveLiquidity({
 
       setAttemptingTxn(true)
       await router[methodName](...args, {
-        gasLimit: '3000000',
+        gasLimit: safeGasEstimate,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)

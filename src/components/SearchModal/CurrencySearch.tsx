@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
+import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk-v2'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Tooltip, OverlayTrigger, Button } from 'react-bootstrap'
 

@@ -2,7 +2,7 @@
 
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Pair } from '@pancakeswap-libs/sdk'
+import { Pair } from '@pancakeswap-libs/sdk-v2'
 
 // import { Pair } from '../../entities/pair'
 import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
@@ -23,6 +23,8 @@ import { Dots } from 'components/swap/styleds'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
+
+import './pools.css'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -54,25 +56,27 @@ export default function Pool() {
   )
 
   const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
+
+  // console.log(liquidityTokensWithBalances)
   const v2IsLoading =
     fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
-  document.title = 'SokuSwap | Pools'
+  document.title = 'SokuSwap | BSC | Pools'
 
   return (
     <>
       <CardNav activeIndex={1} />
       <AppBody>
-        <PageHeader
-          title={TranslateString(262, 'Liquidity')}
-          description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
-        >
-          <Button id="join-pool-button" as={Link} to="/add/BNB">
-            {TranslateString(168, 'Add Liquidity')}
-          </Button>
-        </PageHeader>
+        <div className="sokuswap__heading">
+          <h2>Liquidity</h2>
+          <div>
+            <Button id="join-pool-button" as={Link} to="/add/">
+              {TranslateString(168, 'Add Liquidity')}
+            </Button>
+          </div>
+        </div>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
