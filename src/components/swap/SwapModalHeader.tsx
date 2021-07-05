@@ -74,7 +74,7 @@ export default function SwapModalHeader({
               priceImpactSeverity > 2
                 ? theme.colors.failure
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
-                ? theme.colors.primary
+                ? '#04bbfb'
                 : 'text'
             }
           >
@@ -92,9 +92,11 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
-              <Text color="primary"> Price Updated</Text>
+              <Text color="#05195a"> Price Updated</Text>
             </RowFixed>
-            <Button onClick={onAcceptChanges}>Accept</Button>
+            <Button style={{ background: 'rgb(4, 187, 251)' }} onClick={onAcceptChanges}>
+              Accept
+            </Button>
           </RowBetween>
         </SwapShowAcceptChanges>
       ) : null}
@@ -102,7 +104,7 @@ export default function SwapModalHeader({
         {trade.tradeType === TradeType.EXACT_INPUT ? (
           <PriceInfoText>
             {`Output is estimated. You will receive at least `}
-            <span>
+            <span style={{ color: '#04bbfb' }}>
               {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
             </span>
             {' or the transaction will revert.'}
@@ -110,7 +112,7 @@ export default function SwapModalHeader({
         ) : (
           <PriceInfoText>
             {`Input is estimated. You will sell at most `}
-            <span>
+            <span style={{ color: '#04bbfb' }}>
               {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
             </span>
             {' or the transaction will revert.'}

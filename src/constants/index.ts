@@ -69,7 +69,7 @@ export const INIT_CODE = '0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa
 // export const INIT_CODE = '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66'
 
 // SokuSwap Router
-// export const ROUTER_ADDRESS = '0x0f547eaacb033f6dF560Fe59b8dc2C3F36232920'
+// export const ROUTER_ADDRESS = '0x6152d1d4820456973380Bfe55f1c59AC56377d3f'
 
 // SokuSwap Factory
 // export const FACTORY_ADDRESS = '0x5C3c4b5b50E856995C2C0C9c51ED0b1627dCd31A'
