@@ -48,8 +48,8 @@ const GlobalStyle = createGlobalStyle`
     color: #05195a;
   }
 
-  svg[stroke="#1FC7D4"] {
-    stroke: #04bbfb;
+  svg[stroke="#1FC7D4"], div[color='#1FC7D4'] {
+    stroke: #04bbfb !important;
   }
 
   a[color="primary"] {
@@ -262,8 +262,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 
-svg[stroke="#8f80ba"] {
-  stroke: #05195a;
+svg[stroke='currentColor'], svg[stroke='#8f80ba'] {
+  stroke: #05195a !important;
   border: none;
 }
 
