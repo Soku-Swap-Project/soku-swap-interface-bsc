@@ -48,7 +48,7 @@ import './removeLiquidity.css'
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-radius: 16px;
-  padding: 24px;
+  padding: 24px 12px;
 `
 
 const Body = styled.div`
@@ -361,8 +361,8 @@ export default function RemoveLiquidity({
 
   function modalBottom() {
     return (
-      <div style={{ background: '#E9EAEB', width: '100%', padding: '20px' }}>
-        <RowBetween style={{ padding: '0.5rem' }}>
+      <div style={{ background: '#fff', width: '100%' }}>
+        <RowBetween>
           <Text color="textSubtle">{`LP ${currencyA?.symbol}/${currencyB?.symbol}`} Burned</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
@@ -458,7 +458,7 @@ export default function RemoveLiquidity({
 
       <AppBody>
         <AddRemoveTabs adding={false} />
-        <Wrapper>
+        <Wrapper style={{ display: 'flex', justifyContent: 'center' }}>
           <TransactionConfirmationModal
             isOpen={showConfirm}
             onDismiss={handleDismissConfirmation}
@@ -474,7 +474,7 @@ export default function RemoveLiquidity({
             )}
             pendingText={pendingText}
           />
-          <AutoColumn gap="md">
+          <AutoColumn gap="12px" style={{ width: '350px' }}>
             <Body>
               <OutlineCard>
                 <AutoColumn>
@@ -668,7 +668,7 @@ export default function RemoveLiquidity({
                         setShowConfirm(true)
                       }}
                       disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
-                      style={{ background: '#05195a', width: '50%' }}
+                      style={{ background: '#04bbfb', width: '50%' }}
                     >
                       {error || 'Remove'}
                     </Button>

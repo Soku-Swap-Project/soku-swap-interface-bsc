@@ -95,9 +95,14 @@ export default function ClaimSokuModal() {
 
   return (
     <div className="claimSoku__wrapper">
-      <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
+      {/* <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
         Claim Soku
-      </button>
+      </button> */}
+      <a href="https://tokensale.sokuswap.finance/token-exchange/#/" target="_blank">
+        <button type="button" className="claimSoku__navButton">
+          Claim Soku
+        </button>
+      </a>
       <Modal
         open={open}
         onClose={handleClose}

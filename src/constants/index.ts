@@ -69,11 +69,12 @@ export const INIT_CODE = '0x00fb7f630766e6a796048ea87d01acd3068e8ff67d078148a3fa
 // export const INIT_CODE = '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66'
 
 // SokuSwap Router
-// export const ROUTER_ADDRESS = '0xB23Abf7D7F142c0a143288767BD52aaf60BB43dc'
+// export const ROUTER_ADDRESS = '0x6152d1d4820456973380Bfe55f1c59AC56377d3f'
 
 // SokuSwap Factory
-// export const FACTORY_ADDRESS = '0xeE0e5E9B704Ea0bE220ff077B7C021740cBe8640'
+// export const FACTORY_ADDRESS = '0x5C3c4b5b50E856995C2C0C9c51ED0b1627dCd31A'
 // export const INIT_CODE = '0xd8ca5cbba55eb20c5e72e15d5e082c181a776c904ecb961d51b18c35504432de'
+// export const INIT_CODE_HASH = '0xd8ca5cbba55eb20c5e72e15d5e082c181a776c904ecb961d51b18c35504432de'
 
 // a list of tokens by chain
 type ChainTokenList = {
