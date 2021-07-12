@@ -422,7 +422,7 @@ const Swap = () => {
                   <Button
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%' }}
+                    style={{ width: '48%', background: '#04bbfb' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (
