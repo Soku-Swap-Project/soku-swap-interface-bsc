@@ -11,7 +11,7 @@
   "keywords": ["pancake", "default"],
   "tokens": [
     {
-      "name": "Soku Token",
+      "name": "Soku Test Token",
       "symbol": "SOKU",
       "address": "0x5D85cEBE6CEc78452d899C3b9b47E35bc6b68109",
       "chainId": 97,
@@ -24,7 +24,7 @@
       "address": "0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://i.ibb.co/17rrFQK/sokuswap-token.png"
+      "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
     },
     {
       "name": "Test BUSD Token",
