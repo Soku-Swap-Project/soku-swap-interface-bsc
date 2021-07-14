@@ -17,14 +17,24 @@ button[id='wallet-connect-safepal wallet'] div,
   fill: #04bbfb !important;
 }
 
-/* button[id="wallet-connect-binance chain wallet"] {
+/* button[id='wallet-connect-trustwallet'],
+button[id='wallet-connect-mathwallet'],
+button[id='wallet-connect-tokenpocket'],
+button[id='wallet-connect-walletconnect'],
+button[id='wallet-connect-binance chain wallet'],
+button[id='wallet-connect-safepal wallet'] {
   display: none;
 } */
+
+button[id='wallet-connect-tokenpocket'] {
+  display: none;
+}
 
 /* 'Learn how to connect' on Connect to a Wallet */
 .sc-gsTCUz.sc-bYEvPH.jukfzI.bAxdNz.sc-lcujXC.keprIM,
 .sc-gsTCUz.sc-bYEvPH.jukfzI.bAxdNz.sc-lcujXC.keprIM svg, 
-a[href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"] {
+a[href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on-binance-smart-chain"]
+{
   color: #04bbfb;
   fill: #04bbfb;
   display: none;
