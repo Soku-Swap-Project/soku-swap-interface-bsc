@@ -147,6 +147,10 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: none;
   }
 
+  svg[viewBox="0 0 24 24"][stroke-linejoin="round"][stroke="currentColor"] {
+    stroke: #04bbfb !important;
+  }
+
   // Invalid Buttons
   .sc-dlfnbm.cyBbRA.pancake-button--disabled {
     background-color: #E9EAEB !important;
