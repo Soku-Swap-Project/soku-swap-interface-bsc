@@ -49,7 +49,6 @@ export default function AccountModal() {
   // const earnedAmount = 50
 
   const logoutAccount = () => {
-    window.localStorage.removeItem(connectorLocalStorageKey)
     return logout
   }
 

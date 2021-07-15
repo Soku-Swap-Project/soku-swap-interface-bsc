@@ -42,7 +42,14 @@ export default function SwapModalFooter({
   return (
     <>
       <AutoColumn gap="0px">
-        <RowBetween align="center">
+        <RowBetween
+          // style={{
+          //   display: 'flex',
+          //   flexDirection: 'column',
+          //   alignItems: 'flex-start',
+          // }}
+          align="center"
+        >
           <Text fontSize="14px">Price</Text>
           <Text
             fontSize="14px"
