@@ -153,7 +153,6 @@ export default function App() {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
-
   const truncatedFirstHalf = account?.substring(0, 5)
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`

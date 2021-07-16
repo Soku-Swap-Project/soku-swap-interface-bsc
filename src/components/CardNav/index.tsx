@@ -15,11 +15,7 @@ function SokuSwapLogo({ activeIndex = 0 }: { activeIndex?: number }) {
 
   return (
     <div>
-      <img
-        src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png"
-        className="sokuswap__logo"
-        alt="Soku Swap Logo"
-      />
+      <img src="https://i.ibb.co/BTDYjDk/Soku-Swap-Logo-White.png" className="sokuswap__logo" alt="Soku Swap Logo" />
     </div>
 
     // <StyledNav>

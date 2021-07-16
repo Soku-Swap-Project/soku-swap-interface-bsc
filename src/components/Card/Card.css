@@ -6,12 +6,8 @@ h2[color='text'] {
 
 /* 'x' and Wallet names on Connect to a Wallet */
 button[id='wallet-connect-metamask'] div,
-button[id='wallet-connect-trustwallet'] div,
-button[id='wallet-connect-mathwallet'] div,
-button[id='wallet-connect-tokenpocket'] div,
 button[id='wallet-connect-walletconnect'] div,
 button[id='wallet-connect-binance chain wallet'] div,
-button[id='wallet-connect-safepal wallet'] div,
 .fKQcGp {
   color: #04bbfb !important;
   fill: #04bbfb !important;
@@ -26,7 +22,11 @@ button[id='wallet-connect-safepal wallet'] {
   display: none;
 } */
 
-button[id='wallet-connect-tokenpocket'] {
+button[id='wallet-connect-tokenpocket'],
+button[id='wallet-connect-trustwallet'],
+button[id='wallet-connect-mathwallet'],
+button[id='wallet-connect-tokenpocket'],
+button[id='wallet-connect-safepal wallet'] {
   display: none;
 }
 
