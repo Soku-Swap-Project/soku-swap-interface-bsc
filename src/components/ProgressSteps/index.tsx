@@ -16,15 +16,14 @@ const Circle = styled.div<{ confirmed?: boolean; disabled?: boolean }>`
   min-width: 20px;
   min-height: 20px;
   background-color: ${({ theme, confirmed, disabled }) =>
-    disabled ? theme.colors.backgroundDisabled : confirmed ? theme.colors.success : theme.colors.primary};
+    disabled ? theme.colors.backgroundDisabled : confirmed ? theme.colors.success : '#05195a'};
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 8px;
   font-size: 12px;
-  color: ${({ theme, confirmed, disabled }) =>
-    disabled ? theme.colors.text : confirmed ? theme.colors.success : '#FFFFFF'};
+  color: ${({ theme, confirmed, disabled }) => (disabled ? '#05195a' : confirmed ? theme.colors.success : '#FFFFFF')};
 `
 
 const CircleRow = styled.div`
@@ -39,8 +38,8 @@ const Connector = styled.div<{ prevConfirmed?: boolean }>`
   background-color: ;
   background: linear-gradient(
     90deg,
-    ${({ theme, prevConfirmed }) => transparentize(0.5, prevConfirmed ? theme.colors.success : theme.colors.primary)} 0%,
-    ${({ theme, prevConfirmed }) => (prevConfirmed ? theme.colors.primary : theme.colors.backgroundDisabled)} 80%
+    ${({ theme, prevConfirmed }) => transparentize(0.5, prevConfirmed ? theme.colors.success : '#05195a')} 0%,
+    ${({ theme, prevConfirmed }) => (prevConfirmed ? '#05195a' : theme.colors.backgroundDisabled)} 80%
   );
   opacity: 0.6;
 `

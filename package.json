@@ -8,6 +8,7 @@
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
     "@material-ui/core": "^4.11.4",
+    "@metamask/detect-provider": "^1.2.0",
     "@pancakeswap-libs/sdk-v2": "^2.2.0",
     "@pancakeswap-libs/uikit": "^0.27.1",
     "@popperjs/core": "^2.4.4",
