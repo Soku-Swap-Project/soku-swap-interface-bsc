@@ -139,9 +139,9 @@ export default function App() {
     }
   }
 
-  useEffect(() => {
-    loadToken()
-  }, [])
+  // useEffect(() => {
+  //   loadToken()
+  // }, [])
 
   const credentials: Credentials = {
     token: apiKey,
