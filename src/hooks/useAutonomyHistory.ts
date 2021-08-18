@@ -144,10 +144,12 @@ export default function useTransactionHistory() {
 		}))
 	}, [])
 
+	
+
 	useEffect(() => {
 		async function init() {
 			const data = await getTransactionHistory(account)
-			setOrders(parseOrders(data))
+			setOrders(parseOrders(data).filter(i => i.dex === "Soku"))
 		}
 		init()
 	}, [account, setOrders, getTransactionHistory, parseOrders]) 
@@ -155,7 +157,7 @@ export default function useTransactionHistory() {
 	useEffect(() => {
     const interval = setInterval(async () => {
 		const data = await getTransactionHistory(account)
-			setOrders(parseOrders(data))
+			setOrders(parseOrders(data).filter(i => i.dex === "Soku"))
     }, 10000)
 
     return () => clearInterval(interval)
