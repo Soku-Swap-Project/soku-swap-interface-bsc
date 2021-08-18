@@ -140,6 +140,7 @@ export default function useTransactionHistory() {
 			verifySender: order.verifySender,
 			payWithAuto: order.payWithAuto,
 			typeof: typeSelector(order.callData),
+			dex: dexSelector(order.callData)
 		}))
 	}, [])
 
@@ -338,5 +339,12 @@ export default function useTransactionHistory() {
 		const sec = a.getSeconds();
 		const time = `${date} ${month} ${year} ${hour}:${min}:${sec}`;
 		return time
+	}
+
+	function dexSelector(callData: any){
+		if(callData.includes("0cf0febd3f17cef5b47b0cd257acf6025c5bff3b70")){
+			return "Soku";
+		} 
+		return "Other";
 	}
 }
