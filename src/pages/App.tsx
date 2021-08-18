@@ -18,6 +18,8 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
+import LimitOrder from './LimitOrder'
+import StopLoss from './StopLoss'
 import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
@@ -182,6 +184,8 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
+                    <Route exact strict path="/limit-order" component={LimitOrder} />
+                    <Route exact strict path="/stop-loss" component={StopLoss} />
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
                     <Route exact path="/add" component={AddLiquidity} />

@@ -53,6 +53,12 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
+            <NavLink className="nav_link" activeClassName="active" to="/limit-order">
+              <li>Limit Order</li>
+            </NavLink>
+            <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
+              <li>Stop Loss</li>
+            </NavLink>
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>

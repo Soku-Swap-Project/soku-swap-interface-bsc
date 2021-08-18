@@ -22,13 +22,15 @@ export default function SwapModalFooter({
   onConfirm,
   allowedSlippage,
   swapErrorMessage,
-  disabledConfirm
+  disabledConfirm,
+  realSwapPrice
 }: {
   trade: Trade
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined
   disabledConfirm: boolean
+  realSwapPrice?: string
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
   const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
@@ -55,19 +57,26 @@ export default function SwapModalFooter({
               fontWeight: 500
             }}
           >
-            {formatExecutionPrice(trade, showInverted)}
-            <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
-              <Repeat size={14} />
-            </StyledBalanceMaxMini>
+            {realSwapPrice !== undefined ?
+            `${realSwapPrice} ${trade.outputAmount.currency.symbol} / ${trade.inputAmount.currency.symbol}` : (
+                <>
+                    {formatExecutionPrice(trade, showInverted)}
+                    <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
+                    <Repeat size={14} />
+                    </StyledBalanceMaxMini>
+                </>
+            )}
           </Text>
         </RowBetween>
 
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? TranslateString(1210, 'Minimum received')
-                : TranslateString(220, 'Maximum sold')}
+              {realSwapPrice !== undefined
+                ? 'Current Market Output' :
+              trade.tradeType === TradeType.EXACT_INPUT
+                ? 'Minimum received'
+                : 'Maximum sold'}
             </Text>
             <QuestionHelper
               text={TranslateString(

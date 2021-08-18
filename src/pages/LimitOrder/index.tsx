@@ -37,9 +37,12 @@ import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import AutoPriceInput from 'components/autonomy/AutoPriceInput'
+import AutoHistory from 'components/autonomy/AutoHistory'
+import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
 
-const Swap = () => {
+const LimitOrder = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
 
@@ -71,7 +74,8 @@ const Swap = () => {
 
   // get custom setting values for user
   const [deadline] = useUserDeadline()
-  const [allowedSlippage] = useUserSlippageTolerance()
+  // const [allowedSlippage] = useUserSlippageTolerance()
+  const allowedSlippage = 0
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
@@ -97,19 +101,6 @@ const Swap = () => {
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
-
-  const handleTypeInput = useCallback(
-    (value: string) => {
-      onUserInput(Field.INPUT, value)
-    },
-    [onUserInput]
-  )
-  const handleTypeOutput = useCallback(
-    (value: string) => {
-      onUserInput(Field.OUTPUT, value)
-    },
-    [onUserInput]
-  )
 
   // modal and loading
   const [{ showConfirm, tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
@@ -155,11 +146,60 @@ const Swap = () => {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
+   /**
+     * Start - Autonomy Limit Order section
+     */
+    const [outputMinAmount, setOutputMinAmount] = useState<string>('')
+    const [limitOrderPrice, setLimitOrderPrice] = useState<string>('')
+    const [inputFocused, setInputFocused] = useState<Boolean>(true)
+
+    const limitOrderMarketStats = useMemo(() => {
+        const marketOutput = trade?.outputAmount.toExact()
+        if (marketOutput && outputMinAmount) {
+            return (Number(outputMinAmount) - Number(marketOutput)) * 100 / Number(marketOutput);
+        }
+        return 0;
+    }, [trade, outputMinAmount])
+
+    const onLimitOrderValuesChange = (source: string, value: string) => {
+        setInputFocused(false)
+        if (source === 'price') {
+            setLimitOrderPrice(value)
+            const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
+            setOutputMinAmount(outputAmount.toString())
+        } else if (source === 'output') {
+            setOutputMinAmount(value)
+            const price = Number(value) / Number(formattedAmounts[Field.INPUT])
+            setLimitOrderPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
+        }
+    }
+
+    const realPriceValue = useMemo(() => {
+        if (inputFocused) {
+            const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
+            return price === Infinity || isNaN(price) ? '' : price.toFixed(2)
+        }
+        return limitOrderPrice
+    }, [inputFocused, limitOrderPrice, formattedAmounts])
+
+    const realOutputValue = useMemo(() => inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount
+    ,[inputFocused, formattedAmounts, outputMinAmount])
+
+    const handleTypeInput = useCallback(
+        (value: string) => {
+            onUserInput(Field.INPUT, value)
+            setInputFocused(true)
+        },
+        [onUserInput, setInputFocused]
+    )
+
   // the callback to execute the swap
   const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
     trade,
     allowedSlippage,
-    recipient
+    recipient,
+    'limit-order',
+    outputMinAmount
   )
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
@@ -281,9 +321,11 @@ const Swap = () => {
             onConfirm={handleSwap}
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
+            realSwapPrice={realPriceValue}
+            realOutputAmount={realOutputValue}
           />
           <PageHeader
-            title={TranslateString(8, 'Swap')}
+            title={TranslateString(8, 'Limit Order')}
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -325,13 +367,17 @@ const Swap = () => {
                   ) : null}
                 </AutoRow>
               </AutoColumn>
+              <AutoPriceInput
+                value={realPriceValue}
+                currentPrice={trade?.executionPrice.toSignificant(6)}
+                onChange={(value) => onLimitOrderValuesChange('price', value)} />
               <CurrencyInputPanel
-                value={formattedAmounts[Field.OUTPUT]}
-                onUserInput={handleTypeOutput}
+                value={realOutputValue}
+                onUserInput={(value) => onLimitOrderValuesChange('output', value)}
                 label={
-                  independentField === Field.INPUT && !showWrap && trade
-                    ? TranslateString(196, 'To (estimated)')
-                    : TranslateString(80, 'To')
+                    independentField === Field.INPUT && !showWrap && trade
+                        ? 'Swap To (est.):'
+                        : 'Swap To:'
                 }
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
@@ -370,24 +416,21 @@ const Swap = () => {
                 >
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
-                      <RowBetween align="center">
-                        <Text fontSize="14px">{TranslateString(1182, 'Price')}</Text>
-                        <TradePrice
-                          price={trade?.executionPrice}
-                          showInverted={showInverted}
-                          setShowInverted={setShowInverted}
-                        />
-                      </RowBetween>
-                    )}
-                    {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
-                      <RowBetween align="center">
-                        <Text color="#04bbfb" fontWeight="900" fontSize="14px">
-                          {TranslateString(88, 'Slippage Tolerance')}
-                        </Text>
-                        <Text color="#04bbfb" fontWeight="900" fontSize="14px">
-                          {allowedSlippage / 100}%
-                        </Text>
-                      </RowBetween>
+                      <>
+                        <RowBetween align="center">
+                          <Text fontSize="14px">{TranslateString(1182, 'Price')}</Text>
+                          <TradePrice
+                            price={trade?.executionPrice}
+                            showInverted={showInverted}
+                            setShowInverted={setShowInverted}
+                          />
+                        </RowBetween>
+                        <AutoRow justify="flex-end">
+                          <ErrorText severity={limitOrderMarketStats > 0 ? 0 : 4}>
+                            {Math.abs(limitOrderMarketStats).toFixed(2)}% {limitOrderMarketStats > 0 ? 'above' : 'below'} market value
+                          </ErrorText>
+                        </AutoRow>
+                      </>
                     )}
                   </AutoColumn>
                 </Card>
@@ -492,9 +535,9 @@ const Swap = () => {
           </CardBody>
         </Wrapper>
       </AppBody>
-      <AdvancedSwapDetailsDropdown trade={trade} />
+      <AutoHistory type="Limit" />
     </>
   )
 }
 
-export default Swap
+export default LimitOrder

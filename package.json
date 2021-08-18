@@ -4,6 +4,9 @@
   "homepage": "/bsc",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.4.8",
+    "@apollo/react-components": "^4.0.0",
+    "@apollo/react-hooks": "^4.0.0",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
@@ -39,6 +42,8 @@
     "cids": "^1.0.0",
     "copy-to-clipboard": "^3.2.0",
     "ethers": "^5.0.7",
+    "graphql": "^15.5.1",
+    "graphql-request": "^3.5.0",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
     "i18next-xhr-backend": "^2.0.1",
@@ -85,7 +90,7 @@
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3003 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
