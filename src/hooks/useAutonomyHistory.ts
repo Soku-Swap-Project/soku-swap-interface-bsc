@@ -5,6 +5,7 @@ import { utils } from 'ethers'
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 import gql from 'graphql-tag'
 
+import { ROUTER_ADDRESS } from '../constants'
 import { MIDROUTER_CONTRACT_ADDRESS } from '../constants/autonomy'
 import { useRegistryContract } from './useContract'
 
@@ -63,17 +64,23 @@ export default function useTransactionHistory() {
 		return registryContract!.getHashedReq(id)  
 	}, [registryContract])
 
-	const canCancel = useCallback((hash: any, orderId: any) => {
+	const canCancel = useCallback((orderId: any) => {
 		const cancelArr: any = []
-		
+		const executedArr: any = []
 		cancels.forEach((cancel: any ) => {
 			if(!cancel.wasExecuted){
 				cancelArr.push(cancel.id)
+			} else {
+				executedArr.push(cancel.id)
 			}
 		});
-	
-		if(cancelArr.includes(orderId)) return 'cancelled'
-		if(hash === "0x0000000000000000000000000000000000000000000000000000000000000000") return 'executed'
+
+		if(cancelArr.includes(orderId)){
+			return 'cancelled'
+		}
+		if(executedArr.includes(orderId)){
+			return 'executed'
+		} 
 		return 'open'
 	}, [cancels])
 	// Gets all the promises to return
@@ -113,14 +120,12 @@ export default function useTransactionHistory() {
 	}, [chainId])
 	
 	// Returns a copy of orders but it adds the hashed parameter 
-	const aggregateHash = useCallback(async () => {
-		const values = await getHashed()
-	
-		return JSON.parse(JSON.stringify(orders)).map((order: any ,index: any) => {
-			order.status = canCancel(values[index], order.id)
+	const aggregateHash = useCallback(async () => {	
+		return JSON.parse(JSON.stringify(orders)).map((order: any) => {
+			// order.status = canCancel(values[index], order.id)
 			return order
 		});
-	}, [getHashed, canCancel, orders]);
+	}, [orders]);
 	
 	const parseOrders = useCallback((allOrders: any[]) => {
 		return allOrders.map((order: any) => ({
@@ -140,67 +145,10 @@ export default function useTransactionHistory() {
 			verifySender: order.verifySender,
 			payWithAuto: order.payWithAuto,
 			typeof: typeSelector(order.callData),
-			dex: dexSelector(order.callData)
-		}))
-	}, [])
+			status: canCancel(order.id)
+		})).filter((order: any) => order.callData.includes(ROUTER_ADDRESS.toLowerCase().substr(2)))
+	}, [canCancel])
 
-	
-
-	useEffect(() => {
-		async function init() {
-			const data = await getTransactionHistory(account)
-			setOrders(parseOrders(data).filter(i => i.dex === "Soku"))
-		}
-		init()
-	}, [account, setOrders, getTransactionHistory, parseOrders]) 
-
-	useEffect(() => {
-    const interval = setInterval(async () => {
-		const data = await getTransactionHistory(account)
-			setOrders(parseOrders(data).filter(i => i.dex === "Soku"))
-    }, 10000)
-
-    return () => clearInterval(interval)
-	}, [account, setOrders, getTransactionHistory, parseOrders])
-// Cancellations
-	useEffect(() => {
-		async function init() {
-			const data = await getCancellationHistory(account)
-			setCancels(data)
-		}
-		init()
-	}, [account, setOrders, getCancellationHistory, setCancels]) 
-
-	useEffect(() => {
-	const interval = setInterval(async () => {
-		const data = await getCancellationHistory(account)
-			setCancels(data)
-	}, 10000)
-
-	return () => clearInterval(interval)
-	}, [account, setOrders, getCancellationHistory, setCancels])
-
-  // Two hooks that fetch data on if the request is already executed or not,
-	// Separate from usePastOrders because its async
-	useEffect(() => {
-		async function init() {
-			const data = await aggregateHash()
-			setTransactions(data)	
-		}
-		init()
-	}, [orders, setTransactions, aggregateHash]) 
-
-	useEffect(() => {
-		const interval = setInterval(async () => {
-			const data = await aggregateHash()
-			setTransactions(data)
-		}, 10000)
-
-		return () => clearInterval(interval)
-	}, [orders, setTransactions, aggregateHash])
-
-  return [transactions, orders]
-	
 	function methodSelector(orderData: any){
 		const sliced = orderData.slice(0, 10)
 		if (sliced === "0xfa089c19") return "Limit -> Tokens for Matic"
@@ -343,10 +291,43 @@ export default function useTransactionHistory() {
 		return time
 	}
 
-	function dexSelector(callData: any){
-		if(callData.includes("0cf0febd3f17cef5b47b0cd257acf6025c5bff3b70")){
-			return "Soku";
-		} 
-		return "Other";
-	}
+	useEffect(() => {
+		async function init() {
+			const [orders2, cancellations] = await Promise.all([getTransactionHistory(account),  await getCancellationHistory(account)]);
+			setCancels(cancellations)
+			setOrders(parseOrders(orders2))
+		}
+		init()
+	}, [account, setOrders, getTransactionHistory, getCancellationHistory, parseOrders]) 
+
+	useEffect(() => {
+    const interval = setInterval(async () => {
+			const [orders2, cancellations] = await Promise.all([getTransactionHistory(account),  await getCancellationHistory(account)]);
+			setCancels(cancellations)
+			setOrders(parseOrders(orders2))
+    }, 100)
+
+    return () => clearInterval(interval)
+	}, [account, setOrders, getTransactionHistory, getCancellationHistory, parseOrders])
+
+  // Two hooks that fetch data on if the request is already executed or not,
+	// Separate from usePastOrders because its async
+	useEffect(() => {
+		async function init() {
+			const data = await aggregateHash()
+			setTransactions(data)	
+		}
+		init()
+	}, [orders, setTransactions, aggregateHash]) 
+
+	useEffect(() => {
+		const interval = setInterval(async () => {
+			const data = await aggregateHash()
+			setTransactions(data)
+		}, 10000)
+
+		return () => clearInterval(interval)
+	}, [orders, setTransactions, aggregateHash])
+
+  return [transactions, orders]
 }
