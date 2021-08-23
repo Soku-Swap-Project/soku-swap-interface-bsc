@@ -20,7 +20,7 @@ export default ({ tx, tokenPair }: TxProps) => {
 
   const cancelTx = useCallback(async () => {
     if (!registryContract) return
-    const transaction = await registryContract.cancelHashedReq(tx.id, [tx.requester, tx.target, tx.referer, tx.callData, tx.initEthSent, tx.ethForCall, tx.verifySender, tx.payWithAuto])
+    const transaction = await registryContract.cancelHashedReq(tx.id, [tx.requester, tx.target, tx.referer, tx.callData, tx.initEthSent, tx.ethForCall, tx.verifySender, tx.insertFeeAmount, tx.payWithAuto])
     await transaction.wait()
   }, [tx, registryContract])
 
