@@ -1,4 +1,4 @@
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 
 type AddressMap = { [chainId: number]: string }
 

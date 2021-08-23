@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { ethers } from 'ethers'
-import { Token } from '@pancakeswap-libs/sdk'
+import { Token } from '@pancakeswap-libs/sdk-v2'
 import { useRegistryContract } from '../../hooks/useContract'
 import CurrencyLogo from '../CurrencyLogo'
 import { Transaction } from './AutoHistoryStyles'

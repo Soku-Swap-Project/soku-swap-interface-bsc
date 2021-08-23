@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 import { useActiveWeb3React } from 'hooks'
 import { utils } from 'ethers'
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
