@@ -162,16 +162,16 @@ const StopLoss = () => {
   }, [trade, outputMaxAmount])
 
   const onStopLossValuesChange = (source: string, value: string) => {
-  setInputFocused(false)
-  if (source === 'price') {
-    setStopLossPrice(value)
-    const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
-    setOutputMaxAmount(outputAmount.toString())
-  } else if (source === 'output') {
-    setOutputMaxAmount(value)
-    const price = Number(value) / Number(formattedAmounts[Field.INPUT])
-    setStopLossPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
-  }
+    setInputFocused(false)
+    if (source === 'price') {
+      setStopLossPrice(value)
+      const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
+      setOutputMaxAmount(outputAmount.toString())
+    } else if (source === 'output') {
+      setOutputMaxAmount(value)
+      const price = Number(value) / Number(formattedAmounts[Field.INPUT])
+      setStopLossPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
+    }
   }
 
   const realPriceValue = useMemo(() => {
@@ -189,7 +189,7 @@ const StopLoss = () => {
       onUserInput(Field.INPUT, value)
       setInputFocused(true)
     },
-    [onUserInput,onStopLossValuesChange, formattedAmounts]
+    [onUserInput, setInputFocused]
   )
 
   // the callback to execute the swap
