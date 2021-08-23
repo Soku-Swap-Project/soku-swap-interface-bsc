@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, { useState, useCallback } from 'react'
-import { Currency } from '@pancakeswap-libs/sdk'
+import { Currency } from '@pancakeswap-libs/sdk-v2'
 import Pair from '../../entities/pair'
 import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'

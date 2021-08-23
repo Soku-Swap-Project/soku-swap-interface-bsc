@@ -8,6 +8,8 @@ import ClaimSokuModal from 'components/ClaimSokuModal'
 import AccountModal from 'components/AccountModal'
 
 import { useWeb3React } from '@web3-react/core'
+import detectEthereumProvider from '@metamask/detect-provider'
+
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -96,6 +98,8 @@ const Marginer = styled.div`
   margin-top: 5rem;
 `
 
+declare let window: any
+
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
@@ -103,6 +107,43 @@ export default function App() {
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
+
+  console.log(window.ethereum)
+
+  const loadToken = async () => {
+    const tokenAddress = '0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53'
+    const tokenSymbol = 'SOKU'
+    const tokenDecimals = 18
+    const tokenImage = 'https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png'
+
+    try {
+      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+      const wasAdded = await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20', // Initially only supports ERC20, but eventually more!
+          options: {
+            address: tokenAddress, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            image: tokenImage, // A string url of the token logo
+          },
+        },
+      })
+
+      // if (wasAdded) {
+      //   console.log('SOKU Token added')
+      // } else {
+      //   console.log('SOKU Token not added')
+      // }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // useEffect(() => {
+  //   loadToken()
+  // }, [])
 
   const credentials: Credentials = {
     token: apiKey,
@@ -155,7 +196,6 @@ export default function App() {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
-
   const truncatedFirstHalf = account?.substring(0, 5)
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`

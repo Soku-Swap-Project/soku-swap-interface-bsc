@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap-libs/sdk-v2'
 import { Button, CardBody, AddIcon, Text as UIKitText } from '@pancakeswap-libs/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { LightCard } from 'components/Card'
@@ -167,10 +167,10 @@ export default function AddLiquidity({
     setAttemptingTxn(true)
     // const aa = await estimate(...args, value ? { value } : {})
     await estimate(...args, value ? { value } : {})
-      .then(() =>
+      .then((estimatedGasLimit) =>
         method(...args, {
           ...(value ? { value } : {}),
-          gasLimit: '2000000',
+          gasLimit: calculateGasMargin(estimatedGasLimit),
         }).then((response) => {
           setAttemptingTxn(false)
 
@@ -220,7 +220,7 @@ export default function AddLiquidity({
     ) : (
       <AutoColumn gap="20px">
         <RowFlat style={{ marginTop: '20px' }}>
-          <UIKitText fontSize="48px" mr="8px">
+          <UIKitText fontSize="32px" mr="8px" style={{ color: '#04bbfb' }}>
             {liquidityMinted?.toSignificant(6)}
           </UIKitText>
           <DoubleCurrencyLogo
@@ -230,7 +230,7 @@ export default function AddLiquidity({
           />
         </RowFlat>
         <Row>
-          <UIKitText fontSize="24px">
+          <UIKitText fontSize="24px" color="#04bbfb">
             {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} Pool Tokens`}
           </UIKitText>
         </Row>
@@ -300,7 +300,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <title>SokuSwap | Add Liquidity</title>
+      <title>SokuSwap | BSC | Add Liquidity</title>
       <CardNav activeIndex={1} />
       <AppBody>
         <div className="add_liquidity_box">

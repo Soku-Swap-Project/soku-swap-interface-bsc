@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@pancakeswap-libs/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@pancakeswap-libs/sdk-v2'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -260,9 +260,8 @@ export function useDefaultsFromURLSearch():
   const { chainId } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const parsedQs = useParsedQueryString()
-  const [result, setResult] = useState<
-    { inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined
-  >()
+  const [result, setResult] =
+    useState<{ inputCurrencyId: string | undefined; outputCurrencyId: string | undefined } | undefined>()
 
   useEffect(() => {
     if (!chainId) return

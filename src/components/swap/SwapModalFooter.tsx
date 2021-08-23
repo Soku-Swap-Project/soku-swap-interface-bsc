@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@pancakeswap-libs/sdk'
+import { Trade, TradeType } from '@pancakeswap-libs/sdk-v2'
 import React, { useMemo, useState } from 'react'
 import { Text, Button } from '@pancakeswap-libs/uikit'
 import { Repeat } from 'react-feather'
@@ -9,7 +9,7 @@ import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,
   formatExecutionPrice,
-  warningSeverity
+  warningSeverity,
 } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
@@ -33,10 +33,10 @@ export default function SwapModalFooter({
   realSwapPrice?: string
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
-  const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
-    allowedSlippage,
-    trade
-  ])
+  const slippageAdjustedAmounts = useMemo(
+    () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
+    [allowedSlippage, trade]
+  )
   const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
   const TranslateString = useI18n()
@@ -44,7 +44,14 @@ export default function SwapModalFooter({
   return (
     <>
       <AutoColumn gap="0px">
-        <RowBetween align="center">
+        <RowBetween
+          // style={{
+          //   display: 'flex',
+          //   flexDirection: 'column',
+          //   alignItems: 'flex-start',
+          // }}
+          align="center"
+        >
           <Text fontSize="14px">Price</Text>
           <Text
             fontSize="14px"
@@ -54,7 +61,7 @@ export default function SwapModalFooter({
               display: 'flex',
               textAlign: 'right',
               paddingLeft: '8px',
-              fontWeight: 500
+              fontWeight: 500,
             }}
           >
             {realSwapPrice !== undefined ?
@@ -113,7 +120,7 @@ export default function SwapModalFooter({
             <QuestionHelper
               text={TranslateString(
                 999,
-                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+                'For each trade a 0.25% fee is paid. 0.17% goes to liquidity providers, 0.05% goes towards staking, 0.02% to the SokuSwap treasury, and 0.01% goes towards rewards.'
               )}
             />
           </RowFixed>

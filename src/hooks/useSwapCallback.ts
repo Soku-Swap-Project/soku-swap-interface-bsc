@@ -2,8 +2,8 @@ import { useMemo } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
 import { ethers } from 'ethers'
-import { JSBI, Percent, Router, Trade, TradeType } from '@pancakeswap-libs/sdk'
-import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
+import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@pancakeswap-libs/sdk-v2'
+import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
 import isZero from '../utils/isZero'
@@ -11,7 +11,7 @@ import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 import { useRegistryContract, useMidRouterContract } from './useContract'
 
- enum SwapCallbackState {
+enum SwapCallbackState {
   INVALID,
   LOADING,
   VALID,

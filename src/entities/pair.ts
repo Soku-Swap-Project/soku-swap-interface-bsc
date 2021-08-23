@@ -6,7 +6,7 @@ import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { pack, keccak256 } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
-import { ChainId, Pair } from '@pancakeswap-libs/sdk'
+import { ChainId, Pair } from '@pancakeswap-libs/sdk-v2'
 
 import {
   BigintIsh,

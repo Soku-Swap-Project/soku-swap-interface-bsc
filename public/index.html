@@ -3,19 +3,18 @@
   <head>
     <title>SokuSwap</title>
     <meta charset="utf-8" />
-    <!-- GTAG -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D2L5FCB4KQ"></script>
     <script>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', '%REACT_APP_GTAG%')
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-D2L5FCB4KQ')
     </script>
+
     <!-- Links -->
     <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -24,6 +23,10 @@
     <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/images/192x192_App_Icon.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="%PUBLIC_URL%/images/512x512_App_Icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- <link
+      rel="shortcut icon"
+      href="https://global-uploads.webflow.com/60563b6fb2aa080737785efc/609d8bdad9fc2440445ab66f_Soku-Token-Logo-32x32.png"
+    /> -->
     <!-- Meta -->
     <title>SokuSwap</title>
     <meta name="description" content="SokuSwap, the best decentralized exchange on Binance Smart Chain." />

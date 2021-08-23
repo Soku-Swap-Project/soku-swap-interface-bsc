@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@pancakeswap-libs/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@pancakeswap-libs/sdk-v2'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PairState, usePair } from '../../data/Reserves'
@@ -167,9 +167,7 @@ export function useDerivedMintInfo(
   }
 }
 
-export function useMintActionHandlers(
-  noLiquidity: boolean | undefined
-): {
+export function useMintActionHandlers(noLiquidity: boolean | undefined): {
   onFieldAInput: (typedValue: string) => void
   onFieldBInput: (typedValue: string) => void
 } {

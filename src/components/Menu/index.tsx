@@ -110,7 +110,12 @@ const Menu: React.FC = (props) => {
             </a>
           </li>
           <li className="hidden_navLink">
-            <a href="https://sokuswap-1.gitbook.io/sokuswap-whitepaper/" rel="noreferrer noopener" target="_blank">
+            <a
+              href="https://sokuswap-1.gitbook.io/sokuswap-whitepaper/"
+              className="disabled_link"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
               <span className="material-icons">school</span>
               <p>Docs</p>
             </a>
