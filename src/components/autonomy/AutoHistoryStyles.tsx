@@ -16,15 +16,11 @@ export const Tabs = styled.div`
     border-radius: 12px;
     margin-right: 5px;
     padding: 8px 12px;
-    color: ${({ theme }) => theme.colors.textDisabled};
+    color: #fff;
     font-weight: 500;
     cursor: pointer;
-    &:hover {
-      color: ${({ theme }) => theme.colors.text};
-    }
     &.active {
-      background-color: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.text};
+      background-color: #04BBFB;
     }
   }
 `
@@ -35,7 +31,7 @@ export const TabContent = styled.div`
 
 export const Transaction = styled.div`
   border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.binance};
+  background-color: #04BBFB;
   padding: 8px 12px;
   margin-bottom: 12px;
   display: flex;
@@ -81,7 +77,7 @@ export const Transaction = styled.div`
     right: 0;
     margin: 0 4px 4px;
     button {
-      background: ${({ theme }) => theme.colors.primary};
+      background: ${({ theme }) => theme.colors.contrast};
       border: none;
       border-radius: 12px;
       padding: 0.5rem;
