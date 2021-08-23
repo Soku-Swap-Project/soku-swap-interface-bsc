@@ -20,7 +20,7 @@ export default function AutoHistory(type: any) {
         output: allTokens[getAddress(tx.outputToken)],
       }
     }
-    return null
+    return null as any
   }).filter((txPair: any) => !!txPair)
 
   return (
@@ -38,7 +38,7 @@ export default function AutoHistory(type: any) {
       </Tabs>
       <TabContent>
         {transactions.map((tx: any, i: number) => (
-          tx && tx.typeof === mode && tx.status === currentTab && <AutoTransaction tx={tx} tokenPair={txTokenPairs[i]} />
+          tx && tx.typeof === mode.type && tx.status === currentTab && <AutoTransaction tx={tx} tokenPair={txTokenPairs[i]} />
         ))}
       </TabContent>
     </Container>

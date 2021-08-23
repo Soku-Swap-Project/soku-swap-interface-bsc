@@ -1,77 +1,29 @@
+import Moralis from 'moralis';
+
 import { useCallback, useEffect, useState } from 'react'
-import { ChainId } from '@pancakeswap-libs/sdk-v2'
-import { useActiveWeb3React } from 'hooks'
 import { utils } from 'ethers'
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
-import gql from 'graphql-tag'
-
+import { useActiveWeb3React } from 'hooks';
 import { ROUTER_ADDRESS } from '../constants'
-import { MIDROUTER_CONTRACT_ADDRESS } from '../constants/autonomy'
-import { useRegistryContract } from './useContract'
-
-
-type UrlMap = { [chainId: number]: string }
-const autonomyGraphServers: UrlMap = {
-    [ChainId.MAINNET]: 'https://api.studio.thegraph.com/query/2719/autonomy-subgraph-bsc-mainnet-2/v.0.0.1',
-    [ChainId.BSCTESTNET]: 'https://api.studio.thegraph.com/query/2719/autonomy-subgraph-bsc-testnet/v.0.0.1',
-}
-
-export const autonomyHistory = (chainId: number | undefined) => new ApolloClient({
-    link: createHttpLink({
-        uri: autonomyGraphServers[chainId || ChainId.MAINNET],
-    }),
-    cache: new InMemoryCache(),
-})
-
-const TRANSACTION_HISTORY = gql`
-    query newRequests($account: String, $contract: String) {
-        newRequests(where: { requester: $account, target: $contract}) {
-            id
-            timeStamp
-            requester
-            target
-            referer
-            callData
-            initEthSent
-            ethForCall
-            verifySender
-            payWithAuto
-        }
-    }
-`
-const CANCELLATION_HISTORY = gql`
-    query cancelledRequests($account: String, $contract: String) {
-        cancelledRequests(where: { requester: $account, target: $contract}) {
-            id
-            timeStamp
-            requester
-            target
-            wasExecuted
-        }
-    }
-`
 
 export default function useTransactionHistory() {
 
-  const [transactions, setTransactions] = useState<any>([{}]);
-  const [orders, setOrders] = useState<Array<any>>([]);
-  const [cancels, setCancels] = useState<Array<any>>([]);
 
-	const { account, chainId } = useActiveWeb3React()
-	const registryContract = useRegistryContract()
+Moralis.initialize("YDqs0iVLuVfOO2owQ9J2QqqpKFJrTTEyDQ5mGgB7");
 
-	const canExecute = useCallback(async (id: any) => {
-		return registryContract!.getHashedReq(id)  
-	}, [registryContract])
+Moralis.serverURL = 'https://8aeywigogdea.moralisweb3.com:2053/server'
+
+const [orders, setOrders] = useState<Array<any>>([]);
+const [cancels, setCancels] = useState<Array<any>>([]);
+const { account, chainId } = useActiveWeb3React();
 
 	const canCancel = useCallback((orderId: any) => {
 		const cancelArr: any = []
 		const executedArr: any = []
 		cancels.forEach((cancel: any ) => {
-			if(!cancel.wasExecuted){
-				cancelArr.push(cancel.id)
+			if(!cancel.get('wasExecuted')){
+				cancelArr.push(cancel.get('uid'))
 			} else {
-				executedArr.push(cancel.id)
+				executedArr.push(cancel.get('uid'))
 			}
 		});
 
@@ -83,71 +35,30 @@ export default function useTransactionHistory() {
 		} 
 		return 'open'
 	}, [cancels])
-	// Gets all the promises to return
-	const getHashed = useCallback(async () => {
-		return Promise.all(orders.map(request => canExecute(request.id)))
-	}, [canExecute, orders])
 
-	const getTransactionHistory = useCallback(async (acct: string | null | undefined) => {
-		if (!acct) return []
-	
-		const graphServer = autonomyHistory(chainId)
-		const result = await graphServer.query({
-			query: TRANSACTION_HISTORY,
-			variables: {
-				account: acct,
-				contract: MIDROUTER_CONTRACT_ADDRESS[chainId || ChainId.MAINNET]
-			},
-			fetchPolicy: 'no-cache',
-		})
-		return result.data.newRequests
-	}, [chainId])
-
-	const getCancellationHistory = useCallback(async (acct: string | null | undefined) => {
-		if (!acct) return []
-	
-		const graphServer = autonomyHistory(chainId)
-		const result = await graphServer.query({
-			query: CANCELLATION_HISTORY,
-			variables: {
-				account: acct,
-				contract: MIDROUTER_CONTRACT_ADDRESS[chainId || ChainId.MAINNET]
-			},
-			fetchPolicy: 'no-cache',
-		})
-	
-		return result.data.cancelledRequests;
-	}, [chainId])
-	
-	// Returns a copy of orders but it adds the hashed parameter 
-	const aggregateHash = useCallback(async () => {	
-		return JSON.parse(JSON.stringify(orders)).map((order: any) => {
-			// order.status = canCancel(values[index], order.id)
-			return order
-		});
-	}, [orders]);
-	
 	const parseOrders = useCallback((allOrders: any[]) => {
 		return allOrders.map((order: any) => ({
-			method: methodSelector(order.callData),
-			callData: order.callData,
-			time: timeConverter(order.timeStamp),
-			id: order.id,
-			inputToken: findInputToken(order.callData),
-			outputToken: findOutPutToken(order.callData),
-			inputAmount: findInputAmount(order.callData, order.ethForCall),
-			outputAmount: findOutputAmount(order.callData),
-			requester: order.requester,
-			target: order.target,
-			referer: order.referer,
-			initEthSent: order.initEthSent,
-			ethForCall: order.ethForCall,
-			verifySender: order.verifySender,
-			payWithAuto: order.payWithAuto,
-			typeof: typeSelector(order.callData),
-			status: canCancel(order.id)
+			method: methodSelector(order.get('callData')),
+			callData: order.get('callData'),
+			time: order.get('block_timestamp').toUTCString(),
+			id: order.get('uid'),
+			inputToken: findInputToken(order.get('callData')),
+			outputToken: findOutPutToken(order.get('callData')),
+			inputAmount: findInputAmount(order.get('callData'), order.get('ethForCall')),
+			outputAmount: findOutputAmount(order.get('callData')),
+			requester: order.get('user'),
+			target: order.get('target'),
+			referer: order.get('referer'),
+			initEthSent: order.get('initEthSent'),
+			ethForCall: order.get('ethForCall'),
+			verifySender: order.get('verifyUser'),
+			payWithAuto: order.get('payWithAUTO'),
+			typeof: typeSelector(order.get('callData')),
+			insertFeeAmount: order.get('insertFeeAmount'),
+			status: canCancel(order.get('uid'))
 		})).filter((order: any) => order.callData.includes(ROUTER_ADDRESS.toLowerCase().substr(2)))
 	}, [canCancel])
+
 
 	function methodSelector(orderData: any){
 		const sliced = orderData.slice(0, 10)
@@ -277,57 +188,21 @@ export default function useTransactionHistory() {
 		}
 		return ret
 	} 
-	
-	function timeConverter(UNIX_timestamp: any) {
-		const a = new Date(UNIX_timestamp * 1000);
-		const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-		const year = a.getFullYear();
-		const month = months[a.getMonth()];
-		const date = a.getDate();
-		const hour = a.getHours();
-		const min = a.getMinutes();
-		const sec = a.getSeconds();
-		const time = `${date} ${month} ${year} ${hour}:${min}:${sec}`;
-		return time
-	}
 
 	useEffect(() => {
 		async function init() {
-			const [orders2, cancellations] = await Promise.all([getTransactionHistory(account),  await getCancellationHistory(account)]);
-			setCancels(cancellations)
-			setOrders(parseOrders(orders2))
+			const queryRequests = new Moralis.Query("RegistryRequests");
+			const queryCancels = new Moralis.Query("RegistryCancelRequests");
+			queryRequests.equalTo("user", account);
+			const registryRequests = await queryRequests.find();
+			const registryCancelRequests = await queryCancels.find();
+			setOrders(parseOrders(registryRequests))
+			setCancels(registryCancelRequests)
 		}
 		init()
-	}, [account, setOrders, getTransactionHistory, getCancellationHistory, parseOrders]) 
+	}, [parseOrders, setOrders, setCancels, account]) 
 
-	useEffect(() => {
-    const interval = setInterval(async () => {
-			const [orders2, cancellations] = await Promise.all([getTransactionHistory(account),  await getCancellationHistory(account)]);
-			setCancels(cancellations)
-			setOrders(parseOrders(orders2))
-    }, 100)
 
-    return () => clearInterval(interval)
-	}, [account, setOrders, getTransactionHistory, getCancellationHistory, parseOrders])
+	return [orders]
 
-  // Two hooks that fetch data on if the request is already executed or not,
-	// Separate from usePastOrders because its async
-	useEffect(() => {
-		async function init() {
-			const data = await aggregateHash()
-			setTransactions(data)	
-		}
-		init()
-	}, [orders, setTransactions, aggregateHash]) 
-
-	useEffect(() => {
-		const interval = setInterval(async () => {
-			const data = await aggregateHash()
-			setTransactions(data)
-		}, 10000)
-
-		return () => clearInterval(interval)
-	}, [orders, setTransactions, aggregateHash])
-
-  return [transactions, orders]
 }
