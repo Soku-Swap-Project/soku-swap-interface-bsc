@@ -24,8 +24,8 @@ export default ({ tx, tokenPair }: TxProps) => {
     await transaction.wait()
   }, [tx, registryContract])
 
-  const inputAmount = ethers.utils.formatUnits(tx.inputAmount, tokenPair.input.decimals)
-  const outputAmount = ethers.utils.formatUnits(tx.outputAmount, tokenPair.output.decimals)
+  const inputAmount = ethers.utils.formatUnits(tx.inputAmount, tokenPair.input?.decimals)
+  const outputAmount = ethers.utils.formatUnits(tx.outputAmount, tokenPair.output?.decimals)
 
   return (
     <Transaction>
@@ -36,14 +36,14 @@ export default ({ tx, tokenPair }: TxProps) => {
           Sell
           <span className="token">
             <CurrencyLogo currency={tokenPair.input} size='14px' style={{ marginRight: '5px' }} />
-            {inputAmount} <div style={{fontWeight: 'bold', marginLeft: '2px'}}>{tokenPair.input.symbol}</div>
+            {inputAmount} <div style={{fontWeight: 'bold', marginLeft: '2px'}}>{tokenPair.input?.symbol}</div>
           </span>
         </p>
         <p style={{fontWeight: 'bold'}}>
           Buy
           <span className="token">
             <CurrencyLogo currency={tokenPair.output} size='14px' style={{ marginRight: '5px' }} />
-            {outputAmount} <div style={{fontWeight: 'bold', marginLeft: '2px'}}>  {tokenPair.output.symbol}</div>
+            {outputAmount} <div style={{fontWeight: 'bold', marginLeft: '2px'}}>  {tokenPair.output?.symbol}</div>
           </span>
         </p>
       </div>

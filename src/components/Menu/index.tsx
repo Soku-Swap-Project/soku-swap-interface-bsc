@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
+import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
+
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 
@@ -19,7 +21,7 @@ import './Menu.css'
 /* eslint-disable */
 
 const Menu: React.FC = (props) => {
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { login, logout } = useAuth()
   // const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   // const { isDark, toggleTheme } = useTheme()
@@ -31,6 +33,9 @@ const Menu: React.FC = (props) => {
   const truncatedFirstHalf = account?.substring(0, 5)
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
+
+  const isBSC = chainId === ChainId.MAINNET || chainId === ChainId.BSCTESTNET
+  console.log(chainId, isBSC)
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
@@ -53,12 +58,16 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
-            <NavLink className="nav_link" activeClassName="active" to="/limit-order">
-              <li>Limit Order</li>
-            </NavLink>
-            <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
-              <li>Stop Loss</li>
-            </NavLink>
+            {isBSC && (
+              <NavLink className="nav_link" activeClassName="active" to="/limit-order">
+                <li>Limit Order</li>
+              </NavLink>
+            )}
+            {isBSC && (
+              <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
+                <li>Stop Loss</li>
+              </NavLink>
+            )}
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>
