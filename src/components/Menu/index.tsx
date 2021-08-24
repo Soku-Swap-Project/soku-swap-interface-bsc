@@ -21,7 +21,7 @@ import './Menu.css'
 /* eslint-disable */
 
 const Menu: React.FC = (props) => {
-  const { account, chainId } = useWeb3React()
+  const { account } = useWeb3React()
   const { login, logout } = useAuth()
   // const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   // const { isDark, toggleTheme } = useTheme()
@@ -34,8 +34,7 @@ const Menu: React.FC = (props) => {
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
-  const isBSC = chainId === ChainId.MAINNET || chainId === ChainId.BSCTESTNET
-  console.log(chainId, isBSC)
+  const isBSC = window.location.href.includes('/bsc/')
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
