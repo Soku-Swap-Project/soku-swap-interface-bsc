@@ -131,7 +131,7 @@ const LimitOrder = () => {
   const noRoute = !route
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage, true)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -177,7 +177,7 @@ const LimitOrder = () => {
     const realPriceValue = useMemo(() => {
         if (inputFocused) {
             const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
-            return price === Infinity || isNaN(price) ? '' : price.toFixed(2)
+            return price === Infinity || isNaN(price) ? '' : price.toFixed(6)
         }
         return limitOrderPrice
     }, [inputFocused, limitOrderPrice, formattedAmounts])
@@ -494,7 +494,7 @@ const LimitOrder = () => {
                     style={{ width: '100%' }}
                     id="swap-button"
                     disabled={
-                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode) || limitOrderMarketStats <= 0
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
@@ -519,7 +519,7 @@ const LimitOrder = () => {
                     }
                   }}
                   id="swap-button"
-                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError || limitOrderMarketStats <= 0}
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
                 >
