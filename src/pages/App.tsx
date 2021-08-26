@@ -106,7 +106,7 @@ export default function App() {
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
 
-  console.log(window.ethereum)
+  // console.log(window.ethereum)
 
   const loadToken = async () => {
     const tokenAddress = '0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53'
