@@ -27,6 +27,14 @@
       "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
     },
     {
+      "name": "Earnable",
+      "symbol": "EARN",
+      "address": "0x11ba78277d800502c84c5aed1374ff0a91f19f7e",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
+    },
+    {
       "name": "Test BUSD Token",
       "symbol": "BUSD",
       "address": "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
