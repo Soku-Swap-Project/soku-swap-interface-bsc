@@ -54,7 +54,8 @@ function useSwapCallArguments(
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
-  const deadline = (new Date('2050-01-01')).valueOf() / 1000
+  // const deadline = (new Date('2050-01-01')).valueOf() / 1000
+  const deadline = 30 * 365 * 24 * 60 * 60  // 30 years from now
 
   return useMemo(() => {
     if (!trade || !recipient || !library || !account || !chainId) return []
