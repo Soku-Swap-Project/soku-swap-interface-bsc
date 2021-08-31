@@ -284,9 +284,9 @@ export class Trade {
         ;[amountOut] = pair.getOutputAmount(amountIn)
       } catch (error) {
         // input too low
-        if (error.isInsufficientInputAmountError) {
-          continue
-        }
+        // if (error.isInsufficientInputAmountError) {
+        //   continue
+        // }
         throw error
       }
       // we have arrived at the output token, so this is the final trade of one of the paths
@@ -372,9 +372,9 @@ export class Trade {
         ;[amountIn] = pair.getInputAmount(amountOut)
       } catch (error) {
         // not enough liquidity in this pair
-        if (error.isInsufficientReservesError) {
-          continue
-        }
+        // if (error.isInsufficientReservesError) {
+        //   continue
+        // }
         throw error
       }
       // we have arrived at the input token, so this is the first trade of one of the paths
