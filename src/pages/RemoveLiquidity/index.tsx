@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
