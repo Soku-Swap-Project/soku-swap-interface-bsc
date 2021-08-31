@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 /* eslint-disable */
 
-console.log(window.location)
+// console.log(window.location)
 const origin = window.location.origin
 
 const Toggle = () => {
@@ -17,7 +17,7 @@ const Toggle = () => {
     ethToggle?.classList.remove('toggleActive')
   }
 
-  checkbox?.addEventListener('change', function() {
+  checkbox?.addEventListener('change', function () {
     // Check if toggle switch is on BSC
     if (this.checked) {
       window.location.href = `${origin}/bsc/#/swap`
