@@ -14,7 +14,7 @@ Moralis.serverURL = 'https://8aeywigogdea.moralisweb3.com:2053/server'
 
 const [orders, setOrders] = useState<Array<any>>([]);
 const [cancels, setCancels] = useState<Array<any>>([]);
-const { account, chainId } = useActiveWeb3React();
+const { account } = useActiveWeb3React();
 
 	const canCancel = useCallback((orderId: any) => {
 		const cancelArr: any = []

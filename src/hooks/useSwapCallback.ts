@@ -3,7 +3,8 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
 import { ethers } from 'ethers'
 import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@pancakeswap-libs/sdk-v2'
-import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
+import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE, WBNB } from '../constants'
+import { useAutonomyPaymentManager } from '../state/user/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
 import isZero from '../utils/isZero'
@@ -104,6 +105,7 @@ export function useAutonomySwapCallArguments(
 
   const midRouterContract = useMidRouterContract()
   const registryContract = useRegistryContract()
+  const [autonomyPrepay] = useAutonomyPaymentManager()
   
   const swapCalls: SwapCall[] = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName)
   
@@ -137,8 +139,16 @@ export function useAutonomySwapCallArguments(
               case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
                   swapMethod = tradeLimitType === 'limit-order' ? 'ethToTokenLimitOrder' : 'ethToTokenStopLoss'
                   swapArgs = [params[0], outputAmount, params[2], params[3], params[4]]
+                  if (!autonomyPrepay) {
+                    swapMethod = `${swapMethod}PayDefault`
+                    swapArgs = [params[3], '0x0', params[0], outputAmount, params[2], params[4]]
+                  }
                   if (tradeLimitType === 'stop-loss') {
+                    if (!autonomyPrepay) {
+                      swapArgs.splice(3, 0, BigNumber.from('1'))
+                    } else {
                       swapArgs.splice(1, 0, BigNumber.from('1'))
+                    }
                   }
                   calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
                   ethForCall = value
@@ -176,11 +186,13 @@ export function useAutonomySwapCallArguments(
           ]
           // const wrapperCalldata = registryContract.interface.encodeFunctionData('newReq', wrapperArgs)
           // Cap original value with autonomy fee - 0.01 ether
-          const wrapperValue = BigNumber.from(value).add(ethers.utils.parseEther('0.01')).toHexString()
+          const wrapperValue = autonomyPrepay
+            ? BigNumber.from(value).add(ethers.utils.parseEther('0.01')).toHexString()
+            : BigNumber.from(value).toHexString()
 
           return { parameters: { methodName: 'newReq', args: wrapperArgs, value: wrapperValue }, contract: registryContract }
       })
-  }, [swapCalls, midRouterContract, registryContract, account, outputMinMaxAmount, trade, tradeLimitType])
+  }, [swapCalls, midRouterContract, registryContract, account, outputMinMaxAmount, trade, tradeLimitType, autonomyPrepay])
 }
 
 // returns a function that will execute a swap, if the parameters are all valid
@@ -197,6 +209,8 @@ export function useSwapCallback(
   const swapCalls = useAutonomySwapCallArguments(trade, allowedSlippage, recipientAddressOrName, tradeLimitType, outputMinMaxAmount)
 
   const addTransaction = useTransactionAdder()
+  const routerContract = (account && chainId && library) ? getRouterContract(chainId, library, account) : null;
+  const [autonomyPrepay] = useAutonomyPaymentManager()
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
@@ -276,6 +290,30 @@ export function useSwapCallback(
           gasEstimate,
         } = successfulEstimation
 
+        // TODO: check Pre-pay fee vs Input Token value
+        if (!autonomyPrepay && routerContract) {
+          const gasPrice = ethers.utils.parseUnits('5', 'gwei').toString();
+          const gasFee = BigNumber.from('300000').mul(gasPrice)
+          const inputCurrencyDecimals = trade.inputAmount.currency.decimals || 18
+          const inputTokenAmount = ethers.utils
+            .parseEther(trade.inputAmount.toSignificant(6))
+            .div(10 ** (18 - inputCurrencyDecimals))
+          let isEligible = false
+          if (trade.route.path[0].address === WBNB.address) {
+            // In case input token is BNB
+            isEligible = inputTokenAmount.gt(gasFee)
+          } else {
+            const [, bnbAmount] = await routerContract.getAmountsOut(inputTokenAmount, [
+              trade.route.path[0].address,
+              WBNB.address,
+            ])
+            isEligible = (bnbAmount as BigNumber).gt(gasFee)
+          }
+          if (!isEligible) {
+            throw new Error('Insufficient input token amount')
+          }
+        }
+
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
           ...(value && !isZero(value) ? { value, from: account } : { from: account }),
@@ -315,7 +353,7 @@ export function useSwapCallback(
       },
       error: null,
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
+  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction, autonomyPrepay, routerContract])
 }
 
 export default useSwapCallback

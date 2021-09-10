@@ -20,6 +20,8 @@ import {
   updateUserSlippageTolerance,
   muteAudio,
   unmuteAudio,
+  enableAutonomyPrepay,
+  disableAutonomyPrepay,
 } from './actions'
 import { setThemeCache } from '../../utils/theme'
 
@@ -259,4 +261,19 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
     return Object.keys(keyed).map((key) => keyed[key])
   }, [combinedList])
+}
+
+export function useAutonomyPaymentManager(): [boolean, () => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const autonomyPrepay = useSelector<AppState, AppState['user']['autonomyPrepay']>((state) => state.user.autonomyPrepay)
+
+  const togglePrepayMode = useCallback(() => {
+    if (autonomyPrepay) {
+      dispatch(disableAutonomyPrepay())
+    } else {
+      dispatch(enableAutonomyPrepay())
+    }
+  }, [autonomyPrepay, dispatch])
+
+  return [autonomyPrepay, togglePrepayMode]
 }
