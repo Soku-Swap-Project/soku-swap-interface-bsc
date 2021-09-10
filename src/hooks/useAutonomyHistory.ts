@@ -8,9 +8,9 @@ import { ROUTER_ADDRESS } from '../constants'
 export default function useTransactionHistory() {
 
 
-Moralis.initialize("YDqs0iVLuVfOO2owQ9J2QqqpKFJrTTEyDQ5mGgB7");
+Moralis.initialize('BLHKY0nn6mL9HtcCnfXDjnfY3xOay6KEAXbKGY9u');
 
-Moralis.serverURL = 'https://8aeywigogdea.moralisweb3.com:2053/server'
+Moralis.serverURL = 'https://tc2cagkjxavv.bigmoralis.com:2053/server'
 
 const [orders, setOrders] = useState<Array<any>>([]);
 const [cancels, setCancels] = useState<Array<any>>([]);
