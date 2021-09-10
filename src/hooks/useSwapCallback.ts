@@ -291,7 +291,7 @@ export function useSwapCallback(
         } = successfulEstimation
 
         // TODO: check Pre-pay fee vs Input Token value
-        if (!autonomyPrepay && routerContract) {
+        if (tradeLimitType && !autonomyPrepay && routerContract) {
           const gasPrice = ethers.utils.parseUnits('5', 'gwei').toString();
           const gasFee = BigNumber.from('300000').mul(gasPrice)
           const inputCurrencyDecimals = trade.inputAmount.currency.decimals || 18
@@ -353,7 +353,7 @@ export function useSwapCallback(
       },
       error: null,
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction, autonomyPrepay, routerContract])
+  }, [trade, library, account, chainId, recipient, tradeLimitType, recipientAddressOrName, swapCalls, addTransaction, autonomyPrepay, routerContract])
 }
 
 export default useSwapCallback
