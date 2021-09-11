@@ -137,43 +137,59 @@ export function useAutonomySwapCallArguments(
               case 'swapExactETHForTokens':
               case 'swapETHForExactTokens':
               case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
-                  swapMethod = tradeLimitType === 'limit-order' ? 'ethToTokenLimitOrder' : 'ethToTokenStopLoss'
-                  swapArgs = [params[0], outputAmount, params[2], params[3], params[4]]
+                swapMethod = tradeLimitType === 'limit-order' ? 'ethToTokenLimitOrder' : 'ethToTokenStopLoss'
+                swapArgs = [BigNumber.from('1') ,params[0], outputAmount, params[2], params[3], params[4]]
+                if (!autonomyPrepay) {
+                  swapMethod = `${swapMethod}PayDefault`
+                  swapArgs = [params[3], '0x0', BigNumber.from('1'), params[0], outputAmount, params[2], params[4]]
+                }
+                if (tradeLimitType === 'stop-loss') {
                   if (!autonomyPrepay) {
-                    swapMethod = `${swapMethod}PayDefault`
-                    swapArgs = [params[3], '0x0', params[0], outputAmount, params[2], params[4]]
+                    swapArgs.splice(4, 0, BigNumber.from('1'))
+                  } else {
+                    swapArgs.splice(2, 0, BigNumber.from('1'))
                   }
-                  if (tradeLimitType === 'stop-loss') {
-                    if (!autonomyPrepay) {
-                      swapArgs.splice(3, 0, BigNumber.from('1'))
-                    } else {
-                      swapArgs.splice(1, 0, BigNumber.from('1'))
-                    }
-                  }
-                  calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
-                  ethForCall = value
-                  verifySender = false
-                  break
+                }
+                calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+                ethForCall = value
+                verifySender = false
+                break
               case 'swapExactTokensForETH':
               case 'swapTokensForExactETH':
               case 'swapExactTokensForETHSupportingFeeOnTransferTokens':
-                  swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
-                  swapArgs = [account, params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
-                  if (tradeLimitType === 'stop-loss') {
-                      swapArgs.splice(3, 0, BigNumber.from('1'))
+                swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
+                swapArgs = [account, BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
+                if (!autonomyPrepay) {
+                  swapMethod = `${swapMethod}PayDefault`
+                  swapArgs = [account, '0x0', BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[5]]
+                }
+                if (tradeLimitType === 'stop-loss') {
+                  if (!autonomyPrepay) {
+                    swapArgs.splice(5, 0, BigNumber.from('1'))
+                  } else {
+                    swapArgs.splice(4, 0, BigNumber.from('1'))
                   }
-                  calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
-                  break
+                }
+                calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+                break
               case 'swapExactTokensForTokens':
               case 'swapTokensForExactTokens':
               case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
-                  swapMethod = tradeLimitType === 'limit-order' ? 'tokenToTokenLimitOrder' : 'tokenToTokenStopLoss'
-                  swapArgs = [account, params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
-                  if (tradeLimitType === 'stop-loss') {
-                      swapArgs.splice(3, 0, BigNumber.from('1'))
+                swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
+                swapArgs = [account, BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
+                if (!autonomyPrepay) {
+                  swapMethod = `${swapMethod}PayDefault`
+                  swapArgs = [account, '0x0', BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[5]]
+                }
+                if (tradeLimitType === 'stop-loss') {
+                  if (!autonomyPrepay) {
+                    swapArgs.splice(5, 0, BigNumber.from('1'))
+                  } else {
+                    swapArgs.splice(4, 0, BigNumber.from('1'))
                   }
-                  calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
-                  break
+                }
+                calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+                break
           }
           const wrapperArgs = [
               midRouterContract.address,
