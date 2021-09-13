@@ -51,7 +51,7 @@ const Menu: React.FC = (props) => {
       <nav>
         <ul className="navbar__items">
           <NavLink to="/">
-            <img className="nav_logo" style={{ height: '50px' }} alt="Logo" src="/images/Web-Corner-Logo.png" />
+            <img className="nav_logo" style={{ height: '50px' }} alt="Logo" src="https://app.sokuswap.finance/bsc/images/Web-Corner-Logo.png" />
           </NavLink>
           <div className="navbar__options">
             <NavLink className="nav_link" activeClassName="active" to="/swap">
