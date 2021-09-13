@@ -39,7 +39,7 @@ const store = configureStore({
     lists,
     toasts,
   },
-  middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
+  // middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
   preloadedState: loadedState,
 })
 
