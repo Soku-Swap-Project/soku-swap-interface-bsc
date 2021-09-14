@@ -138,16 +138,16 @@ export function useAutonomySwapCallArguments(
               case 'swapETHForExactTokens':
               case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
                 swapMethod = tradeLimitType === 'limit-order' ? 'ethToTokenLimitOrder' : 'ethToTokenStopLoss'
-                swapArgs = [BigNumber.from('1') ,params[0], outputAmount, params[2], params[3], params[4]]
+                swapArgs = [BigNumber.from('1000') ,params[0], outputAmount, params[2], params[3], params[4]]
                 if (!autonomyPrepay) {
                   swapMethod = `${swapMethod}PayDefault`
-                  swapArgs = [params[3], '0x0', BigNumber.from('1'), params[0], outputAmount, params[2], params[4]]
+                  swapArgs = [params[3], '0x0', BigNumber.from('1000'), params[0], outputAmount, params[2], params[4]]
                 }
                 if (tradeLimitType === 'stop-loss') {
                   if (!autonomyPrepay) {
-                    swapArgs.splice(4, 0, BigNumber.from('1'))
+                    swapArgs.splice(4, 0, BigNumber.from('1000'))
                   } else {
-                    swapArgs.splice(2, 0, BigNumber.from('1'))
+                    swapArgs.splice(2, 0, BigNumber.from('1000'))
                   }
                 }
                 calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
@@ -158,16 +158,16 @@ export function useAutonomySwapCallArguments(
               case 'swapTokensForExactETH':
               case 'swapExactTokensForETHSupportingFeeOnTransferTokens':
                 swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
-                swapArgs = [account, BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
+                swapArgs = [account, BigNumber.from('1000'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
                 if (!autonomyPrepay) {
                   swapMethod = `${swapMethod}PayDefault`
-                  swapArgs = [account, '0x0', BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[5]]
+                  swapArgs = [account, '0x0', BigNumber.from('1000'), params[0], inputAmount, outputAmount, params[3], params[5]]
                 }
                 if (tradeLimitType === 'stop-loss') {
                   if (!autonomyPrepay) {
-                    swapArgs.splice(5, 0, BigNumber.from('1'))
+                    swapArgs.splice(5, 0, BigNumber.from('1000'))
                   } else {
-                    swapArgs.splice(4, 0, BigNumber.from('1'))
+                    swapArgs.splice(4, 0, BigNumber.from('1000'))
                   }
                 }
                 calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
@@ -176,16 +176,16 @@ export function useAutonomySwapCallArguments(
               case 'swapTokensForExactTokens':
               case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
                 swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
-                swapArgs = [account, BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
+                swapArgs = [account, BigNumber.from('1000'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
                 if (!autonomyPrepay) {
                   swapMethod = `${swapMethod}PayDefault`
-                  swapArgs = [account, '0x0', BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[5]]
+                  swapArgs = [account, '0x0', BigNumber.from('1000'), params[0], inputAmount, outputAmount, params[3], params[5]]
                 }
                 if (tradeLimitType === 'stop-loss') {
                   if (!autonomyPrepay) {
-                    swapArgs.splice(5, 0, BigNumber.from('1'))
+                    swapArgs.splice(5, 0, BigNumber.from('1000'))
                   } else {
-                    swapArgs.splice(4, 0, BigNumber.from('1'))
+                    swapArgs.splice(4, 0, BigNumber.from('1000'))
                   }
                 }
                 calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
