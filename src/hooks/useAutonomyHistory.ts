@@ -193,7 +193,7 @@ const { account } = useActiveWeb3React();
 		async function init() {
 			const queryRequests = new Moralis.Query("RegistryRequests");
 			const queryCancels = new Moralis.Query("RegistryCancelRequests");
-			queryRequests.equalTo("user", account);
+			// queryRequests.equalTo("user", account);
 			const registryRequests = await queryRequests.find();
 			const registryCancelRequests = await queryCancels.find();
 			setOrders(parseOrders(registryRequests))

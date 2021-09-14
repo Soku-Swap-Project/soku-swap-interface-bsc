@@ -326,7 +326,7 @@ export function useSwapCallback(
             isEligible = (bnbAmount as BigNumber).gt(gasFee)
           }
           if (!isEligible) {
-            throw new Error('Insufficient input token amount')
+            throw new Error('It is unlikely that this amount is enough to cover the cost of execution')
           }
         }
 
