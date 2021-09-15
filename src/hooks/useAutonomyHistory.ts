@@ -62,47 +62,56 @@ const { account } = useActiveWeb3React();
 
 	function methodSelector(orderData: any){
 		const sliced = orderData.slice(0, 10)
-		if (sliced === "0xfa089c19") return "Limit -> Tokens for Matic"
-		if (sliced === "0xbc63cf67") return "Limit -> Matic for Tokens"
-		if (sliced === "0x9078cf66") return "Limit -> Tokens for Tokens"
-		if (sliced === "0x503bd854") return "Stop -> Tokens for Tokens"
-		if (sliced === "0xe2c691a8") return "Stop -> Matic for Tokens"
-		if (sliced === "0x4632bf0d") return "Stop -> Tokens for Matic"
+		if (sliced === "0x873cf9f3") return "Limit -> BNB for Tokens"
+		if (sliced === "0x0bee688d") return "Limit -> Tokens for BNB"
+		if (sliced === "0x0bee688d") return "Limit -> Tokens for Tokens"
+		if (sliced === "0x259c2463") return "Stop -> BNB for Tokens"
+		if (sliced === "0x04d76c43") return "Stop -> Tokens for BNB"
+		if (sliced === "0x04d76c43") return "Stop -> Tokens for Tokens"
 		return "Undefined Method"
 	}
 	
 	function typeSelector(orderData: any) {
 		const sliced = orderData.slice(0, 10)
-		if (sliced === "0xfa089c19") return "Limit"
-		if (sliced === "0xbc63cf67") return "Limit"
-		if (sliced === "0x9078cf66") return "Limit"
-		if (sliced === "0x503bd854") return "Stop"
-		if (sliced === "0xe2c691a8") return "Stop"
-		if (sliced === "0x4632bf0d") return "Stop"
+		if (sliced === "0x873cf9f3") return "Limit"
+		if (sliced === "0x0bee688d") return "Limit"
+		if (sliced === "0x0bee688d") return "Limit"
+		if (sliced === "0x259c2463") return "Stop"
+		if (sliced === "0x04d76c43") return "Stop"
+		if (sliced === "0x04d76c43") return "Stop"
 		return "Undefined"
 	}	
 	
 	function findOutputAmount(callData: any) {
+		console.log(callData)
 		const sliced = callData.slice(0, 10)
 		const actualData = `0x${callData.slice(10, callData.length + 1)}`
 		let decoded: any
 		let ret = ''
-		if (sliced === "0xbc63cf67") {
-			decoded = utils.defaultAbiCoder.decode(['address', 'uint256' ,'address[]' ,' address','uint256'], actualData)
+		// Limits
+		// BNB for Tokens
+		if (sliced === "0x873cf9f3") {
+			decoded = utils.defaultAbiCoder.decode(['address', 'uint256','uint256','address',' uint256','address[]', 'uint256'], actualData)
 			ret = decoded[1].toString()
-		} else if (sliced === "0xfa089c19") {
+			// Tokens for BNB
+		} else if (sliced === "0x0bee688d") {
+			decoded = utils.defaultAbiCoder.decode(['address', 'uint256' ,'uint256' ,'address','uint256', 'uint256', 'address[]', 'uint256'], actualData) 
+			ret = decoded[5].toString()
+			// Tokens for Tokens
+		} else if (sliced === "0x0bee688d") {
 			decoded = utils.defaultAbiCoder.decode(['address', 'address' ,'uint256' ,'uint256','address[]', 'address', 'uint256'], actualData) 
-			ret = decoded[3].toString()
-		} else if (sliced === "0x9078cf66") {
-			decoded = utils.defaultAbiCoder.decode(['address', 'address' ,'uint256' ,'uint256','address[]', 'address', 'uint256'], actualData) 
-			ret = decoded[3].toString();
-		} else if (sliced === "0x503bd854") {
+			ret = decoded[5].toString();
+			// Stops
+			// Tokens for Tokens
+		} else if (sliced === "0x04d76c43") {
 			decoded = utils.defaultAbiCoder.decode(['address', 'address' ,'uint256' ,'uint256','uint256', 'address[]', 'address', 'uint256'], actualData) 
 			ret = decoded[4].toString();
-		} else if (sliced === "0xe2c691a8") {
+			// BNB for Tokens 
+		} else if (sliced === "0x259c2463") {
 			decoded = utils.defaultAbiCoder.decode(['address', 'uint256' ,'uint256', 'address[]', 'address', 'uint256'], actualData) 
 			ret = decoded[2].toString();
-		} else if (sliced === "0x4632bf0d") {
+			// Tokens for Tokens
+		} else if (sliced === "0x04d76c43") {
 			decoded = utils.defaultAbiCoder.decode(['address', 'address' ,'uint256', 'uint256', 'uint256', 'address[]', 'address', 'uint256'], actualData) 
 			ret = decoded[4].toString();
 		}
@@ -193,7 +202,7 @@ const { account } = useActiveWeb3React();
 		async function init() {
 			const queryRequests = new Moralis.Query("RegistryRequests");
 			const queryCancels = new Moralis.Query("RegistryCancelRequests");
-			// queryRequests.equalTo("user", account);
+			queryRequests.equalTo("user", account?.toLocaleLowerCase());
 			const registryRequests = await queryRequests.find();
 			const registryCancelRequests = await queryCancels.find();
 			setOrders(parseOrders(registryRequests))
