@@ -175,7 +175,7 @@ export function useAutonomySwapCallArguments(
               case 'swapExactTokensForTokens':
               case 'swapTokensForExactTokens':
               case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
-                swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
+                swapMethod = tradeLimitType === 'limit-order' ? 'tokenToTokenLimitOrder' : 'tokenToTokenStopLoss'
                 swapArgs = [account, BigNumber.from('1'), params[0], inputAmount, outputAmount, params[3], params[4], params[5]]
                 if (!autonomyPrepay) {
                   swapMethod = `${swapMethod}PayDefault`
