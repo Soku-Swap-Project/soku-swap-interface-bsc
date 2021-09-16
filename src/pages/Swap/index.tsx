@@ -19,6 +19,7 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import SyrupWarningModal from 'components/SyrupWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
+import TokenChart from 'components/TokenChart'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
@@ -38,10 +39,13 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
+import { Currency } from 'entities'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
+  const [tokenInput, setTokenInput] = useState(Currency || undefined)
+  const [tokenOutput, setTokenOutput] = useState(Currency || undefined)
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -259,12 +263,15 @@ const Swap = () => {
     [onCurrencySelection, checkForSyrup]
   )
 
+  if (currencies) {
+    console.log('currencies', currencies[Field.OUTPUT])
+  }
+
   document.title = 'SokuSwap | Swap'
 
   return (
     <>
       <CardNav />
-      {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
@@ -493,6 +500,7 @@ const Swap = () => {
           </CardBody>
         </Wrapper>
       </AppBody>
+      {/* <TokenChart token_from={currencies[Field.INPUT]} token_to={currencies[Field.OUTPUT]} /> */}
       <AdvancedSwapDetailsDropdown trade={trade} />
     </>
   )

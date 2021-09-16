@@ -293,6 +293,25 @@ svg[color="primary"] {
   outline: 0;
 }
 
+@media (max-width: 800px) {
+  #chatbot-chat {
+    border: 0px;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 2147483639;
+    position: fixed;
+    bottom: 75px !important;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    opacity: 1;
+    max-width: 100%;
+    right: 0;
+    max-height: 100%;
+  }
+}
+
+
 `
 
 export default GlobalStyle

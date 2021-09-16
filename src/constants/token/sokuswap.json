@@ -29,6 +29,7 @@
     {
       "name": "Earnable",
       "symbol": "EARN",
+      "tokenomics": "EARN3",
       "address": "0x11ba78277d800502c84c5aed1374ff0a91f19f7e",
       "chainId": 56,
       "decimals": 9,
@@ -41,6 +42,22 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://bscscan.com/token/images/tastenft_32.png"
+    },
+    {
+      "name": "French Connection Finance",
+      "symbol": "FCF",
+      "address": "0x4673f018cc6d401aad0402bdbf2abcbf43dd69f3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/FCF.jpeg"
+    },
+    {
+      "name": "Royal BNB",
+      "symbol": "RB",
+      "address": "0x9f0f7acc4c49bfb8d5d65df0fc822fbc920b71de",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://royalbnb.net/rblogo.png"
     },
     {
       "name": "NotSafeMoon",
