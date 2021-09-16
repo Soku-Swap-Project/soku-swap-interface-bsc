@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 .connectWallet__options__MOBILE ul {
   list-style: none;
   color: #fff;
@@ -6,8 +6,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -31,8 +31,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
 }
 
@@ -42,17 +42,17 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 8px 10px;
   font-size: 12px;
   border-radius: 12px;
   -webkit-box-flex: 0.5;
-  -ms-flex: 0.5;
-  flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
 }
 
 .connectWallet button {
@@ -68,17 +68,17 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 8px 10px;
   font-size: 12px;
   border-radius: 12px;
   -webkit-box-flex: 0.4;
-  -ms-flex: 0.4;
-  flex: 0.4;
+      -ms-flex: 0.4;
+          flex: 0.4;
 }
 
 .connectWallet__options__MOBILE li span {
@@ -88,11 +88,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 8px 10px;
   border-radius: 12px;
 }
@@ -103,17 +103,17 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 8px 10px;
   font-size: 12px;
   border-radius: 12px;
   -webkit-box-flex: 0.5;
-  -ms-flex: 0.5;
-  flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
   color: #fff;
   font-weight: 300;
   cursor: none;
@@ -121,7 +121,6 @@
 
 .connectWallet__options__MOBILE #hidden_navLinks {
   display: none;
-  opacity: 0;
 }
 
 .connectWallet__options__MOBILE #open {
@@ -137,10 +136,6 @@
   width: 150px;
 }
 
-.hidden_navLinksMobile {
-  top: 80vw;
-}
-
 @media (min-width: 901px) {
   .connectWallet__options__MOBILE #open {
     display: none;
@@ -153,11 +148,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 14px;
   background-color: transparent;
   border: none;
