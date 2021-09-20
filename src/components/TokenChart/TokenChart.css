@@ -8,9 +8,10 @@
   max-width: 500px;
   padding: 15px;
   color: #05195a;
-  box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
+  /* box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb; */
   overflow: visible;
   box-sizing: content-box;
+  margin-top: 20px;
 }
 
 @media (max-width: 500px) {
