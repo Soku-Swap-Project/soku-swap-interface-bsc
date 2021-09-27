@@ -295,19 +295,19 @@ svg[color="primary"] {
 
 @media (max-width: 800px) {
   #chatbot-chat {
-    border: 0px;
     background-color: transparent;
     pointer-events: none;
     z-index: 2147483639;
     position: fixed;
-    bottom: 75px !important;
-    width: 100px;
+    bottom: 0px;
+    width: auto ;
     height: 100px;
     overflow: hidden;
     opacity: 1;
     max-width: 100%;
     right: 0;
     max-height: 100%;
+    border: 1px solid red;
   }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
@@ -197,6 +198,8 @@ export default function App() {
   const truncatedFirstHalf = account?.substring(0, 5)
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
+
+  console.log('script', document.getElementsByTagName('script')[0])
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinksMobile')

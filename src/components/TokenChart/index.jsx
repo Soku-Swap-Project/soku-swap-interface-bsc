@@ -14,14 +14,20 @@ import './TokenChart.css'
 
 function TokenChart(props) {
   const [token, setToken] = useState('')
+  const [chartData, setChartData] = useState('')
+
   const date = new Date()
   //   console.log('year', date.getFullYear())
   //   console.log('month', date.getMonth())
   //   console.log('date', date.getDate())
 
-  const year = date.getFullYear()
-  const month = date.getMonth()
-  const day = date.getDate()
+  const formatUnixDate = (timestamp) => {
+    const unix = new Date(timestamp).toLocaleDateString('en-US')
+    return unix
+  }
+
+  // const test = formatUnixDate(1629748800000)
+  // console.log('unix', test)
 
   const outputTokenSymbol = props?.token_to?.tokenInfo?.symbol
   //   const outputTokenLogo = props?.token_to?.tokenInfo?.logoURI
@@ -29,7 +35,7 @@ function TokenChart(props) {
   console.log('token output', outputTokenSymbol)
   //   console.log('token logo', outputTokenLogo)
 
-  //   api = 46541fab931ca6010816ff37dd6b0e738929e5ab
+  //   nomics api = 46541fab931ca6010816ff37dd6b0e738929e5ab
 
   const getTokenData = async () => {
     await require('axios')
@@ -39,7 +45,7 @@ function TokenChart(props) {
       .then((response) => {
         if (response) {
           setToken(response)
-          console.log('response', response)
+          console.log('nomics response', response)
         }
       })
       .catch((err) => {
@@ -49,13 +55,11 @@ function TokenChart(props) {
 
   const getChartData = async () => {
     await require('axios')
-      .get(
-        `https://api.nomics.com/v1/currencies/sparkline?key=46541fab931ca6010816ff37dd6b0e738929e5ab&ids=${outputTokenSymbol}&start=2021-01-01T00%3A00%3A00Z&end=2021-09-20T01%3A01%3A58Z`
-      )
+      .get(`https://api.coingecko.com/api/v3/coins/binance-coin/ohlc?vs_currency=usd&days=30`)
       .then((response) => {
         if (response) {
-          setToken(response)
-          console.log('response', response)
+          setChartData(response)
+          console.log('coingecko response', response)
         }
       })
   }
@@ -78,6 +82,11 @@ function TokenChart(props) {
   //   console.log('price test', token_price)
   //   console.log('1hr price test', token_price_1hr_diff)
   //   console.log('24hr price test', token_price_24hr_diff)
+
+  if (chartData) {
+    console.log('chart', chartData.data.slice(-1))
+  }
+
   const data = {
     labels: labels,
     datasets: [
@@ -85,7 +94,7 @@ function TokenChart(props) {
         label: 'Daily Token History',
         backgroundColor: '#04bbfb',
         borderColor: '#04bbfb',
-        data: [12, 12, 2, 5],
+        data: chartData ? [chartData?.data[0][2]] : [0],
         // data: [
         //   token_price.toFixed(12) - token_price_24hr_diff.toFixed(12),
         //   token_price.toFixed(12) - token_price_1hr_diff.toFixed(12),
@@ -96,7 +105,7 @@ function TokenChart(props) {
   }
 
   useEffect(() => {
-    // getTokenData()
+    getTokenData()
     getChartData()
   }, [outputTokenSymbol])
 
@@ -106,10 +115,10 @@ function TokenChart(props) {
       <div className="token_name_price" style={{ padding: '20px' }}>
         <div className="token_logo">
           <div className="token_name">
-            {/* <h1 style={{ color: '#000' }}>{token ? token?.data[0]?.name : 'N/A'}</h1>
-            <h2 style={{ paddingTop: '10px' }}>{token ? token?.data[0]?.symbol : 'N/A'}/USD</h2> */}
+            <h1 style={{ color: '#000' }}>{token ? token?.data[0]?.name : 'N/A'}</h1>
+            <h2 style={{ paddingTop: '10px' }}>{token ? token?.data[0]?.symbol : 'N/A'}/USD</h2>
           </div>
-          {/* <img src={`${token ? token?.data[0]?.logo_url : 'N/A'}`} alt="" srcset="" /> */}
+          <img src={`${token ? token?.data[0]?.logo_url : 'N/A'}`} alt="" srcset="" />
         </div>
         {/* If the current token price is more than it was 24 hours ago, show green. 
         If the current price is less, show red. Show gray if it's the same.*/}
