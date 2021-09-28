@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
+import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
+
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 
@@ -32,6 +34,8 @@ const Menu: React.FC = (props) => {
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
+  const isBSC = window.location.href.includes('/bsc/')
+
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
     // console.log(hiddenLinks)
@@ -47,12 +51,22 @@ const Menu: React.FC = (props) => {
       <nav>
         <ul className="navbar__items">
           <NavLink to="/">
-            <img className="nav_logo" style={{ height: '50px' }} alt="Logo" src="images/Web-Corner-Logo.png" />
+            <img className="nav_logo" style={{ height: '50px' }} alt="Logo" src="https://app.sokuswap.finance/bsc/images/Web-Corner-Logo.png" />
           </NavLink>
           <div className="navbar__options">
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
+            {isBSC && (
+              <NavLink className="nav_link" activeClassName="active" to="/limit-order">
+                <li>Limit Order</li>
+              </NavLink>
+            )}
+            {/* {isBSC && (
+              <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
+                <li>Stop Loss</li>
+              </NavLink>
+            )} */}
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>
@@ -104,7 +118,12 @@ const Menu: React.FC = (props) => {
             </a>
           </li>
           <li className="hidden_navLink">
-            <a href="https://sokuswap-1.gitbook.io/sokuswap-whitepaper/" rel="noreferrer noopener" target="_blank">
+            <a
+              href="https://sokuswap-1.gitbook.io/sokuswap-whitepaper/"
+              className="disabled_link"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
               <span className="material-icons">school</span>
               <p>Docs</p>
             </a>

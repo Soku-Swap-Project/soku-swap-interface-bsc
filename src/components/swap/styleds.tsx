@@ -134,9 +134,10 @@ export function SwapCallbackError({ error }: { error: string }) {
 }
 
 export const SwapShowAcceptChanges = styled(AutoColumn)`
-  background-color: ${({ theme }) => transparentize(0.9, theme.colors.primary)};
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.primary};
   padding: 0.5rem;
   border-radius: 12px;
   margin-top: 8px;
+  border: 1px solid #ebebeb;
 `

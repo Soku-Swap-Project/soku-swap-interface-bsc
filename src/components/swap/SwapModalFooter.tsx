@@ -1,4 +1,4 @@
-import { Trade, TradeType } from '@pancakeswap-libs/sdk'
+import { Trade, TradeType } from '@pancakeswap-libs/sdk-v2'
 import React, { useMemo, useState } from 'react'
 import { Text, Button } from '@pancakeswap-libs/uikit'
 import { Repeat } from 'react-feather'
@@ -9,7 +9,7 @@ import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,
   formatExecutionPrice,
-  warningSeverity
+  warningSeverity,
 } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
@@ -22,19 +22,21 @@ export default function SwapModalFooter({
   onConfirm,
   allowedSlippage,
   swapErrorMessage,
-  disabledConfirm
+  disabledConfirm,
+  realSwapPrice
 }: {
   trade: Trade
   allowedSlippage: number
   onConfirm: () => void
   swapErrorMessage: string | undefined
   disabledConfirm: boolean
+  realSwapPrice?: string
 }) {
   const [showInverted, setShowInverted] = useState<boolean>(false)
-  const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
-    allowedSlippage,
-    trade
-  ])
+  const slippageAdjustedAmounts = useMemo(
+    () => computeSlippageAdjustedAmounts(trade, allowedSlippage),
+    [allowedSlippage, trade]
+  )
   const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
   const TranslateString = useI18n()
@@ -42,7 +44,14 @@ export default function SwapModalFooter({
   return (
     <>
       <AutoColumn gap="0px">
-        <RowBetween align="center">
+        <RowBetween
+          // style={{
+          //   display: 'flex',
+          //   flexDirection: 'column',
+          //   alignItems: 'flex-start',
+          // }}
+          align="center"
+        >
           <Text fontSize="14px">Price</Text>
           <Text
             fontSize="14px"
@@ -52,22 +61,29 @@ export default function SwapModalFooter({
               display: 'flex',
               textAlign: 'right',
               paddingLeft: '8px',
-              fontWeight: 500
+              fontWeight: 500,
             }}
           >
-            {formatExecutionPrice(trade, showInverted)}
-            <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
-              <Repeat size={14} />
-            </StyledBalanceMaxMini>
+            {realSwapPrice !== undefined ?
+            `${realSwapPrice} ${trade.outputAmount.currency.symbol} / ${trade.inputAmount.currency.symbol}` : (
+                <>
+                    {formatExecutionPrice(trade, showInverted)}
+                    <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
+                    <Repeat size={14} />
+                    </StyledBalanceMaxMini>
+                </>
+            )}
           </Text>
         </RowBetween>
 
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? TranslateString(1210, 'Minimum received')
-                : TranslateString(220, 'Maximum sold')}
+              {realSwapPrice !== undefined
+                ? 'Current Market Output' :
+              trade.tradeType === TradeType.EXACT_INPUT
+                ? 'Minimum received'
+                : 'Maximum sold'}
             </Text>
             <QuestionHelper
               text={TranslateString(
@@ -104,7 +120,7 @@ export default function SwapModalFooter({
             <QuestionHelper
               text={TranslateString(
                 999,
-                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+                'For each trade a 0.25% fee is paid. 0.17% goes to liquidity providers, 0.05% goes towards staking, 0.02% to the SokuSwap treasury, and 0.01% goes towards rewards.'
               )}
             />
           </RowFixed>

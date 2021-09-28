@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import React, { useState } from 'react'
-import { JSBI, Percent, Pair } from '@pancakeswap-libs/sdk'
+import { JSBI, Percent, Pair } from '@pancakeswap-libs/sdk-v2'
 // import { Pair } from '../../entities/pair'
 import { Button, Card as UIKitCard, CardBody, Text } from '@pancakeswap-libs/uikit'
 import { darken } from 'polished'
@@ -26,10 +26,8 @@ export const FixedHeightRow = styled(RowBetween)`
 `
 
 export const HoverCard = styled(Card)`
-  border: 1px solid ${({ theme }) => theme.colors.invertedContrast};
-  :hover {
-    border: 1px solid ${({ theme }) => darken(0.06, theme.colors.invertedContrast)};
-  }
+  border: 1px solid ${({ theme }) => darken(0.06, theme.colors.invertedContrast)};
+  padding: 20px;
 `
 
 interface PositionCardProps {
@@ -149,7 +147,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
 
   return (
     <HoverCard>
-      <AutoColumn gap="12px">
+      <AutoColumn gap="20px">
         <FixedHeightRow onClick={() => setShowMore(!showMore)} style={{ cursor: 'pointer' }}>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
@@ -164,7 +162,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
           </RowFixed>
         </FixedHeightRow>
         {showMore && (
-          <AutoColumn gap="8px">
+          <AutoColumn gap="28px">
             <FixedHeightRow>
               <RowFixed>
                 <Text>Pooled {currency0.symbol}:</Text>
@@ -172,7 +170,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
               {token0Deposited ? (
                 <RowFixed>
                   <Text ml="6px">{token0Deposited?.toSignificant(6)}</Text>
-                  <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency0} />
+                  <CurrencyLogo size="20px" style={{ marginLeft: '8px', borderRadius: '20px' }} currency={currency0} />
                 </RowFixed>
               ) : (
                 '-'
@@ -186,7 +184,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
               {token1Deposited ? (
                 <RowFixed>
                   <Text ml="6px">{token1Deposited?.toSignificant(6)}</Text>
-                  <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency1} />
+                  <CurrencyLogo size="20px" style={{ marginLeft: '8px', borderRadius: '20px' }} currency={currency1} />
                 </RowFixed>
               ) : (
                 '-'
@@ -202,12 +200,16 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">
-              <Button as={Link} to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`} style={{ width: '48%' }}>
+              <Button
+                as={Link}
+                to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                style={{ width: '48%', background: '#05195a', boxShadow: 'none' }}
+              >
                 Add
               </Button>
               <Button
                 as={Link}
-                style={{ width: '48%' }}
+                style={{ width: '48%', background: '#05195a', boxShadow: 'none' }}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
               >
                 Remove

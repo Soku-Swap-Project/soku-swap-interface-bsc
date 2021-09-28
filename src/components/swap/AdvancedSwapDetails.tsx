@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trade, TradeType } from '@pancakeswap-libs/sdk'
+import { Trade, TradeType } from '@pancakeswap-libs/sdk-v2'
 import { Card, CardBody, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import { Field } from '../../state/swap/actions'
@@ -62,7 +62,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <QuestionHelper
               text={TranslateString(
                 230,
-                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+                'For each trade a 0.25% fee is paid. 0.17% goes to liquidity providers, 0.05% goes towards staking, 0.02% to the SokuSwap treasury, and 0.01% goes towards rewards.'
               )}
             />
           </RowFixed>
@@ -85,29 +85,31 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
   return (
-    <AutoColumn gap="md">
-      {trade && (
-        <>
-          <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
-          {showRoute && (
-            <>
-              <SectionBreak />
-              <AutoColumn style={{ padding: '0 24px' }}>
-                <RowFixed>
-                  <Text fontSize="14px">Route</Text>
-                  <QuestionHelper
-                    text={TranslateString(
-                      999,
-                      'Routing through these tokens resulted in the best price for your trade.'
-                    )}
-                  />
-                </RowFixed>
-                <SwapRoute trade={trade} />
-              </AutoColumn>
-            </>
-          )}
-        </>
-      )}
-    </AutoColumn>
+    <div style={{ background: '#fff', borderRadius: '16px' }}>
+      <AutoColumn gap="md">
+        {trade && (
+          <>
+            <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
+            {showRoute && (
+              <>
+                <SectionBreak />
+                <AutoColumn style={{ padding: '0 24px' }}>
+                  <RowFixed>
+                    <Text fontSize="14px">Route</Text>
+                    <QuestionHelper
+                      text={TranslateString(
+                        999,
+                        'Routing through these tokens resulted in the best price for your trade.'
+                      )}
+                    />
+                  </RowFixed>
+                  <SwapRoute trade={trade} />
+                </AutoColumn>
+              </>
+            )}
+          </>
+        )}
+      </AutoColumn>
+    </div>
   )
 }

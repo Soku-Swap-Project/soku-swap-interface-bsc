@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useWeb3React } from '@web3-react/core'
 import useAuth from 'hooks/useAuth'
@@ -9,14 +9,14 @@ import './ClaimSoku.css'
 
 /* eslint-disable */
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[10],
-    padding: theme.spacing(2, 4, 3)
-  }
+    padding: theme.spacing(2, 4, 3),
+  },
 }))
 
 export default function ClaimSokuModal() {
@@ -25,8 +25,16 @@ export default function ClaimSokuModal() {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
 
+  let [numofSwap, setNumOfSwap] = useState(0)
+
+  if (account != undefined) {
+    localStorage.setItem('address', account.toString())
+  }
+
   const handleOpen = () => {
     setOpen(true)
+    setNumOfSwap((numofSwap += 1))
+    localStorage.setItem('userValue', parseInt(numofSwap))
   }
 
   const handleClose = () => {
@@ -39,12 +47,14 @@ export default function ClaimSokuModal() {
   const year = date.getFullYear()
 
   const earnedAmount = 50
+  // console.log('NumOfSwap', numofSwap)
+  // console.log('localStorage', localStorage.getItem('userValue'))
 
   const body = (
     <div className={`claimSoku__modal ${classes.paper}`}>
       <div className="claimSoku__modal_header">
         <h1>Claim Soku</h1>
-        <span onClick={handleClose} class="material-icons">
+        <span onClick={handleClose} className="material-icons">
           close
         </span>
       </div>
@@ -85,9 +95,14 @@ export default function ClaimSokuModal() {
 
   return (
     <div className="claimSoku__wrapper">
-      <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
+      {/* <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
         Claim Soku
-      </button>
+      </button> */}
+      <a href="https://tokensale.sokuswap.finance/token-exchange/#/" target="_blank">
+        <button type="button" className="claimSoku__navButton">
+          Claim Soku
+        </button>
+      </a>
       <Modal
         open={open}
         onClose={handleClose}

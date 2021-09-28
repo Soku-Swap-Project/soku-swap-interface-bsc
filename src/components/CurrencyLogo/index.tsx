@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
+import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk-v2'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
@@ -24,7 +24,7 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 export default function CurrencyLogo({
   currency,
   size = '24px',
-  style
+  style,
 }: {
   currency?: Currency
   size?: string
@@ -37,7 +37,7 @@ export default function CurrencyLogo({
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        return [...uriLocations, `images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
+        return [...uriLocations, `https://app.sokuswap.finance/bsc/images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
       }
 
       return [`images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
@@ -46,7 +46,7 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <StyledBnbLogo src="images/coins/bnb.png" size={size} style={style} />
+    return <StyledBnbLogo src="https://app.sokuswap.finance/bsc/images/coins/bnb.png" size={size} style={style} />
   }
 
   return (currency as any)?.symbol ? (

@@ -1,4 +1,4 @@
-import { Trade } from '@pancakeswap-libs/sdk'
+import { Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { Fragment, memo, useContext } from 'react'
 import { ChevronRight } from 'react-feather'
 import { Flex, Text } from '@pancakeswap-libs/uikit'
@@ -12,7 +12,7 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
       px="1rem"
       py="0.5rem"
       my="0.5rem"
-      style={{ border: `1px solid ${theme.colors.tertiary}`, borderRadius: '1rem' }}
+      style={{ border: `1px solid ${theme.colors.tertiary}`, borderRadius: '1rem', background: '#fff' }}
       flexWrap="wrap"
       justifyContent="space-evenly"
       alignItems="center"
