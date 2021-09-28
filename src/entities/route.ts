@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 import invariant from 'tiny-invariant'
 
 import { Currency, ETHER } from './currency'

@@ -1,37 +1,40 @@
+import { useMemo } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@pancakeswap-libs/sdk'
-import { useMemo } from 'react'
-import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
+import { ethers } from 'ethers'
+import { JSBI, Percent, Router, SwapParameters, Trade, TradeType, ChainId } from '@pancakeswap-libs/sdk-v2'
+import { TRASNFER_FEE_TOKEN_ADDRESS_LIST } from 'constants/autonomy'
+import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE, WBNB } from '../constants'
+import { useAutonomyPaymentManager } from '../state/user/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { calculateGasMargin, getRouterContract, isAddress, shortenAddress } from '../utils'
 import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
+import { useRegistryContract, useMidRouterContract } from './useContract'
 
- enum SwapCallbackState {
+enum SwapCallbackState {
   INVALID,
   LOADING,
   VALID,
 }
-
 interface SwapCall {
   contract: Contract
-  parameters: SwapParameters
+  parameters: {
+    methodName: string
+    args: any[]
+    value: string
+  }
 }
-
 interface SuccessfulCall {
   call: SwapCall
   gasEstimate: BigNumber
 }
-
 interface FailedCall {
   call: SwapCall
   error: Error
 }
-
 type EstimatedSwapCall = SuccessfulCall | FailedCall
-
 /**
  * Returns the swap calls that can be used to make the trade
  * @param trade trade to execute
@@ -42,24 +45,20 @@ type EstimatedSwapCall = SuccessfulCall | FailedCall
 function useSwapCallArguments(
   trade: Trade | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
-  deadline: number = DEFAULT_DEADLINE_FROM_NOW, // in seconds from now
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
-
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
-
+  // const deadline = (new Date('2050-01-01')).valueOf() / 1000
+  const deadline = 30 * 365 * 24 * 60 * 60 // 30 years from now
   return useMemo(() => {
     if (!trade || !recipient || !library || !account || !chainId) return []
-
     const contract: Contract | null = getRouterContract(chainId, library, account)
     if (!contract) {
       return []
     }
-
     const swapMethods = []
-
     swapMethods.push(
       // @ts-ignore
       Router.swapCallParameters(trade, {
@@ -69,7 +68,6 @@ function useSwapCallArguments(
         ttl: deadline,
       })
     )
-
     if (trade.tradeType === TradeType.EXACT_INPUT) {
       swapMethods.push(
         // @ts-ignore
@@ -81,28 +79,274 @@ function useSwapCallArguments(
         })
       )
     }
-
+    console.log(
+      'swapMethods',
+      allowedSlippage,
+      swapMethods,
+      new Percent(JSBI.BigInt(Math.floor(allowedSlippage)), BIPS_BASE)
+    )
     return swapMethods.map((parameters) => ({ parameters, contract }))
   }, [account, allowedSlippage, chainId, deadline, library, recipient, trade])
 }
+export function useAutonomySwapCallArguments(
+  trade: Trade | undefined, // trade to execute, required
+  allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
+  recipientAddressOrName: string | null,
+  tradeLimitType: string | undefined,
+  outputMinMaxAmount: string | undefined
+): SwapCall[] {
+  const { account } = useActiveWeb3React()
+  const midRouterContract = useMidRouterContract()
+  const registryContract = useRegistryContract()
+  const [autonomyPrepay] = useAutonomyPaymentManager()
 
+  const swapCalls: SwapCall[] = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName)
+
+  return useMemo(() => {
+    const inputCurrencyDecimals = trade?.inputAmount.currency.decimals || 18
+    const outputCurrencyDecimals = trade?.outputAmount.currency.decimals || 18
+    let inputAmount: BigNumber | undefined
+    let outputAmount: BigNumber | undefined
+
+    try {
+      inputAmount = trade?.inputAmount
+        ? ethers.utils.parseEther(trade?.inputAmount.toSignificant(6)).div(10 ** (18 - inputCurrencyDecimals))
+        : undefined
+      outputAmount = outputMinMaxAmount
+        ? ethers.utils.parseEther(outputMinMaxAmount).div(10 ** (18 - outputCurrencyDecimals))
+        : undefined
+    } catch (e) {
+      // For math errors with too tiny holding values
+      inputAmount = undefined
+      outputAmount = undefined
+    }
+    if (!trade || !midRouterContract || !registryContract || !tradeLimitType || !inputAmount || !outputAmount)
+      return swapCalls
+    return swapCalls.map(({ parameters: { methodName, args, value }, contract }) => {
+      const params = [contract.address, ...args]
+      let calldata = '0x0'
+      let ethForCall = '0x0'
+      let swapMethod
+      let swapArgs
+      let verifySender = true
+      let insertFeeAmount = false
+      switch (methodName) {
+        case 'swapExactETHForTokens':
+        case 'swapETHForExactTokens':
+        case 'swapExactETHForTokensSupportingFeeOnTransferTokens':
+          swapMethod = tradeLimitType === 'limit-order' ? 'ethToTokenLimitOrder' : 'ethToTokenStopLoss'
+          swapArgs = [BigNumber.from('9999999999999999'), params[0], outputAmount, params[2], params[3], params[4]]
+          if (!autonomyPrepay) {
+            swapMethod = `${swapMethod}PayDefault`
+            swapArgs = [
+              params[3],
+              '0x0',
+              BigNumber.from('9999999999999999'),
+              params[0],
+              outputAmount,
+              params[2],
+              params[4],
+            ]
+            insertFeeAmount = true
+          } else {
+            verifySender = false
+          }
+
+          if (tradeLimitType === 'stop-loss') {
+            if (!autonomyPrepay) {
+              swapArgs.splice(4, 0, BigNumber.from('9999999999999999'))
+            } else {
+              swapArgs.splice(2, 0, BigNumber.from('9999999999999999'))
+            }
+          }
+          calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+          ethForCall = value
+          break
+        case 'swapExactTokensForETH':
+        case 'swapTokensForExactETH':
+        case 'swapExactTokensForETHSupportingFeeOnTransferTokens':
+          swapMethod = tradeLimitType === 'limit-order' ? 'tokenToEthLimitOrder' : 'tokenToEthStopLoss'
+          swapArgs = [
+            account,
+            BigNumber.from('9999999999999999'),
+            params[0],
+            inputAmount,
+            outputAmount,
+            params[3],
+            params[4],
+            params[5],
+          ]
+          if (!autonomyPrepay) {
+            swapMethod = `${swapMethod}PayDefault`
+            swapArgs = [
+              account,
+              '0x0',
+              BigNumber.from('9999999999999999'),
+              params[0],
+              inputAmount,
+              outputAmount,
+              params[3],
+              params[5],
+            ]
+            insertFeeAmount = true
+          }
+          if (tradeLimitType === 'stop-loss') {
+            if (!autonomyPrepay) {
+              swapArgs.splice(5, 0, BigNumber.from('9999999999999999'))
+            } else {
+              swapArgs.splice(4, 0, BigNumber.from('9999999999999999'))
+            }
+          }
+          calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+          console.log('tokens bnb', calldata)
+          break
+        case 'swapExactTokensForTokens':
+        case 'swapTokensForExactTokens':
+          swapMethod = tradeLimitType === 'limit-order' ? 'tokenToTokenLimitOrder' : 'tokenToTokenStopLoss'
+          swapArgs = [
+            account,
+            BigNumber.from('9999999999999999'),
+            params[0],
+            inputAmount,
+            outputAmount,
+            params[3],
+            params[4],
+            params[5],
+          ]
+          if (!autonomyPrepay) {
+            swapMethod = `${swapMethod}PayDefault`
+            swapArgs = [
+              account,
+              '0x0',
+              BigNumber.from('9999999999999999'),
+              params[0],
+              inputAmount,
+              outputAmount,
+              params[3],
+              params[5],
+            ]
+            insertFeeAmount = true
+          }
+
+          if (tradeLimitType === 'stop-loss') {
+            if (!autonomyPrepay) {
+              swapArgs.splice(5, 0, BigNumber.from('9999999999999999'))
+            } else {
+              swapArgs.splice(4, 0, BigNumber.from('9999999999999999'))
+            }
+          }
+          calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+          console.log('@@@@', calldata)
+          break
+        case 'swapExactTokensForTokensSupportingFeeOnTransferTokens':
+          swapMethod = tradeLimitType === 'limit-order' ? 'tokenToTokenLimitOrder' : 'tokenToTokenStopLoss'
+          swapArgs = [
+            account,
+            BigNumber.from('9999999999999999'),
+            params[0],
+            inputAmount,
+            outputAmount,
+            params[3],
+            params[4],
+            params[5],
+          ]
+          if (!autonomyPrepay) {
+            swapMethod = `${swapMethod}PayDefault`
+            swapArgs = [
+              account,
+              '0x0',
+              BigNumber.from('9999999999999999'),
+              params[0],
+              inputAmount,
+              outputAmount,
+              params[3],
+              params[5],
+            ]
+            insertFeeAmount = true
+          }
+
+          if (tradeLimitType === 'stop-loss') {
+            if (!autonomyPrepay) {
+              swapArgs.splice(5, 0, BigNumber.from('9999999999999999'))
+            } else {
+              swapArgs.splice(4, 0, BigNumber.from('9999999999999999'))
+            }
+          }
+          calldata = midRouterContract.interface.encodeFunctionData(swapMethod, swapArgs)
+          console.log('@@@@', calldata)
+          const wrapperArgs = [
+            midRouterContract.address,
+            '0x0000000000000000000000000000000000000000',
+            calldata,
+            BigNumber.from(ethForCall),
+            verifySender,
+            insertFeeAmount,
+            false,
+          ]
+          // const wrapperCalldata = registryContract.interface.encodeFunctionData('newReq', wrapperArgs)
+          // Cap original value with autonomy fee - 0.01 ether
+          const wrapperValue = autonomyPrepay
+            ? BigNumber.from(value).add(ethers.utils.parseEther('0.01')).toHexString()
+            : BigNumber.from(value).toHexString()
+          console.log('swapExactTokensForTokensSupportingFeeOnTransferTokens', wrapperValue)
+          return {
+            parameters: { methodName: 'newReq', args: wrapperArgs, value: wrapperValue },
+            contract: registryContract,
+          }
+      }
+      const wrapperArgs = [
+        midRouterContract.address,
+        '0x0000000000000000000000000000000000000000',
+        calldata,
+        BigNumber.from(ethForCall),
+        verifySender,
+        insertFeeAmount,
+        false,
+      ]
+      // const wrapperCalldata = registryContract.interface.encodeFunctionData('newReq', wrapperArgs)
+      // Cap original value with autonomy fee - 0.01 ether
+      const wrapperValue = autonomyPrepay
+        ? BigNumber.from(value).add(ethers.utils.parseEther('0.01')).toHexString()
+        : BigNumber.from(value).toHexString()
+      console.log('wrapperValue', wrapperValue)
+      return {
+        parameters: { methodName: 'newReq', args: wrapperArgs, value: wrapperValue },
+        contract: registryContract,
+      }
+    })
+  }, [
+    swapCalls,
+    midRouterContract,
+    registryContract,
+    account,
+    outputMinMaxAmount,
+    trade,
+    tradeLimitType,
+    autonomyPrepay,
+  ])
+}
 // returns a function that will execute a swap, if the parameters are all valid
 // and the user has approved the slippage adjusted input amount for the trade
 export function useSwapCallback(
   trade: Trade | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
-  deadline: number = DEFAULT_DEADLINE_FROM_NOW, // in seconds from now
-  recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
+  recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
+  tradeLimitType?: string,
+  outputMinMaxAmount?: string
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
   const { account, chainId, library } = useActiveWeb3React()
-
-  const swapCalls = useSwapCallArguments(trade, allowedSlippage, deadline, recipientAddressOrName)
-
+  const swapCalls = useAutonomySwapCallArguments(
+    trade,
+    allowedSlippage,
+    recipientAddressOrName,
+    tradeLimitType,
+    outputMinMaxAmount
+  )
   const addTransaction = useTransactionAdder()
-
+  const routerContract = account && chainId && library ? getRouterContract(chainId, library, account) : null
+  const [autonomyPrepay] = useAutonomyPaymentManager()
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
-
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
       return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
@@ -123,8 +367,13 @@ export function useSwapCallback(
               parameters: { methodName, args, value },
               contract,
             } = call
+            if (tradeLimitType) {
+              if (methodName === 'invalid_swapExactTokensForTokensSupportingFeeOnTransferTokens') {
+                console.log("Fee On Transfer isn't supported for limits and stops")
+                return { call, error: new Error("Fee On Transfer isn't supported for limits and stops") }
+              }
+            }
             const options = !value || isZero(value) ? {} : { value }
-
             return contract.estimateGas[methodName](...args, options)
               .then((gasEstimate) => {
                 return {
@@ -134,7 +383,6 @@ export function useSwapCallback(
               })
               .catch((gasError) => {
                 console.info('Gas estimate failed, trying eth_call to extract error', call)
-
                 return contract.callStatic[methodName](...args, options)
                   .then((result) => {
                     console.info('Unexpected successful call after failed estimate gas', call, gasError, result)
@@ -157,19 +405,16 @@ export function useSwapCallback(
               })
           })
         )
-
         // a successful estimation is a bignumber gas estimate and the next call is also a bignumber gas estimate
         const successfulEstimation = estimatedCalls.find(
           (el, ix, list): el is SuccessfulCall =>
             'gasEstimate' in el && (ix === list.length - 1 || 'gasEstimate' in list[ix + 1])
         )
-
         if (!successfulEstimation) {
           const errorCalls = estimatedCalls.filter((call): call is FailedCall => 'error' in call)
           if (errorCalls.length > 0) throw errorCalls[errorCalls.length - 1].error
           throw new Error('Unexpected error. Please contact support: none of the calls threw an error')
         }
-
         const {
           call: {
             contract,
@@ -177,7 +422,35 @@ export function useSwapCallback(
           },
           gasEstimate,
         } = successfulEstimation
+        // TODO: check Pre-pay fee vs Input Token value
+        if (tradeLimitType && !autonomyPrepay && routerContract) {
+          console.log('trade', trade)
+          const gasPrice = ethers.utils.parseUnits('5', 'gwei').toString()
+          const gasFee = BigNumber.from('300000').mul(gasPrice)
+          const inputCurrencyDecimals = trade.inputAmount.currency.decimals || 18
+          const inputTokenAmount = ethers.utils
+            .parseEther(trade.inputAmount.toSignificant(6))
+            .div(10 ** (18 - inputCurrencyDecimals))
+          let isEligible = false
+          if (trade.route.path[0].address === WBNB.address) {
+            // In case input token is BNB
+            isEligible = inputTokenAmount.gt(gasFee)
+          } else {
+            const [, bnbAmount] = await routerContract.getAmountsOut(inputTokenAmount, [
+              trade.route.path[0].address,
+              WBNB.address,
+            ])
+            isEligible = (bnbAmount as BigNumber).gt(gasFee)
+          }
+          if (!isEligible) {
+            throw new Error('It is unlikely that this amount is enough to cover the cost of execution')
+          }
 
+          // @ts-ignore
+          if (TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(trade.inputAmount.currency.address || 'NonAddress')) {
+            throw new Error("Fee On Transfer isn't supported for limits and stops")
+          }
+        }
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
           ...(value && !isZero(value) ? { value, from: account } : { from: account }),
@@ -187,7 +460,6 @@ export function useSwapCallback(
             const outputSymbol = trade.outputAmount.currency.symbol
             const inputAmount = trade.inputAmount.toSignificant(3)
             const outputAmount = trade.outputAmount.toSignificant(3)
-
             const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
             const withRecipient =
               recipient === account
@@ -197,11 +469,9 @@ export function useSwapCallback(
                       ? shortenAddress(recipientAddressOrName)
                       : recipientAddressOrName
                   }`
-
             addTransaction(response, {
               summary: withRecipient,
             })
-
             return response.hash
           })
           .catch((error: any) => {
@@ -217,7 +487,18 @@ export function useSwapCallback(
       },
       error: null,
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
+  }, [
+    trade,
+    library,
+    account,
+    chainId,
+    recipient,
+    tradeLimitType,
+    recipientAddressOrName,
+    swapCalls,
+    addTransaction,
+    autonomyPrepay,
+    routerContract,
+  ])
 }
-
 export default useSwapCallback

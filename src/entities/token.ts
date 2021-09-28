@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import invariant from 'tiny-invariant'
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 import { validateAndParseAddress } from '../utils'
 import { Currency } from './currency'
 
@@ -73,5 +73,4 @@ export const WETH = {
     'WBNB',
     'Wrapped BNB'
   ),
-
 }

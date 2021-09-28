@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
@@ -159,7 +159,6 @@ const Swap = () => {
   const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
     trade,
     allowedSlippage,
-    deadline,
     recipient
   )
 
@@ -292,7 +291,7 @@ const Swap = () => {
               <CurrencyInputPanel
                 label={
                   independentField === Field.OUTPUT && !showWrap && trade
-                    ? TranslateString(194, 'From (estimated)')
+                    ? TranslateString(194, 'From (est.)')
                     : TranslateString(76, 'From')
                 }
                 value={formattedAmounts[Field.INPUT]}
@@ -331,7 +330,7 @@ const Swap = () => {
                 onUserInput={handleTypeOutput}
                 label={
                   independentField === Field.INPUT && !showWrap && trade
-                    ? TranslateString(196, 'To (estimated)')
+                    ? TranslateString(196, 'To (est.)')
                     : TranslateString(80, 'To')
                 }
                 showMaxButton={false}
@@ -422,7 +421,7 @@ const Swap = () => {
                   <Button
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%' }}
+                    style={{ width: '48%', background: '#04bbfb' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (

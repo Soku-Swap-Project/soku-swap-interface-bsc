@@ -1,4 +1,4 @@
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk-v2'
 import { createStore, Store } from 'redux'
 import { addPopup, removePopup, toggleSettingsMenu, toggleWalletModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'
@@ -12,8 +12,8 @@ describe('application reducer', () => {
       walletModalOpen: false,
       settingsMenuOpen: false,
       blockNumber: {
-        [ChainId.MAINNET]: 3
-      }
+        [ChainId.MAINNET]: 3,
+      },
     })
   })
 
@@ -75,7 +75,7 @@ describe('application reducer', () => {
       store.dispatch(updateBlockNumber({ chainId: ChainId.ROPSTEN, blockNumber: 2 }))
       expect(store.getState().blockNumber).toEqual({
         [ChainId.MAINNET]: 3,
-        [ChainId.ROPSTEN]: 2
+        [ChainId.ROPSTEN]: 2,
       })
     })
   })

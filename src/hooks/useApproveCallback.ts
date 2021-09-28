@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@pancakeswap-libs/sdk'
+import { Trade, TokenAmount, ChainId, CurrencyAmount, ETHER } from '@pancakeswap-libs/sdk-v2'
 import { useCallback, useMemo } from 'react'
 import { ROUTER_ADDRESS } from '../constants'
 import { useTokenAllowance } from '../data/Allowances'
@@ -10,6 +10,7 @@ import { computeSlippageAdjustedAmounts } from '../utils/prices'
 import { calculateGasMargin } from '../utils'
 import { useTokenContract } from './useContract'
 import { useActiveWeb3React } from './index'
+import { MIDROUTER_CONTRACT_ADDRESS } from '../constants/autonomy'
 
 export enum ApprovalState {
   UNKNOWN,
@@ -99,10 +100,12 @@ export function useApproveCallback(
 }
 
 // wraps useApproveCallback in the context of a swap
-export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0) {
+export function useApproveCallbackFromTrade(trade?: Trade, allowedSlippage = 0, useAutonomy?: boolean) {
   const amountToApprove = useMemo(
     () => (trade ? computeSlippageAdjustedAmounts(trade, allowedSlippage)[Field.INPUT] : undefined),
     [trade, allowedSlippage]
   )
-  return useApproveCallback(amountToApprove, ROUTER_ADDRESS)
+  const { chainId } = useActiveWeb3React()
+  const spender = useAutonomy ? MIDROUTER_CONTRACT_ADDRESS[chainId || ChainId.MAINNET] : ROUTER_ADDRESS
+  return useApproveCallback(amountToApprove, spender)
 }

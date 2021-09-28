@@ -1,4 +1,4 @@
-import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@pancakeswap-libs/sdk'
+import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@pancakeswap-libs/sdk-v2'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,
@@ -14,9 +14,10 @@ const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000))
 const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
 // computes price breakdown for the trade
-export function computeTradePriceBreakdown(
-  trade?: Trade
-): { priceImpactWithoutFee?: Percent; realizedLPFee?: CurrencyAmount } {
+export function computeTradePriceBreakdown(trade?: Trade): {
+  priceImpactWithoutFee?: Percent
+  realizedLPFee?: CurrencyAmount
+} {
   // for each hop in our trade, take away the x*y=k price impact from 0.2% fees
   // e.g. for 3 tokens/2 hops: 1 - ((1 - .02) * (1-.02))
   const realizedLPFee = !trade

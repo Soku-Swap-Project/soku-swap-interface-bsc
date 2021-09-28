@@ -1,9 +1,11 @@
+/* eslint-disable */
+
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk-v2'
 import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
@@ -48,7 +50,7 @@ import './removeLiquidity.css'
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-radius: 16px;
-  padding: 24px;
+  padding: 24px 12px;
 `
 
 const Body = styled.div`
@@ -126,7 +128,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Soku LPs',
+      name: 'Pancake LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -304,7 +306,7 @@ export default function RemoveLiquidity({
 
       setAttemptingTxn(true)
       await router[methodName](...args, {
-        gasLimit: '3000000',
+        gasLimit: safeGasEstimate,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)
@@ -361,8 +363,8 @@ export default function RemoveLiquidity({
 
   function modalBottom() {
     return (
-      <div style={{ background: '#E9EAEB', width: '100%', padding: '20px' }}>
-        <RowBetween style={{ padding: '0.5rem' }}>
+      <div style={{ background: '#fff', width: '100%' }}>
+        <RowBetween>
           <Text color="textSubtle">{`LP ${currencyA?.symbol}/${currencyB?.symbol}`} Burned</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
@@ -458,7 +460,7 @@ export default function RemoveLiquidity({
 
       <AppBody>
         <AddRemoveTabs adding={false} />
-        <Wrapper>
+        <Wrapper style={{ display: 'flex', justifyContent: 'center' }}>
           <TransactionConfirmationModal
             isOpen={showConfirm}
             onDismiss={handleDismissConfirmation}
@@ -474,7 +476,7 @@ export default function RemoveLiquidity({
             )}
             pendingText={pendingText}
           />
-          <AutoColumn gap="md">
+          <AutoColumn gap="12px" style={{ width: '350px' }}>
             <Body>
               <OutlineCard>
                 <AutoColumn>
@@ -668,7 +670,7 @@ export default function RemoveLiquidity({
                         setShowConfirm(true)
                       }}
                       disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
-                      style={{ background: '#05195a', width: '50%' }}
+                      style={{ background: '#04bbfb', width: '50%' }}
                     >
                       {error || 'Remove'}
                     </Button>

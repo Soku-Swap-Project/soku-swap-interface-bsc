@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from '@pancakeswap-libs/sdk'
+import { ChainId, Pair, Token } from '@pancakeswap-libs/sdk-v2'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -20,6 +20,8 @@ import {
   updateUserSlippageTolerance,
   muteAudio,
   unmuteAudio,
+  enableAutonomyPrepay,
+  disableAutonomyPrepay,
 } from './actions'
 import { setThemeCache } from '../../utils/theme'
 
@@ -242,11 +244,10 @@ export function useTrackedTokenPairs(): [Token, Token][] {
     })
   }, [savedSerializedPairs, chainId])
 
-  const combinedList = useMemo(() => userPairs.concat(generatedPairs).concat(pinnedPairs), [
-    generatedPairs,
-    pinnedPairs,
-    userPairs,
-  ])
+  const combinedList = useMemo(
+    () => userPairs.concat(generatedPairs).concat(pinnedPairs),
+    [generatedPairs, pinnedPairs, userPairs]
+  )
 
   return useMemo(() => {
     // dedupes pairs of tokens in the combined list
@@ -260,4 +261,19 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
     return Object.keys(keyed).map((key) => keyed[key])
   }, [combinedList])
+}
+
+export function useAutonomyPaymentManager(): [boolean, () => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const autonomyPrepay = useSelector<AppState, AppState['user']['autonomyPrepay']>((state) => state.user.autonomyPrepay)
+
+  const togglePrepayMode = useCallback(() => {
+    if (autonomyPrepay) {
+      dispatch(disableAutonomyPrepay())
+    } else {
+      dispatch(enableAutonomyPrepay())
+    }
+  }, [autonomyPrepay, dispatch])
+
+  return [autonomyPrepay, togglePrepayMode]
 }

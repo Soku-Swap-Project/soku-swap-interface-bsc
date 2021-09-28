@@ -11,12 +11,156 @@
   "keywords": ["pancake", "default"],
   "tokens": [
     {
-      "name": "Soku Token",
+      "name": "Soku Test Token",
       "symbol": "SOKU",
       "address": "0x5D85cEBE6CEc78452d899C3b9b47E35bc6b68109",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://i.ibb.co/17rrFQK/sokuswap-token.png"
+    },
+    {
+      "name": "Soku Token",
+      "symbol": "SOKU",
+      "address": "0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
+    },
+    {
+      "name": "Earnable",
+      "symbol": "EARN",
+      "address": "0x11ba78277d800502c84c5aed1374ff0a91f19f7e",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
+    },
+    {
+      "name": "TasteNFT",
+      "symbol": "TASTE",
+      "address": "0xdb238123939637d65a03e4b2b485650b4f9d91cb",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/tastenft_32.png"
+    },
+    {
+      "name": "NotSafeMoon",
+      "symbol": "NOTSAFEMOON",
+      "address": "0x337e35Ed5B38D5C7Ec9F8d7cF78fe7F43d7DEC6F",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://notsafemoon.com/dash/v1/custom/img/android-chrome-192x192.png"
+    },
+    {
+      "name": "Simargl",
+      "symbol": "SIMA",
+      "address": "0xBDAC5C8bc3FF38083437bB712D55b668F44F6DF1",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "http://simar.gl/images/logo.png"
+    },
+    {
+      "name": "CryptoJaguars",
+      "symbol": "CJX",
+      "address": "0x019c75824667b95f449d069495ee5ca7c2ec4660",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/YZBSbHK/CJX-Logo-256x256.png"
+    },
+    {
+      "name": "Puppy Doge",
+      "symbol": "PuppyDoge",
+      "address": "0xdfc59e0605973015d6b2896056d9dc3269f74d52",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://puppydoge.io/inc/logo256x256.png"
+    },
+    {
+      "name": "Gravisible",
+      "symbol": "GAV",
+      "address": "0xdd79c56410fc922552b8afd6d0e29f4f046e4c6d",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://www.gravisible.com/assets/images/icon/Gravisible200x200.png"
+    },
+    {
+      "name": "Cloudbit Cash",
+      "symbol": "CDBC",
+      "address": "0xf782c5f9fb8870720ee4323abf52ba67d116851d",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://i.imgur.com/cTWAA8L.png"
+    },
+    {
+      "name": "GreenTrust",
+      "symbol": "GNT",
+      "address": "0xf750a26eb0acf95556e8529e72ed530f3b60f348",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://drive.google.com/file/d/1UdTbgbLCccVWHYMhae3aP6OVoHkZGubu/view"
+    },
+    {
+      "name": "Ninja Doge",
+      "symbol": "NINJADOGE",
+      "address": "0xe218dcf32f9bb64648d64ef2ae85cf1c63c5ac74",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.imgur.com/VvAbgjT_d.webp?maxwidth=1520&fidelity=grand"
+    },
+    {
+      "name": "BooDogeCoin",
+      "symbol": "BOODOGE",
+      "address": "0x3767a79383ccb3c8c3f0480d2ab439a0ac0e3d78",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://boodogecoin.eu/wp-content/uploads/2021/07/Project-1.png"
+    },
+    {
+      "name": "Free Doge",
+      "symbol": "FDOGE",
+      "address": "0xfac1f65c835f0e2af6b77b671bbfbbf9edbd8aae",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/freedogetoken_32.png"
+    },
+    {
+      "name": "StackCake",
+      "symbol": "StackCake",
+      "address": "0x3cf6773725523584088f7c72d4bf1b56d64cddc7",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/F3HMqwQ/256x256logopng.png"
+    },
+    {
+      "name": "ExzoCoin 2.0",
+      "symbol": "EXZO",
+      "address": "0xF8fC63200e181439823251020d691312FDcF5090",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exzocoin.com/wp-content/uploads/2021/07/Exzo-favicon.png"
+    },
+    {
+      "name": "YUMMY",
+      "symbol": "YUMMY",
+      "address": "0x05f2df7b3d612a23fe12162a6c996447dce728a5",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.imgur.com/p40QZ7K_d.webp?maxwidth=760&fidelity=grand"
+    },
+    {
+      "name": "GreenArrowToken",
+      "symbol": "GAT",
+      "address": "0xc7a8c40afbee37761740ea78c122f1dd31b2ea5b",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://greenarrowtoken.com/wp-content/uploads/2021/06/cropped-Untitled-design-5-1.png"
+    },
+    {
+      "name": "WenLambo",
+      "symbol": "WENLAMBO",
+      "address": "0xd8a31016cd7da048ca21ffe04256c6d08c3a2251",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://github.com/Wenlambo/Wenlambo/blob/main/logo%20200x200.png"
     },
     {
       "name": "Test BUSD Token",
