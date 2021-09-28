@@ -39,3 +39,7 @@ cypress/fixtures/example.json
 .eslintcache
 .vercel
 yarn.lock
+
+.firebase
+.firebaserc
+firebase.json

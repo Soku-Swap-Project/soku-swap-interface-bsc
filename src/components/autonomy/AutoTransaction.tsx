@@ -51,7 +51,7 @@ export default ({ tx, tokenPair }: TxProps) => {
       </div>
       <div className="action">
         {tx.status === 'open' && (
-          <button type="button" onClick={cancelTx}>Cancel</button>
+          <button type="button" style = {{backgroundColor: '#05195A'}} onClick={cancelTx}>Cancel</button>
         )}
       </div>
     </Transaction>
