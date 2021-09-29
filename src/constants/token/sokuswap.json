@@ -44,6 +44,62 @@
       "logoURI": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/FCF.jpeg"
     },
     {
+      "name": "Mental Token",
+      "symbol": "MENT",
+      "address": "0x71af256a90268efd9c6d6ed16148ad06c8c78f06",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/s6N9pKg/mentlogo.png"
+    },
+    {
+      "name": "Yateem Token",
+      "symbol": "YMT",
+      "address": "0xf334e7d2860467681135c80c8682b16323d132ec",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://yateemtoken.com/assets/img/Yateem.png"
+    },
+    {
+      "name": "ZABAKU INU",
+      "symbol": "ZABAKU",
+      "address": "0x1e5f009d4f8ca44b5fcc4963dd301da82b4eed09",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/10032.png"
+    },
+    {
+      "name": "BODA",
+      "symbol": "BODA",
+      "address": "0xdc847755343c3a2b94d6afc0aae57651e1b14064",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/pvSX4kt/BODA-512-Transparent-Background.png"
+    },
+    {
+      "name": "Success Token",
+      "symbol": "SCS",
+      "address": "0x9bbd2be9d3d2dec6c9772ac4b94f66a60627a058",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://successtoken.io/logo_succes_token_ico.png"
+    },
+    {
+      "name": "Wrapped Pengolin Coin",
+      "symbol": "wPGO",
+      "address": "0x8f98826747fcb329125f82060368b95c24459cdc",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://www.pengolincoin.xyz/img/wPGO-BNB_100x100.png"
+    },
+    {
+      "name": "Purple Penguin",
+      "symbol": "PEBBLE",
+      "address": "0x512155456591fb6aa5fa5ab7cd1f0a2ed067fd28",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://www.linkpicture.com/q/logo-official.png"
+    },
+    {
       "name": "Royal BNB",
       "symbol": "RB",
       "address": "0x9f0f7acc4c49bfb8d5d65df0fc822fbc920b71de",
