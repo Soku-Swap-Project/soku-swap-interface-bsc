@@ -28,3 +28,5 @@ export const removeSerializedPair = createAction<{ chainId: number; tokenAAddres
 )
 export const muteAudio = createAction<void>('user/muteAudio')
 export const unmuteAudio = createAction<void>('user/unmuteAudio')
+export const enableAutonomyPrepay = createAction<void>('user/enableAutonomyPrepay')
+export const disableAutonomyPrepay = createAction<void>('user/disableAutonomyPrepay')
