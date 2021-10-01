@@ -25,11 +25,6 @@ export default function useTransactionHistory() {
 
 	const wasExecuted = useCallback((orderId: any) => {
 		const executedArr = executes.map((execute: any) => execute.get('uid'));
-		// executes.forEach((executed: any ) => {
-		// 	if (executed.get('wasRemoved')) {
-		// 		executedArr.push(executed.get('uid'))
-		// 	}
-		// });
 		if(executedArr.includes(orderId)){
 			return true
 		}
@@ -255,8 +250,6 @@ export default function useTransactionHistory() {
 			const registryRequests = await queryRequests.find();
 			const registryCancelRequests = await queryCancels.find();
 			const registryExecutedRequests = await queryExecutes.find();
-			console.log(registryRequests, "yeet")
-			console.log("@@@@", ROUTER_ADDRESS.toLowerCase().substr(2));
 			setOrders(registryRequests)
 			setCancels(registryCancelRequests)
 			setExecuted(registryExecutedRequests)
