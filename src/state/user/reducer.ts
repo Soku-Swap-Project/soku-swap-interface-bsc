@@ -14,7 +14,9 @@ import {
   updateUserSlippageTolerance,
   updateUserDeadline,
   muteAudio,
-  unmuteAudio
+  unmuteAudio,
+  enableAutonomyPrepay,
+  disableAutonomyPrepay,
 } from './actions'
 
 const currentTimestamp = () => new Date().getTime()
@@ -50,6 +52,8 @@ export interface UserState {
   timestamp: number
 
   audioPlay: boolean
+
+  autonomyPrepay: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -65,7 +69,8 @@ export const initialState: UserState = {
   tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
-  audioPlay: true
+  audioPlay: true,
+  autonomyPrepay: false,
 }
 
 export default createReducer(initialState, builder =>
@@ -140,4 +145,10 @@ export default createReducer(initialState, builder =>
     .addCase(unmuteAudio, state => {
       state.audioPlay = true
     })
+    .addCase(enableAutonomyPrepay, (state) => {
+      state.autonomyPrepay = true
+    })
+    .addCase(disableAutonomyPrepay, (state) => {
+      state.autonomyPrepay = false
+    }),
 )

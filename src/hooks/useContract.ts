@@ -10,6 +10,12 @@ import WETH_ABI from '../constants/abis/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
+import {
+  REGISTRY_CONTRACT_ADDRESS,
+  MIDROUTER_CONTRACT_ADDRESS,
+  REGISTRY_CONTRACT_ABI,
+  MIDROUTER_CONTRACT_ABI,
+} from '../constants/autonomy'
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -62,4 +68,14 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
+}
+
+export function useRegistryContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React();
+  return useContract(REGISTRY_CONTRACT_ADDRESS[chainId || ChainId.MAINNET], REGISTRY_CONTRACT_ABI, withSignerIfPossible)
+}
+
+export function useMidRouterContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React();
+  return useContract(MIDROUTER_CONTRACT_ADDRESS[chainId || ChainId.MAINNET], MIDROUTER_CONTRACT_ABI, withSignerIfPossible)
 }
