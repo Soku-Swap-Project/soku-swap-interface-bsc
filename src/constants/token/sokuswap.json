@@ -84,6 +84,22 @@
       "logoURI": "https://successtoken.io/logo_succes_token_ico.png"
     },
     {
+      "name": "RHT",
+      "symbol": "RHT",
+      "address": "0xf1018c71eebe32dd85012ad413bab6b940d0d51e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://rewardhunters.finance/assets/images/reward-hunters-token-logo-1.png"
+    },
+    {
+      "name": "Childrens Token",
+      "symbol": "CTN",
+      "address": "0xff0258b39432493a92aa1a182362b62808132935",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/31bMXqC/C.png"
+    },
+    {
       "name": "Wrapped Pengolin Coin",
       "symbol": "wPGO",
       "address": "0x8f98826747fcb329125f82060368b95c24459cdc",
