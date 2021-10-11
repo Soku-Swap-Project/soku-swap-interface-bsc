@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
@@ -21,6 +20,8 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
+import LimitOrder from './LimitOrder'
+// import StopLoss from './StopLoss/index.tsx'
 import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
@@ -199,8 +200,6 @@ export default function App() {
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
-  console.log('script', document.getElementsByTagName('script')[0])
-
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinksMobile')
     // console.log(hiddenLinks)
@@ -225,6 +224,8 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
+                    {/* <Route exact strict path="/limit-order" component={LimitOrder} /> */}
+                    {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
                     <Route exact path="/add" component={AddLiquidity} />

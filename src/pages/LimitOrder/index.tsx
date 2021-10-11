@@ -4,7 +4,7 @@ import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -37,9 +37,13 @@ import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import AutoPriceInput from 'components/autonomy/AutoPriceInput'
+import AutoHistory from 'components/autonomy/AutoHistory'
+import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
+import WarningMessage from 'components/autonomy/Warning'
 
-const Swap = () => {
+const LimitOrder = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
 
@@ -71,7 +75,8 @@ const Swap = () => {
 
   // get custom setting values for user
   const [deadline] = useUserDeadline()
-  const [allowedSlippage] = useUserSlippageTolerance()
+  // const [allowedSlippage] = useUserSlippageTolerance()
+  const allowedSlippage = 0
 
   // swap state
   const { independentField, typedValue, recipient } = useSwapState()
@@ -97,19 +102,6 @@ const Swap = () => {
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
-
-  const handleTypeInput = useCallback(
-    (value: string) => {
-      onUserInput(Field.INPUT, value)
-    },
-    [onUserInput]
-  )
-  const handleTypeOutput = useCallback(
-    (value: string) => {
-      onUserInput(Field.OUTPUT, value)
-    },
-    [onUserInput]
-  )
 
   // modal and loading
   const [{ showConfirm, tradeToConfirm, swapErrorMessage, attemptingTxn, txHash }, setSwapState] = useState<{
@@ -140,7 +132,7 @@ const Swap = () => {
   const noRoute = !route
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage, true)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
@@ -155,11 +147,62 @@ const Swap = () => {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
+  /**
+   * Start - Autonomy Limit Order section
+   */
+  const [outputMinAmount, setOutputMinAmount] = useState<string>('')
+  const [limitOrderPrice, setLimitOrderPrice] = useState<string>('')
+  const [inputFocused, setInputFocused] = useState<Boolean>(true)
+
+  const limitOrderMarketStats = useMemo(() => {
+    const marketOutput = trade?.outputAmount.toExact()
+    if (marketOutput && outputMinAmount) {
+      return ((Number(outputMinAmount) - Number(marketOutput)) * 100) / Number(marketOutput)
+    }
+    return 0
+  }, [trade, outputMinAmount])
+
+  const onLimitOrderValuesChange = (source: string, value: string) => {
+    setInputFocused(false)
+    if (source === 'price') {
+      setLimitOrderPrice(value)
+      const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
+      setOutputMinAmount(outputAmount.toString())
+    } else if (source === 'output') {
+      setOutputMinAmount(value)
+      const price = Number(value) / Number(formattedAmounts[Field.INPUT])
+      setLimitOrderPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
+    }
+  }
+
+  const realPriceValue = useMemo(() => {
+    if (inputFocused) {
+      const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
+      return price === Infinity || isNaN(price) ? '' : price.toFixed(6)
+    }
+    return limitOrderPrice
+  }, [inputFocused, limitOrderPrice, formattedAmounts])
+
+  const realOutputValue = useMemo(
+    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount),
+    [inputFocused, formattedAmounts, outputMinAmount]
+  )
+
+  const handleTypeInput = useCallback(
+    (value: string) => {
+      onUserInput(Field.INPUT, value)
+      setInputFocused(true)
+    },
+    [onUserInput, setInputFocused]
+  )
+
   // the callback to execute the swap
   const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
     trade,
     allowedSlippage,
-    recipient
+    recipient,
+    'limit-order',
+    outputMinAmount
   )
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
@@ -267,6 +310,7 @@ const Swap = () => {
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
+      {/* <WarningMessage /> */}
       <AppBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
@@ -281,9 +325,12 @@ const Swap = () => {
             onConfirm={handleSwap}
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
+            realSwapPrice={realPriceValue}
+            realOutputAmount={realOutputValue}
           />
           <PageHeader
-            title={TranslateString(8, 'Swap')}
+            title={TranslateString(8, 'Limit Order')}
+            pagetype="autonomy"
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -291,7 +338,7 @@ const Swap = () => {
               <CurrencyInputPanel
                 label={
                   independentField === Field.OUTPUT && !showWrap && trade
-                    ? TranslateString(194, 'From (est.)')
+                    ? TranslateString(194, 'From (estimated)')
                     : TranslateString(76, 'From')
                 }
                 value={formattedAmounts[Field.INPUT]}
@@ -325,14 +372,15 @@ const Swap = () => {
                   ) : null}
                 </AutoRow>
               </AutoColumn>
+              <AutoPriceInput
+                value={realPriceValue}
+                currentPrice={trade?.executionPrice.toSignificant(6)}
+                onChange={(value) => onLimitOrderValuesChange('price', value)}
+              />
               <CurrencyInputPanel
-                value={formattedAmounts[Field.OUTPUT]}
-                onUserInput={handleTypeOutput}
-                label={
-                  independentField === Field.INPUT && !showWrap && trade
-                    ? TranslateString(196, 'To (est.)')
-                    : TranslateString(80, 'To')
-                }
+                value={realOutputValue}
+                onUserInput={(value) => onLimitOrderValuesChange('output', value)}
+                label={independentField === Field.INPUT && !showWrap && trade ? 'Swap To (est.):' : 'Swap To:'}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
@@ -370,24 +418,22 @@ const Swap = () => {
                 >
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
-                      <RowBetween align="center">
-                        <Text fontSize="14px">{TranslateString(1182, 'Price')}</Text>
-                        <TradePrice
-                          price={trade?.executionPrice}
-                          showInverted={showInverted}
-                          setShowInverted={setShowInverted}
-                        />
-                      </RowBetween>
-                    )}
-                    {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
-                      <RowBetween align="center">
-                        <Text color="#04bbfb" fontWeight="900" fontSize="14px">
-                          {TranslateString(88, 'Slippage Tolerance')}
-                        </Text>
-                        <Text color="#04bbfb" fontWeight="900" fontSize="14px">
-                          {allowedSlippage / 100}%
-                        </Text>
-                      </RowBetween>
+                      <>
+                        <RowBetween align="center">
+                          <Text fontSize="14px">{TranslateString(1182, 'Price')}</Text>
+                          <TradePrice
+                            price={trade?.executionPrice}
+                            showInverted={showInverted}
+                            setShowInverted={setShowInverted}
+                          />
+                        </RowBetween>
+                        <AutoRow justify="flex-end">
+                          <ErrorText severity={limitOrderMarketStats > 0 ? 0 : 4}>
+                            {Math.abs(limitOrderMarketStats).toFixed(2)}%{' '}
+                            {limitOrderMarketStats > 0 ? 'above' : 'below'} market value
+                          </ErrorText>
+                        </AutoRow>
+                      </>
                     )}
                   </AutoColumn>
                 </Card>
@@ -421,7 +467,7 @@ const Swap = () => {
                   <Button
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%', background: '#04bbfb' }}
+                    style={{ width: '48%' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (
@@ -451,13 +497,16 @@ const Swap = () => {
                     style={{ width: '100%' }}
                     id="swap-button"
                     disabled={
-                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                      !isValid ||
+                      approval !== ApprovalState.APPROVED ||
+                      (priceImpactSeverity > 3 && !isExpertMode) ||
+                      limitOrderMarketStats <= 0
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                   </Button>
                 </RowBetween>
               ) : (
@@ -476,14 +525,19 @@ const Swap = () => {
                     }
                   }}
                   id="swap-button"
-                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                  disabled={
+                    !isValid ||
+                    (priceImpactSeverity > 3 && !isExpertMode) ||
+                    !!swapCallbackError ||
+                    limitOrderMarketStats <= 0
+                  }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact Too High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
+                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
@@ -491,10 +545,14 @@ const Swap = () => {
             </BottomGrouping>
           </CardBody>
         </Wrapper>
+        <Text style={{ fontSize: 12, textAlign: 'center' }}>
+          Powered By <a href="https://www.autonomynetwork.io/">Autonomy Network</a>
+        </Text>
+        <Text style={{ fontSize: 12, textAlign: 'center' }}>(BETA VERSION)</Text>
       </AppBody>
-      <AdvancedSwapDetailsDropdown trade={trade} />
+      <AutoHistory type="Limit" />
     </>
   )
 }
 
-export default Swap
+export default LimitOrder

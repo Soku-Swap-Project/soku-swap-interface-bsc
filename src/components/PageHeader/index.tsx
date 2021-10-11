@@ -11,6 +11,7 @@ interface PageHeaderProps {
   title: ReactNode
   description?: ReactNode
   children?: ReactNode
+  pagetype?: string
 }
 
 const HistoryIcon = () => (
@@ -31,9 +32,9 @@ const Details = styled.div`
   flex: 1;
 `
 
-const PageHeader = ({ title, description, children }: PageHeaderProps) => {
+const PageHeader = ({ title, description, children, pagetype }: PageHeaderProps) => {
   const TranslateString = useI18n()
-  const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} />)
+  const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} pagetype={pagetype} />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal translateString={TranslateString} />)
 
   return (
