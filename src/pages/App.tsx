@@ -224,7 +224,7 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
-                    <Route exact strict path="/limit-order" component={LimitOrder} />
+                    {/* <Route exact strict path="/limit-order" component={LimitOrder} /> */}
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
