@@ -301,7 +301,7 @@ const LimitOrder = () => {
     [onCurrencySelection, checkForSyrup]
   )
 
-  document.title = 'SokuSwap | Swap'
+  document.title = 'SokuSwap | Limit Order'
 
   return (
     <>
@@ -467,7 +467,7 @@ const LimitOrder = () => {
                   <Button
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%' }}
+                    style={{ width: '48%', background: '#05195a' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (
