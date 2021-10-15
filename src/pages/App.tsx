@@ -108,43 +108,6 @@ export default function App() {
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
 
-  // console.log(window.ethereum)
-
-  const loadToken = async () => {
-    const tokenAddress = '0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53'
-    const tokenSymbol = 'SOKU'
-    const tokenDecimals = 18
-    const tokenImage = 'https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png'
-
-    try {
-      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-      const wasAdded = await window.ethereum.request({
-        method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20', // Initially only supports ERC20, but eventually more!
-          options: {
-            address: tokenAddress, // The address that the token is at.
-            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
-            decimals: tokenDecimals, // The number of decimals in the token
-            image: tokenImage, // A string url of the token logo
-          },
-        },
-      })
-
-      // if (wasAdded) {
-      //   console.log('SOKU Token added')
-      // } else {
-      //   console.log('SOKU Token not added')
-      // }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  // useEffect(() => {
-  //   loadToken()
-  // }, [])
-
   const credentials: Credentials = {
     token: apiKey,
   }
@@ -224,7 +187,7 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
-                    {/* <Route exact strict path="/limit-order" component={LimitOrder} /> */}
+                    <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
@@ -235,7 +198,7 @@ export default function App() {
                     <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
                     <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                     <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-                    <Route path="/" component={RedirectHashRoutes} />
+                    <Route exact path="/" component={RedirectHashRoutes} />
 
                     {/* <Route component={RedirectPathToSwapOnly} /> */}
                   </Switch>

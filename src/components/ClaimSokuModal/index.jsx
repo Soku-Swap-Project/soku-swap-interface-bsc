@@ -61,33 +61,15 @@ export default function ClaimSokuModal() {
       <hr />
       {account ? (
         <div>
-          {/* <h2 id="simple-modal-title">Your Rewards:</h2>
-          <br />
-          <p id="simple-modal-description">
-            Congratulations! You've earned <strong className="soku_rewarded">{earnedAmount} SOKU</strong> tokens this
-            week.
-          </p> */}
           <h2 id="simple-modal-title">Rewards:</h2>
           <br />
-          <p id="simple-modal-description">
-            No rewards at this time. Please check back on June 1st to convert your SSOKU to SOKU.
-          </p>
+          <p id="simple-modal-description">No rewards at this time.</p>
         </div>
       ) : (
         <div className="claimSoku__noRewards">
-          {/* <h2 id="simple-modal-title">No Rewards:</h2>
-          <br />
-          <p id="simple-modal-description">{`You do not qualify for rewards at this time. `}</p>
-          <p id="simple-modal-description">{`Please check back on: ${month}/${day}/${year}`}</p>
-
-          <p id="simple-modal-description">Click the link below to see how to get your rewards!</p>
-          <br />
-          <a href="#">Get Rewards</a> */}
           <h2 id="simple-modal-title">Rewards:</h2>
           <br />
-          <p id="simple-modal-description">
-            No rewards at this time. Please check back on June 1st to convert your SSOKU to SOKU.
-          </p>
+          <p id="simple-modal-description">Please connect your wallet to view your rewards.</p>
         </div>
       )}
     </div>
@@ -95,14 +77,14 @@ export default function ClaimSokuModal() {
 
   return (
     <div className="claimSoku__wrapper">
-      {/* <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
+      <button type="button" className="claimSoku__navButton" onClick={handleOpen}>
         Claim Soku
-      </button> */}
-      <a href="https://tokensale.sokuswap.finance/token-exchange/#/" target="_blank">
+      </button>
+      {/* <a href="https://tokensale.sokuswap.finance/token-exchange/#/" target="_blank">
         <button type="button" className="claimSoku__navButton">
           Claim Soku
         </button>
-      </a>
+      </a> */}
       <Modal
         open={open}
         onClose={handleClose}
