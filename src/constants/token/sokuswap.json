@@ -7,8 +7,8 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://exchange.pancakeswap.finance/images/pancakeswap.png",
-  "keywords": ["pancake", "default"],
+  "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png",
+  "keywords": ["soku", "default"],
   "tokens": [
     {
       "name": "Soku Test Token",
@@ -50,6 +50,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/FCF.jpeg"
+    },
+    {
+      "name": "Dollartines",
+      "symbol": "DTS",
+      "address": "0xbaf1c6c2d6d302778917545098fc512c3c938e24",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/G9bFcs7/256.png"
     },
     {
       "name": "Mental Token",
