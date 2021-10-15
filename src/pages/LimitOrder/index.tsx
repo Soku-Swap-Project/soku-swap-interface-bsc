@@ -506,7 +506,7 @@ const LimitOrder = () => {
                   >
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      : `Place Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                   </Button>
                 </RowBetween>
               ) : (
@@ -537,7 +537,7 @@ const LimitOrder = () => {
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact Too High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
+                      : `Place Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}

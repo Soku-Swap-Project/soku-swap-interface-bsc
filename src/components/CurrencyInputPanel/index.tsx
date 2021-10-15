@@ -108,6 +108,7 @@ export default function CurrencyInputPanel({
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
+  console.log(selectedCurrencyBalance?.toSignificant(6))
   const TranslateString = useI18n()
   const translatedLabel = label || TranslateString(132, 'Input')
   const handleDismissSearch = useCallback(() => {
@@ -130,7 +131,7 @@ export default function CurrencyInputPanel({
                     style={{ display: 'inline', cursor: 'pointer', color: '#c9c9c9', fontWeight: 'bold' }}
                   >
                     {!hideBalance && !!currency && selectedCurrencyBalance
-                      ? `Balance: ${selectedCurrencyBalance?.toSignificant(4)}`
+                      ? `Max: ${selectedCurrencyBalance?.toSignificant(10).substring(0, 10)}`
                       : ' -'}
                   </Text>
                 )}

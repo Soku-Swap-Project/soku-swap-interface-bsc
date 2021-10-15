@@ -33,6 +33,10 @@
   .navbar__items li {
     font-size: 14px;
   }
+
+  .navbar__options {
+    padding-left: 0;
+  }
 }
 
 .navbar__items li:hover,
@@ -80,7 +84,7 @@ nav {
 @media (max-height: 930px) and (max-width: 650px) {
   nav {
     -ms-flex-pack: distribute;
-    justify-content: space-around !important;
+    justify-content: space-evenly !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.125);
     padding: 10px !important;
   }
