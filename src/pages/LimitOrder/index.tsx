@@ -380,7 +380,7 @@ const LimitOrder = () => {
               <CurrencyInputPanel
                 value={realOutputValue}
                 onUserInput={(value) => onLimitOrderValuesChange('output', value)}
-                label={independentField === Field.INPUT && !showWrap && trade ? 'Swap To (est.):' : 'Swap To:'}
+                label={independentField === Field.INPUT && !showWrap && trade ? 'Swap To ≈' : 'Swap To:'}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
