@@ -102,7 +102,7 @@ export default function AutoPriceInput({
           <AutoColumn gap="md">
             <AutoRow>
               <Text color={theme.colors.text} fontWeight={500} fontSize="14px">
-                Amount
+                Rate
               </Text>
               <CurrentPriceTag onClick={() => !disabled && handleInput(currentPrice)}>Current</CurrentPriceTag>
             </AutoRow>
