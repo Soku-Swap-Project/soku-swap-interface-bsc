@@ -62,11 +62,11 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
-            {/* {isBSC && (
+            {isBSC && (
               <NavLink className="nav_link" activeClassName="active" to="/limit-order">
                 <li>Limit Order</li>
               </NavLink>
-            )} */}
+            )}
             {/* {isBSC && (
               <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
                 <li>Stop Loss</li>

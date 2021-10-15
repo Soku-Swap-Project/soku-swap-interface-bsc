@@ -187,7 +187,7 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
-                    {/* <Route exact strict path="/limit-order" component={LimitOrder} /> */}
+                    <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
@@ -198,7 +198,7 @@ export default function App() {
                     <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
                     <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                     <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-                    <Route exact strict path="/" component={RedirectHashRoutes} />
+                    <Route exact path="/" component={RedirectHashRoutes} />
 
                     {/* <Route component={RedirectPathToSwapOnly} /> */}
                   </Switch>
