@@ -30,7 +30,7 @@
       "name": "Earnable",
       "symbol": "EARN",
       "tokenomics": "EARN3",
-      "address": "0x11ba78277d800502c84c5aed1374ff0a91f19f7e",
+      "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
@@ -42,6 +42,14 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://bscscan.com/token/images/tastenft_32.png"
+    },
+    {
+      "name": "Space Token",
+      "symbol": "SPACE",
+      "address": "0x9d9affac2175ef541642035ab66f5fe7df813851",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://spacetoken.tech/assets/images/Space-Token-Logo-512x512.png"
     },
     {
       "name": "French Connection Finance",
