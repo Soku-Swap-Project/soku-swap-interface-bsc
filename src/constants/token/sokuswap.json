@@ -29,7 +29,6 @@
     {
       "name": "Earnable",
       "symbol": "EARN",
-      "tokenomics": "EARN3",
       "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
       "chainId": 56,
       "decimals": 9,
