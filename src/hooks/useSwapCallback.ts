@@ -34,6 +34,7 @@ interface FailedCall {
   call: SwapCall
   error: Error
 }
+
 type EstimatedSwapCall = SuccessfulCall | FailedCall
 /**
  * Returns the swap calls that can be used to make the trade
@@ -447,13 +448,13 @@ export function useSwapCallback(
           }
 
           // @ts-ignore
-          if (
-            TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(
-              trade.inputAmount.currency.address || 'NonAddress'
-            )
-          ) {
-            throw new Error("Fee On Transfer isn't supported for limits and stops")
-          }
+          // if (
+          //   TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(
+          //     trade.inputAmount.currency.name || 'NonAddress'
+          //   )
+          // ) {
+          //   throw new Error("Fee On Transfer isn't supported for limits and stops")
+          // }
         }
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
