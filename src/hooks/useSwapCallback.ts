@@ -449,7 +449,7 @@ export function useSwapCallback(
           // @ts-ignore
           if (
             TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(
-              trade?.inputAmount?.currency?.address || 'NonAddress'
+              trade.inputAmount.currency.address || 'NonAddress'
             )
           ) {
             throw new Error("Fee On Transfer isn't supported for limits and stops")
