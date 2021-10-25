@@ -46,6 +46,7 @@ import { Field } from '../../state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
 
 import './removeLiquidity.css'
+import MobileHeader from 'components/MobileHeader'
 
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -453,10 +454,11 @@ export default function RemoveLiquidity({
   )
 
   document.title = 'SokuSwap | Remove Liquidity'
+  const isMobile = window.innerWidth <= 500
 
   return (
     <>
-      <CardNav />
+      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
 
       <AppBody>
         <AddRemoveTabs adding={false} />

@@ -21,6 +21,7 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import LimitOrder from './LimitOrder'
+import SlideOutMenu from '../components/SlideOutMenu/SlideOutMenu'
 // import StopLoss from './StopLoss/index.tsx'
 import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
@@ -67,7 +68,7 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 32px 16px;
+  margin-top: 10px;
   // padding-top: 20vh;
   align-items: center;
   flex: 0.4;
@@ -173,6 +174,8 @@ export default function App() {
     }
   }
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <Suspense fallback={null}>
       <HashRouter>
@@ -181,7 +184,7 @@ export default function App() {
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
-              <Menu />
+              {isMobile ? <SlideOutMenu /> : <Menu />}
               <BodyWrapper>
                 <Popups />
                 <Web3ReactManager>

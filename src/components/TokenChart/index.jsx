@@ -32,7 +32,7 @@ function TokenChart(props) {
   const outputTokenSymbol = props?.token_to?.tokenInfo?.symbol
   //   const outputTokenLogo = props?.token_to?.tokenInfo?.logoURI
 
-  console.log('token output', outputTokenSymbol)
+  // console.log('token output', outputTokenSymbol)
   //   console.log('token logo', outputTokenLogo)
 
   //   nomics api = 46541fab931ca6010816ff37dd6b0e738929e5ab

@@ -14,7 +14,7 @@ function SokuSwapLogo({ activeIndex = 0 }: { activeIndex?: number }) {
   const TranslateString = useI18n()
 
   return (
-    <div>
+    <div style={{ paddingTop: '20px' }}>
       <img src="https://i.ibb.co/BTDYjDk/Soku-Swap-Logo-White.png" className="sokuswap__logo" alt="Soku Swap Logo" />
     </div>
 
