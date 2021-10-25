@@ -37,8 +37,8 @@ const Menu: React.FC = (props) => {
   const isBSC = window.location.href.includes('/bsc/')
   const isMobile = window.innerWidth <= 500
 
-  console.log(window.outerWidth)
-  console.log(window.innerWidth)
+  // console.log(window.outerWidth)
+  // console.log(window.innerWidth)
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
@@ -66,15 +66,11 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
-            {isMobile ? (
-              <NavLink className="nav_link" activeClassName="active" to="/limit-order">
-                <li>Limit</li>
-              </NavLink>
-            ) : (
-              <NavLink className="nav_link" activeClassName="active" to="/limit-order">
-                <li>Limit Orders</li>
-              </NavLink>
-            )}
+
+            <NavLink className="nav_link" activeClassName="active" to="/limit-order">
+              <li>Limit Orders</li>
+            </NavLink>
+
             {/* {isBSC && (
               <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
                 <li>Stop Loss</li>

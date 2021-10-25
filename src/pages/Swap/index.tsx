@@ -39,6 +39,7 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
+import MobileHeader from 'components/MobileHeader'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -257,9 +258,11 @@ const Swap = () => {
 
   document.title = 'SokuSwap | Swap'
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <>
-      <CardNav />
+      {isMobile ? <MobileHeader page={'Exchange'} /> : <CardNav />}
       {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
         <Toggle />

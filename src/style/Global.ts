@@ -2,8 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
+    padding-bottom: 50px;    
     background: linear-gradient(250deg, #05195a 33.3%, #040f31) !important;
     min-height: 100vh;
+
 
     img {
       height: auto;

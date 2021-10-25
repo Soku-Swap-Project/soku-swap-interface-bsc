@@ -27,6 +27,14 @@
       "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
     },
     {
+      "name": "Suteku Soku Reward Token",
+      "symbol": "SUTEKU",
+      "address": "0x5d392Da8Bf151DBAC854ebF5149d3488b360bCf3",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
+    },
+    {
       "name": "Earnable",
       "symbol": "EARN",
       "address": "0x839153689469fe23236d1e0671430c8d7fee0337",

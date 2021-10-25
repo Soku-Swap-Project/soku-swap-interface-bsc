@@ -41,7 +41,7 @@ import AutoPriceInput from 'components/autonomy/AutoPriceInput'
 import AutoHistory from 'components/autonomy/AutoHistory'
 import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
-import WarningMessage from 'components/autonomy/Warning'
+import MobileHeader from 'components/MobileHeader'
 
 const LimitOrder = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -303,9 +303,11 @@ const LimitOrder = () => {
 
   document.title = 'SokuSwap | Limit Order'
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <>
-      <CardNav />
+      {isMobile ? <MobileHeader page={'Limit Orders'} /> : <CardNav />}
       {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
         <Toggle />
