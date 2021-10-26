@@ -1,7 +1,7 @@
 {
   "name": "@sokuswap/interface",
   "description": "SokuSwap Interface",
-  "homepage": "/bsc",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
