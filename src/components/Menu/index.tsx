@@ -50,6 +50,8 @@ const Menu: React.FC = (props) => {
     }
   }
 
+  const origin = window.location.origin
+
   return (
     <div className="sokuswap__navbar">
       <nav>
