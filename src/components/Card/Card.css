@@ -43,7 +43,7 @@ a[href="https://docs.pancakeswap.finance/guides/faq#how-do-i-set-up-my-wallet-on
 /* Dark background on Wallet Connect page */
 .sc-bBrOnJ.hUVHli,
 div[role='presentation'] {
-  background: rgba(0, 0, 0, 0.603);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* Pricing */

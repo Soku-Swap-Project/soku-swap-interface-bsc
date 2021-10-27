@@ -7,6 +7,8 @@ import AutoTransaction from './AutoTransaction'
 
 export default function AutoHistory(type: any) {
   const [transactions] = useTransactionHistory()
+  // console.log("@@@",transactions)
+
   const allTokens = useAllTokens()
   const [currentTab, setCurrentTab] = useState('open')
   const mode = type
@@ -27,7 +29,7 @@ export default function AutoHistory(type: any) {
         <div role="presentation" onClick={() => setCurrentTab('open')} onKeyDown={() => setCurrentTab('open')} className={`tabItem ${currentTab === 'open' ? 'active' : ''}`}>
           <span>Open</span>
         </div>
-        <div role="presentation" onClick={() => setCurrentTab('cancelled')} onKeyDown={() => setCurrentTab('cancelled')} className={`tabItem ${currentTab === 'cancelled' ? 'active' : ''}`}>
+        <div role="presentation"  onClick={() => setCurrentTab('cancelled')} onKeyDown={() => setCurrentTab('cancelled')} className={`tabItem ${currentTab === 'cancelled' ? 'active' : ''}`}>
           <span>Cancelled</span>
         </div>
         <div role="presentation" onClick={() => setCurrentTab('executed')} onKeyDown={() => setCurrentTab('executed')} className={`tabItem ${currentTab === 'executed' ? 'active' : ''}`}>

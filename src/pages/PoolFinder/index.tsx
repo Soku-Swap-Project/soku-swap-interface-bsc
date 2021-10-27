@@ -15,6 +15,8 @@ import { useTokenBalance } from 'state/wallet/hooks'
 import { StyledInternalLink } from 'components/Shared'
 import { currencyId } from 'utils/currencyId'
 import useI18n from 'hooks/useI18n'
+import MobileHeader from 'components/MobileHeader'
+
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
 
@@ -82,10 +84,13 @@ export default function PoolFinder() {
   )
 
   document.title = 'SokuSwap | BSC | Pool Finder'
+  const isMobile = window.innerWidth <= 500
 
   return (
     <>
-      <CardNav activeIndex={1} />
+      {/* eslint-disable react/jsx-curly-brace-presence */}
+      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+
       <AppBody>
         <FindPoolTabs />
         <CardBody>

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 /* eslint-disable */
 
-// console.log(window.location)
+console.log(window.location)
 const origin = window.location.origin
 
 const Toggle = () => {

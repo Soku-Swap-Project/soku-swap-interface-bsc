@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { save, load } from 'redux-localstorage-simple'
+import { useDispatch } from 'react-redux'
 
 import application from './application/reducer'
 import { updateVersion } from './global/actions'
@@ -45,7 +46,8 @@ const store = configureStore({
 
 store.dispatch(updateVersion())
 
-export default store
-
 export type AppState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch()
+
+export default store

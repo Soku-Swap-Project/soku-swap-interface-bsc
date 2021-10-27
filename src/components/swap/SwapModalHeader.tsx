@@ -27,7 +27,7 @@ export default function SwapModalHeader({
   recipient,
   showAcceptChanges,
   onAcceptChanges,
-  realOutputAmount
+  realOutputAmount,
 }: {
   trade: Trade
   allowedSlippage: number
@@ -80,7 +80,9 @@ export default function SwapModalHeader({
                 : 'text'
             }
           >
-            {realOutputAmount === undefined ? trade.outputAmount.toSignificant(6) : realOutputAmount}
+            {realOutputAmount === undefined
+              ? trade.outputAmount.toSignificant(10).substring(0, 10)
+              : realOutputAmount.substring(0, 10)}
           </Text>
         </RowFixed>
         <RowFixed gap="0px">
@@ -107,7 +109,8 @@ export default function SwapModalHeader({
           <PriceInfoText>
             {`Output is estimated. You will receive at least `}
             <span style={{ color: '#04bbfb' }}>
-              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(10).substring(0, 10)}{' '}
+              {trade.outputAmount.currency.symbol}
             </span>
             {' or the transaction will revert.'}
           </PriceInfoText>
@@ -115,7 +118,8 @@ export default function SwapModalHeader({
           <PriceInfoText>
             {`Input is estimated. You will sell at most `}
             <span style={{ color: '#04bbfb' }}>
-              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(10).substring(0, 10)}{' '}
+              {trade.inputAmount.currency.symbol}
             </span>
             {' or the transaction will revert.'}
           </PriceInfoText>

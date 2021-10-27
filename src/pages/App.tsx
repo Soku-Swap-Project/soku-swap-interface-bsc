@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
 
@@ -21,8 +21,9 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import LimitOrder from './LimitOrder'
-import StopLoss from './StopLoss'
-import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
+import SlideOutMenu from '../components/SlideOutMenu/SlideOutMenu'
+// import StopLoss from './StopLoss/index.tsx'
+import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
@@ -67,7 +68,7 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 32px 16px;
+  margin-top: 10px;
   // padding-top: 20vh;
   align-items: center;
   flex: 0.4;
@@ -107,43 +108,6 @@ export default function App() {
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
-
-  // console.log(window.ethereum)
-
-  const loadToken = async () => {
-    const tokenAddress = '0x0e4b5ea0259eb3d66e6fcb7cc8785817f8490a53'
-    const tokenSymbol = 'SOKU'
-    const tokenDecimals = 18
-    const tokenImage = 'https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png'
-
-    try {
-      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-      const wasAdded = await window.ethereum.request({
-        method: 'wallet_watchAsset',
-        params: {
-          type: 'ERC20', // Initially only supports ERC20, but eventually more!
-          options: {
-            address: tokenAddress, // The address that the token is at.
-            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
-            decimals: tokenDecimals, // The number of decimals in the token
-            image: tokenImage, // A string url of the token logo
-          },
-        },
-      })
-
-      // if (wasAdded) {
-      //   console.log('SOKU Token added')
-      // } else {
-      //   console.log('SOKU Token not added')
-      // }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  // useEffect(() => {
-  //   loadToken()
-  // }, [])
 
   const credentials: Credentials = {
     token: apiKey,
@@ -210,6 +174,8 @@ export default function App() {
     }
   }
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <Suspense fallback={null}>
       <HashRouter>
@@ -218,14 +184,14 @@ export default function App() {
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
-              <Menu />
+              {isMobile ? <SlideOutMenu /> : <Menu />}
               <BodyWrapper>
                 <Popups />
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
                     <Route exact strict path="/limit-order" component={LimitOrder} />
-                    <Route exact strict path="/stop-loss" component={StopLoss} />
+                    {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
                     <Route exact path="/add" component={AddLiquidity} />
@@ -235,9 +201,9 @@ export default function App() {
                     <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
                     <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                     <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-                    <Route path="/" component={RedirectHashRoutes} />
+                    {/* <Route exact path="" component={RedirectHashRoutes} /> */}
 
-                    {/* <Route component={RedirectPathToSwapOnly} /> */}
+                    <Route component={RedirectPathToSwapOnly} />
                   </Switch>
                 </Web3ReactManager>
                 <Marginer />

@@ -18,28 +18,24 @@ enum SwapCallbackState {
   LOADING,
   VALID,
 }
-
 interface SwapCall {
   contract: Contract
   parameters: {
     methodName: string
     args: any[]
-    value: string;
+    value: string
   }
 }
-
 interface SuccessfulCall {
   call: SwapCall
   gasEstimate: BigNumber
 }
-
 interface FailedCall {
   call: SwapCall
   error: Error
 }
 
 type EstimatedSwapCall = SuccessfulCall | FailedCall
-
 /**
  * Returns the swap calls that can be used to make the trade
  * @param trade trade to execute
@@ -53,22 +49,17 @@ function useSwapCallArguments(
   recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): SwapCall[] {
   const { account, chainId, library } = useActiveWeb3React()
-
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
   // const deadline = (new Date('2050-01-01')).valueOf() / 1000
-  const deadline = 30 * 365 * 24 * 60 * 60  // 30 years from now
-
+  const deadline = 30 * 365 * 24 * 60 * 60 // 30 years from now
   return useMemo(() => {
     if (!trade || !recipient || !library || !account || !chainId) return []
-
     const contract: Contract | null = getRouterContract(chainId, library, account)
     if (!contract) {
       return []
     }
-
     const swapMethods = []
-
     swapMethods.push(
       // @ts-ignore
       Router.swapCallParameters(trade, {
@@ -78,7 +69,6 @@ function useSwapCallArguments(
         ttl: deadline,
       })
     )
-
     if (trade.tradeType === TradeType.EXACT_INPUT) {
       swapMethods.push(
         // @ts-ignore
@@ -90,11 +80,15 @@ function useSwapCallArguments(
         })
       )
     }
-
+    console.log(
+      'swapMethods',
+      allowedSlippage,
+      swapMethods,
+      new Percent(JSBI.BigInt(Math.floor(allowedSlippage)), BIPS_BASE)
+    )
     return swapMethods.map((parameters) => ({ parameters, contract }))
   }, [account, allowedSlippage, chainId, deadline, library, recipient, trade])
 }
-
 export function useAutonomySwapCallArguments(
   trade: Trade | undefined, // trade to execute, required
   allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
@@ -103,13 +97,12 @@ export function useAutonomySwapCallArguments(
   outputMinMaxAmount: string | undefined
 ): SwapCall[] {
   const { account } = useActiveWeb3React()
-
   const midRouterContract = useMidRouterContract()
   const registryContract = useRegistryContract()
   const [autonomyPrepay] = useAutonomyPaymentManager()
-  
+
   const swapCalls: SwapCall[] = useSwapCallArguments(trade, allowedSlippage, recipientAddressOrName)
-  
+
   return useMemo(() => {
     const inputCurrencyDecimals = trade?.inputAmount.currency.decimals || 18
     const outputCurrencyDecimals = trade?.outputAmount.currency.decimals || 18
@@ -333,7 +326,6 @@ export function useAutonomySwapCallArguments(
     autonomyPrepay,
   ])
 }
-
 // returns a function that will execute a swap, if the parameters are all valid
 // and the user has approved the slippage adjusted input amount for the trade
 export function useSwapCallback(
@@ -354,10 +346,8 @@ export function useSwapCallback(
   const addTransaction = useTransactionAdder()
   const routerContract = account && chainId && library ? getRouterContract(chainId, library, account) : null
   const [autonomyPrepay] = useAutonomyPaymentManager()
-
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
-
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
       return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
@@ -385,7 +375,6 @@ export function useSwapCallback(
               }
             }
             const options = !value || isZero(value) ? {} : { value }
-
             return contract.estimateGas[methodName](...args, options)
               .then((gasEstimate) => {
                 return {
@@ -395,7 +384,6 @@ export function useSwapCallback(
               })
               .catch((gasError) => {
                 console.info('Gas estimate failed, trying eth_call to extract error', call)
-
                 return contract.callStatic[methodName](...args, options)
                   .then((result) => {
                     console.info('Unexpected successful call after failed estimate gas', call, gasError, result)
@@ -418,19 +406,16 @@ export function useSwapCallback(
               })
           })
         )
-
         // a successful estimation is a bignumber gas estimate and the next call is also a bignumber gas estimate
         const successfulEstimation = estimatedCalls.find(
           (el, ix, list): el is SuccessfulCall =>
             'gasEstimate' in el && (ix === list.length - 1 || 'gasEstimate' in list[ix + 1])
         )
-
         if (!successfulEstimation) {
           const errorCalls = estimatedCalls.filter((call): call is FailedCall => 'error' in call)
           if (errorCalls.length > 0) throw errorCalls[errorCalls.length - 1].error
           throw new Error('Unexpected error. Please contact support: none of the calls threw an error')
         }
-
         const {
           call: {
             contract,
@@ -438,10 +423,10 @@ export function useSwapCallback(
           },
           gasEstimate,
         } = successfulEstimation
-
         // TODO: check Pre-pay fee vs Input Token value
         if (tradeLimitType && !autonomyPrepay && routerContract) {
-          const gasPrice = ethers.utils.parseUnits('5', 'gwei').toString();
+          console.log('trade', trade)
+          const gasPrice = ethers.utils.parseUnits('5', 'gwei').toString()
           const gasFee = BigNumber.from('300000').mul(gasPrice)
           const inputCurrencyDecimals = trade.inputAmount.currency.decimals || 18
           const inputTokenAmount = ethers.utils
@@ -476,7 +461,6 @@ export function useSwapCallback(
             const outputSymbol = trade.outputAmount.currency.symbol
             const inputAmount = trade.inputAmount.toSignificant(3)
             const outputAmount = trade.outputAmount.toSignificant(3)
-
             const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
             const withRecipient =
               recipient === account
@@ -486,11 +470,9 @@ export function useSwapCallback(
                       ? shortenAddress(recipientAddressOrName)
                       : recipientAddressOrName
                   }`
-
             addTransaction(response, {
               summary: withRecipient,
             })
-
             return response.hash
           })
           .catch((error: any) => {
@@ -520,5 +502,4 @@ export function useSwapCallback(
     routerContract,
   ])
 }
-
 export default useSwapCallback

@@ -19,6 +19,7 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import SyrupWarningModal from 'components/SyrupWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
+import { Dots } from '../../components/swap/styleds'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
@@ -38,6 +39,7 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
+import MobileHeader from 'components/MobileHeader'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -156,11 +158,7 @@ const Swap = () => {
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
   // the callback to execute the swap
-  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
-    trade,
-    allowedSlippage,
-    recipient
-  )
+  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient)
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
@@ -260,9 +258,11 @@ const Swap = () => {
 
   document.title = 'SokuSwap | Swap'
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <>
-      <CardNav />
+      {isMobile ? <MobileHeader page={'Exchange'} /> : <CardNav />}
       {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
         <Toggle />
@@ -426,7 +426,7 @@ const Swap = () => {
                   >
                     {approval === ApprovalState.PENDING ? (
                       <AutoRow gap="6px" justify="center">
-                        Approving <Loader stroke="white" />
+                        <Dots>Approving</Dots>
                       </AutoRow>
                     ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                       'Approved'
