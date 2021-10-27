@@ -34,15 +34,15 @@ export const Transaction = styled.div`
   background-color: #04bbfb;
   padding: 8px 12px;
   margin-bottom: 12px;
-
+  display: flex;
+  position: relative;
+  justify-content: space-between;
   .txInfo {
+    flex: 1;
     font-size: 10px;
-    padding: 0px 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
     p {
+      margin: 0 0 5px 0;
       display: flex;
       align-items: center;
       .token {
@@ -51,7 +51,7 @@ export const Transaction = styled.div`
         background-color: #fff;
         border-radius: 12px;
         box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
-        color: rgb(5, 25, 90);
+        color: ${({ theme }) => theme.colors.text};
         font-weight: 500;
         height: 32px;
         padding: 0 8px;
@@ -65,33 +65,23 @@ export const Transaction = styled.div`
       }
     }
   }
-  .txTime {
-    // margin-top: 10px;
+  .txTime{
+    margin-top: 10px; 
     font-size: 12px;
   }
-
-  .limit_box_footer {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
-    width: auto;
-    padding: 10px;
-  }
-
   .action {
-    // flex: 0 0 100px;
-    // text-align: right;
-    // position: absolute;
-    // bottom: 0;
-    // right: 0;
-    // margin: 0 4px 4px;
+    flex: 0 0 100px;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0 4px 4px;
     button {
       background: ${({ theme }) => theme.colors.contrast};
       border: none;
       border-radius: 12px;
       padding: 0.5rem;
-      font-size: 0.6rem;
+      font-size: 0.60rem;
       color: white;
       font-weight: 600;
       cursor: pointer;

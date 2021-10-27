@@ -34,7 +34,6 @@ interface FailedCall {
   call: SwapCall
   error: Error
 }
-
 type EstimatedSwapCall = SuccessfulCall | FailedCall
 /**
  * Returns the swap calls that can be used to make the trade
