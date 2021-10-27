@@ -2,8 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
+    padding-bottom: 50px;    
     background: linear-gradient(250deg, #05195a 33.3%, #040f31) !important;
     min-height: 100vh;
+
 
     img {
       height: auto;
@@ -292,6 +294,25 @@ svg[color="primary"] {
 *:focus {
   outline: 0;
 }
+
+@media (max-width: 800px) {
+  #chatbot-chat {
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 2147483639;
+    position: fixed;
+    bottom: 0px;
+    width: auto ;
+    height: 100px;
+    overflow: hidden;
+    opacity: 1;
+    max-width: 100%;
+    right: 0;
+    max-height: 100%;
+    border: 1px solid red;
+  }
+}
+
 
 `
 

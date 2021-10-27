@@ -35,6 +35,10 @@ const Menu: React.FC = (props) => {
   const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
   const isBSC = window.location.href.includes('/bsc/')
+  const isMobile = window.innerWidth <= 500
+
+  // console.log(window.outerWidth)
+  // console.log(window.innerWidth)
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
@@ -46,27 +50,34 @@ const Menu: React.FC = (props) => {
     }
   }
 
+  const origin = window.location.origin
+
   return (
     <div className="sokuswap__navbar">
       <nav>
         <ul className="navbar__items">
           <NavLink to="/">
-            <img className="nav_logo" style={{ height: '50px' }} alt="Logo" src="https://app.sokuswap.finance/bsc/images/Web-Corner-Logo.png" />
+            <img
+              className="nav_logo"
+              style={{ height: '50px' }}
+              alt="Logo"
+              src="https://app.sokuswap.finance/bsc/images/Web-Corner-Logo.png"
+            />
           </NavLink>
           <div className="navbar__options">
             <NavLink className="nav_link" activeClassName="active" to="/swap">
               <li>Swap</li>
             </NavLink>
-            {isBSC && (
-              <NavLink className="nav_link" activeClassName="active" to="/limit-order">
-                <li>Limit Order</li>
-              </NavLink>
-            )}
-            {isBSC && (
+
+            <NavLink className="nav_link" activeClassName="active" to="/limit-order">
+              <li>Limit Orders</li>
+            </NavLink>
+
+            {/* {isBSC && (
               <NavLink className="nav_link" activeClassName="active" to="/stop-loss">
                 <li>Stop Loss</li>
               </NavLink>
-            )}
+            )} */}
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>
@@ -76,6 +87,9 @@ const Menu: React.FC = (props) => {
             <a className="nav_link" href={`${origin}/bsc/farms`}>
               <li>Farms</li>
             </a>
+            {/* <a className="nav_link" href={`${origin}/bsc/staking`}>
+              <li>Staking</li>
+            </a> */}
             {/* <NavLink className="nav_link" to="/soku" activeClassName="active">
               <li>SOKU</li>
             </NavLink> */}

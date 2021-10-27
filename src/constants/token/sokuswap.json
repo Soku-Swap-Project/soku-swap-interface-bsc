@@ -7,8 +7,8 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://exchange.pancakeswap.finance/images/pancakeswap.png",
-  "keywords": ["pancake", "default"],
+  "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png",
+  "keywords": ["soku", "default"],
   "tokens": [
     {
       "name": "Soku Test Token",
@@ -27,9 +27,25 @@
       "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
     },
     {
+      "name": "Suteku Soku Reward Token",
+      "symbol": "SUTEKU V1",
+      "address": "0x5d392Da8Bf151DBAC854ebF5149d3488b360bCf3",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
+    },
+    {
+      "name": "Suteku Soku Reward Token",
+      "symbol": "SUTEKU",
+      "address": "0x198800aF50914004A9E9D19cA18C0b24587a50cf",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
+    },
+    {
       "name": "Earnable",
       "symbol": "EARN",
-      "address": "0x11ba78277d800502c84c5aed1374ff0a91f19f7e",
+      "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
@@ -41,6 +57,110 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://bscscan.com/token/images/tastenft_32.png"
+    },
+    {
+      "name": "Space Token",
+      "symbol": "SPACE",
+      "address": "0x9d9affac2175ef541642035ab66f5fe7df813851",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://spacetoken.tech/assets/images/Space-Token-Logo-512x512.png"
+    },
+    {
+      "name": "French Connection Finance",
+      "symbol": "FCF",
+      "address": "0x4673f018cc6d401aad0402bdbf2abcbf43dd69f3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/FCF.jpeg"
+    },
+    {
+      "name": "Dollartines",
+      "symbol": "DTS",
+      "address": "0xbaf1c6c2d6d302778917545098fc512c3c938e24",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/G9bFcs7/256.png"
+    },
+    {
+      "name": "Mental Token",
+      "symbol": "MENT",
+      "address": "0x71af256a90268efd9c6d6ed16148ad06c8c78f06",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/s6N9pKg/mentlogo.png"
+    },
+    {
+      "name": "Yateem Token",
+      "symbol": "YMT",
+      "address": "0xf334e7d2860467681135c80c8682b16323d132ec",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://yateemtoken.com/assets/img/Yateem.png"
+    },
+    {
+      "name": "ZABAKU INU",
+      "symbol": "ZABAKU",
+      "address": "0x1e5f009d4f8ca44b5fcc4963dd301da82b4eed09",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/10032.png"
+    },
+    {
+      "name": "BODA",
+      "symbol": "BODA",
+      "address": "0xdc847755343c3a2b94d6afc0aae57651e1b14064",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/pvSX4kt/BODA-512-Transparent-Background.png"
+    },
+    {
+      "name": "Success Token",
+      "symbol": "SCS",
+      "address": "0x9bbd2be9d3d2dec6c9772ac4b94f66a60627a058",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://successtoken.io/logo_succes_token_ico.png"
+    },
+    {
+      "name": "RHT",
+      "symbol": "RHT",
+      "address": "0xf1018c71eebe32dd85012ad413bab6b940d0d51e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://rewardhunters.finance/assets/images/reward-hunters-token-logo-1.png"
+    },
+    {
+      "name": "Childrens Token",
+      "symbol": "CTN",
+      "address": "0xff0258b39432493a92aa1a182362b62808132935",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/31bMXqC/C.png"
+    },
+    {
+      "name": "Wrapped Pengolin Coin",
+      "symbol": "wPGO",
+      "address": "0x8f98826747fcb329125f82060368b95c24459cdc",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://www.pengolincoin.xyz/img/wPGO-BNB_100x100.png"
+    },
+    {
+      "name": "Purple Penguin",
+      "symbol": "PEBBLE",
+      "address": "0x512155456591fb6aa5fa5ab7cd1f0a2ed067fd28",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://www.linkpicture.com/q/logo-official.png"
+    },
+    {
+      "name": "Royal BNB",
+      "symbol": "RB",
+      "address": "0x9f0f7acc4c49bfb8d5d65df0fc822fbc920b71de",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://royalbnb.net/rblogo.png"
     },
     {
       "name": "NotSafeMoon",
@@ -141,7 +261,7 @@
     {
       "name": "YUMMY",
       "symbol": "YUMMY",
-      "address": "0x05f2df7b3d612a23fe12162a6c996447dce728a5",
+      "address": "0xb003c68917bab76812797d1b8056822f48e2e4fe",
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://i.imgur.com/p40QZ7K_d.webp?maxwidth=760&fidelity=grand"

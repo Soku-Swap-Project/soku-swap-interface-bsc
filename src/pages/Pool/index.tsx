@@ -23,6 +23,7 @@ import { Dots } from 'components/swap/styleds'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
+import MobileHeader from 'components/MobileHeader'
 
 import './pools.css'
 
@@ -65,9 +66,11 @@ export default function Pool() {
 
   document.title = 'SokuSwap | BSC | Pools'
 
+  const isMobile = window.innerWidth <= 500
+
   return (
     <>
-      <CardNav activeIndex={1} />
+      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
       <AppBody>
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>

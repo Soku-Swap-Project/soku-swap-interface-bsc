@@ -37,6 +37,7 @@ import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { PoolPriceBar } from './PoolPriceBar'
 import { ROUTER_ADDRESS } from '../../constants'
+import MobileHeader from 'components/MobileHeader'
 
 export default function AddLiquidity({
   match: {
@@ -299,11 +300,13 @@ export default function AddLiquidity({
   }, [onFieldAInput, txHash])
 
   document.title = 'SokuSwap | Add Liquidity'
+  const isMobile = window.innerWidth <= 500
 
   return (
     <>
-      <title>SokuSwap | BSC | Add Liquidity</title>
-      <CardNav activeIndex={1} />
+      {/* eslint-disable react/jsx-curly-brace-presence */}
+      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+
       <AppBody>
         <div className="add_liquidity_box">
           <AddRemoveTabs adding />

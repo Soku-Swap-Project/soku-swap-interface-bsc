@@ -1,13 +1,14 @@
 import { ChainId } from '@pancakeswap-libs/sdk-v2'
 
 type AddressMap = { [chainId: number]: string }
+type AddressList = { [chainId: number]: string[] }
 
 /**
  * Autonomy Registry Contract
  * !! Only for BSC Mainnet/Testnet
  */
 export const REGISTRY_CONTRACT_ADDRESS: AddressMap = {
-  [ChainId.MAINNET]: '0xfA10ebE826a3074fDD105a83F510Ba618EBd80e1',
+  [ChainId.MAINNET]: '0x18d087F8D22D409D3CD366AF00BD7AeF0BF225Db',
   [ChainId.BSCTESTNET]: '0x0a92B53e97D5da0ba8253c9015fFef0F9D9cd750',
 }
 
@@ -16,8 +17,13 @@ export const REGISTRY_CONTRACT_ADDRESS: AddressMap = {
   * !! Only for BSC Mainnet/Testnet
   */
 export const MIDROUTER_CONTRACT_ADDRESS: AddressMap = {
-  [ChainId.MAINNET]: '0x8E43C20ff7E019Ee560a04d5a80CBDDf9f70EB7D',
+  [ChainId.MAINNET]: '0x151394FBa85A10E7A669f07818aC408b9abb8e09',
   [ChainId.BSCTESTNET]: '0x57c11ED54e9980E2b02cd6C08fB317d8fF47CA4e',
+}
+
+export const TRASNFER_FEE_TOKEN_ADDRESS_LIST: AddressList = {
+  [ChainId.MAINNET]: ['0x05f2df7b3d612a23fe12162a6c996447dce728a5'],
+  [ChainId.BSCTESTNET]: ['0x05f2df7b3d612a23fe12162a6c996447dce728a5'],
 }
  
 export const REGISTRY_CONTRACT_ABI = [
