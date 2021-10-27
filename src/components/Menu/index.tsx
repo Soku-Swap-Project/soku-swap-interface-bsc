@@ -50,6 +50,8 @@ const Menu: React.FC = (props) => {
     }
   }
 
+  const origin = window.location.origin
+
   return (
     <div className="sokuswap__navbar">
       <nav>
@@ -85,6 +87,9 @@ const Menu: React.FC = (props) => {
             <a className="nav_link" href={`${origin}/bsc/farms`}>
               <li>Farms</li>
             </a>
+            {/* <a className="nav_link" href={`${origin}/bsc/staking`}>
+              <li>Staking</li>
+            </a> */}
             {/* <NavLink className="nav_link" to="/soku" activeClassName="active">
               <li>SOKU</li>
             </NavLink> */}

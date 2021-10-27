@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
 
@@ -23,7 +23,7 @@ import Swap from './Swap'
 import LimitOrder from './LimitOrder'
 import SlideOutMenu from '../components/SlideOutMenu/SlideOutMenu'
 // import StopLoss from './StopLoss/index.tsx'
-import { RedirectPathToSwapOnly, RedirectHashRoutes } from './Swap/redirects'
+import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
@@ -201,9 +201,9 @@ export default function App() {
                     <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
                     <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
                     <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-                    <Route exact path="/" component={RedirectHashRoutes} />
+                    {/* <Route exact path="" component={RedirectHashRoutes} /> */}
 
-                    {/* <Route component={RedirectPathToSwapOnly} /> */}
+                    <Route component={RedirectPathToSwapOnly} />
                   </Switch>
                 </Web3ReactManager>
                 <Marginer />
