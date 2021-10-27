@@ -4,7 +4,7 @@ import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -41,6 +41,7 @@ import AutoPriceInput from 'components/autonomy/AutoPriceInput'
 import AutoHistory from 'components/autonomy/AutoHistory'
 import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
+import WarningMessage from 'components/autonomy/Warning'
 
 const LimitOrder = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -307,6 +308,7 @@ const LimitOrder = () => {
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
+      <WarningMessage />
       <AppBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
@@ -326,6 +328,7 @@ const LimitOrder = () => {
           />
           <PageHeader
             title={TranslateString(8, 'Limit Order')}
+            pagetype='autonomy'
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -534,6 +537,7 @@ const LimitOrder = () => {
             </BottomGrouping>
           </CardBody>
         </Wrapper>
+          <Text style={{ fontSize: 12, textAlign: 'center' }}>Powered By <a href="https://www.autonomynetwork.io/">Autonomy Network</a></Text>
       </AppBody>
       <AutoHistory type="Limit" />
     </>

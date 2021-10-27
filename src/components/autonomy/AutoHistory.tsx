@@ -7,8 +7,6 @@ import AutoTransaction from './AutoTransaction'
 
 export default function AutoHistory(type: any) {
   const [transactions] = useTransactionHistory()
-  console.log("@@@",transactions)
-
   const allTokens = useAllTokens()
   const [currentTab, setCurrentTab] = useState('open')
   const mode = type

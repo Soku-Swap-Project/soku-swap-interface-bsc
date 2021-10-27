@@ -41,6 +41,7 @@ import AutoPriceInput from 'components/autonomy/AutoPriceInput'
 import AutoHistory from 'components/autonomy/AutoHistory'
 import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
+import WarningMessage from 'components/autonomy/Warning'
 
 const StopLoss = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -154,11 +155,11 @@ const StopLoss = () => {
   const [inputFocused, setInputFocused] = useState<Boolean>(true)
 
   const stopLossMarketStats = useMemo(() => {
-  const marketOutput = trade?.outputAmount.toExact()
-  if (marketOutput && outputMaxAmount) {
-      return (Number(outputMaxAmount) - Number(marketOutput)) * 100 / Number(marketOutput);
-  }
-  return 0;
+    const marketOutput = trade?.outputAmount.toExact()
+    if (marketOutput && outputMaxAmount) {
+      return ((Number(marketOutput) - Number(outputMaxAmount)) * 100) / Number(marketOutput)
+    }
+    return 0
   }, [trade, outputMaxAmount])
 
   const onStopLossValuesChange = (source: string, value: string) => {
@@ -182,7 +183,10 @@ const StopLoss = () => {
     return stopLossPrice
   }, [inputFocused, stopLossPrice, formattedAmounts])
 
-  const realOutputValue = useMemo(() => inputFocused ? formattedAmounts[Field.OUTPUT] : outputMaxAmount, [inputFocused, formattedAmounts, outputMaxAmount])
+  const realOutputValue = useMemo(
+    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMaxAmount),
+    [inputFocused, formattedAmounts, outputMaxAmount]
+  )
 
   const handleTypeInput = useCallback(
     (value: string) => {
@@ -193,7 +197,13 @@ const StopLoss = () => {
   )
 
   // the callback to execute the swap
-  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(trade, allowedSlippage, recipient, 'stop-loss', outputMaxAmount)
+  const { callback: swapCallback, error: swapCallbackError } = useSwapCallback(
+    trade,
+    allowedSlippage,
+    recipient,
+    'stop-loss',
+    outputMaxAmount
+  )
   /**
   * End - Autonomy Stop Loss section
   */
@@ -303,6 +313,7 @@ const StopLoss = () => {
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
+      <WarningMessage />
       <AppBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
@@ -322,6 +333,7 @@ const StopLoss = () => {
           />
           <PageHeader
             title={TranslateString(8, 'Stop Loss')}
+            pagetype="autonomy"
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -366,15 +378,12 @@ const StopLoss = () => {
               <AutoPriceInput
                 value={realPriceValue}
                 currentPrice={trade?.executionPrice.toSignificant(6)}
-                onChange={(value) => onStopLossValuesChange('price', value)} />
+                onChange={(value) => onStopLossValuesChange('price', value)}
+              />
               <CurrencyInputPanel
                 value={realOutputValue}
                 onUserInput={(value) => onStopLossValuesChange('output', value)}
-                label={
-                    independentField === Field.INPUT && !showWrap && trade
-                        ? 'Sell To (est.):'
-                        : 'Sell To:'
-                }
+                label={independentField === Field.INPUT && !showWrap && trade ? 'Sell To (est.):' : 'Sell To:'}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
@@ -422,8 +431,9 @@ const StopLoss = () => {
                           />
                         </RowBetween>
                         <AutoRow justify="flex-end">
-                          <ErrorText severity={stopLossMarketStats > 0 ? 4 : 0}>
-                            {Math.abs(stopLossMarketStats).toFixed(2)}% {stopLossMarketStats > 0 ? 'above' : 'below'} market value
+                          <ErrorText severity={stopLossMarketStats < 0 ? 4 : 0}>
+                            {Math.abs(stopLossMarketStats).toFixed(2)}% {stopLossMarketStats > 0 ? 'above' : 'below'}{' '}
+                            market value
                           </ErrorText>
                         </AutoRow>
                       </>
@@ -490,7 +500,10 @@ const StopLoss = () => {
                     style={{ width: '100%' }}
                     id="swap-button"
                     disabled={
-                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode) || stopLossMarketStats >= 0
+                      !isValid ||
+                      approval !== ApprovalState.APPROVED ||
+                      (priceImpactSeverity > 3 && !isExpertMode) ||
+                      stopLossMarketStats <= 0
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
@@ -515,7 +528,12 @@ const StopLoss = () => {
                     }
                   }}
                   id="swap-button"
-                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError || stopLossMarketStats >= 0}
+                  disabled={
+                    !isValid ||
+                    (priceImpactSeverity > 3 && !isExpertMode) ||
+                    !!swapCallbackError ||
+                    stopLossMarketStats <= 0
+                  }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
                 >
