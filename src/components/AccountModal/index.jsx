@@ -67,7 +67,7 @@ export default function AccountModal() {
           <img
             className="nav_logo"
             alt="Logo"
-            src="/images/Web-Corner-Logo.png"
+            src="images/Web-Corner-Logo.png"
             style={{ height: '20px', marginLeft: '5px' }}
           />
         </div>
