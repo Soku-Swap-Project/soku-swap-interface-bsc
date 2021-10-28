@@ -4,7 +4,7 @@ import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
-import styled, { ThemeContext } from 'styled-components'
+import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -42,9 +42,8 @@ import AutoHistory from 'components/autonomy/AutoHistory'
 import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
 import WarningMessage from 'components/autonomy/Warning'
-import MobileHeader from 'components/MobileHeader'
 
-const LimitOrder = () => {
+const StopLoss = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
 
@@ -149,30 +148,30 @@ const LimitOrder = () => {
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
   /**
-   * Start - Autonomy Limit Order section
+   * Start - Autonomy Stop Loss section
    */
-  const [outputMinAmount, setOutputMinAmount] = useState<string>('')
-  const [limitOrderPrice, setLimitOrderPrice] = useState<string>('')
+  const [outputMaxAmount, setOutputMaxAmount] = useState<string>('')
+  const [stopLossPrice, setStopLossPrice] = useState<string>('')
   const [inputFocused, setInputFocused] = useState<Boolean>(true)
 
-  const limitOrderMarketStats = useMemo(() => {
+  const stopLossMarketStats = useMemo(() => {
     const marketOutput = trade?.outputAmount.toExact()
-    if (marketOutput && outputMinAmount) {
-      return ((Number(outputMinAmount) - Number(marketOutput)) * 100) / Number(marketOutput)
+    if (marketOutput && outputMaxAmount) {
+      return ((Number(marketOutput) - Number(outputMaxAmount)) * 100) / Number(marketOutput)
     }
     return 0
-  }, [trade, outputMinAmount])
+  }, [trade, outputMaxAmount])
 
-  const onLimitOrderValuesChange = (source: string, value: string) => {
+  const onStopLossValuesChange = (source: string, value: string) => {
     setInputFocused(false)
     if (source === 'price') {
-      setLimitOrderPrice(value)
+      setStopLossPrice(value)
       const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
-      setOutputMinAmount(outputAmount.toString())
+      setOutputMaxAmount(outputAmount.toString())
     } else if (source === 'output') {
-      setOutputMinAmount(value)
+      setOutputMaxAmount(value)
       const price = Number(value) / Number(formattedAmounts[Field.INPUT])
-      setLimitOrderPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
+      setStopLossPrice(price === Infinity || isNaN(price) ? '' : price.toFixed(2))
     }
   }
 
@@ -181,12 +180,12 @@ const LimitOrder = () => {
       const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
       return price === Infinity || isNaN(price) ? '' : price.toFixed(6)
     }
-    return limitOrderPrice
-  }, [inputFocused, limitOrderPrice, formattedAmounts])
+    return stopLossPrice
+  }, [inputFocused, stopLossPrice, formattedAmounts])
 
   const realOutputValue = useMemo(
-    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount),
-    [inputFocused, formattedAmounts, outputMinAmount]
+    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMaxAmount),
+    [inputFocused, formattedAmounts, outputMaxAmount]
   )
 
   const handleTypeInput = useCallback(
@@ -202,9 +201,12 @@ const LimitOrder = () => {
     trade,
     allowedSlippage,
     recipient,
-    'limit-order',
-    outputMinAmount
+    'stop-loss',
+    outputMaxAmount
   )
+  /**
+  * End - Autonomy Stop Loss section
+  */
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
@@ -302,13 +304,11 @@ const LimitOrder = () => {
     [onCurrencySelection, checkForSyrup]
   )
 
-  document.title = 'SokuSwap | Limit Order'
-
-  const isMobile = window.innerWidth <= 500
+  document.title = 'SokuSwap | Swap'
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Limit Orders'} /> : <CardNav />}
+      <CardNav />
       {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
         <Toggle />
@@ -332,8 +332,8 @@ const LimitOrder = () => {
             realOutputAmount={realOutputValue}
           />
           <PageHeader
-            title={TranslateString(8, 'Limit Order')}
-            pagetype='autonomy'
+            title={TranslateString(8, 'Stop Loss')}
+            pagetype="autonomy"
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -378,12 +378,12 @@ const LimitOrder = () => {
               <AutoPriceInput
                 value={realPriceValue}
                 currentPrice={trade?.executionPrice.toSignificant(6)}
-                onChange={(value) => onLimitOrderValuesChange('price', value)}
+                onChange={(value) => onStopLossValuesChange('price', value)}
               />
               <CurrencyInputPanel
                 value={realOutputValue}
-                onUserInput={(value) => onLimitOrderValuesChange('output', value)}
-                label={independentField === Field.INPUT && !showWrap && trade ? 'Swap To ≈' : 'Swap To:'}
+                onUserInput={(value) => onStopLossValuesChange('output', value)}
+                label={independentField === Field.INPUT && !showWrap && trade ? 'Sell To (est.):' : 'Sell To:'}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
@@ -431,9 +431,9 @@ const LimitOrder = () => {
                           />
                         </RowBetween>
                         <AutoRow justify="flex-end">
-                          <ErrorText severity={limitOrderMarketStats > 0 ? 0 : 4}>
-                            {Math.abs(limitOrderMarketStats).toFixed(2)}%{' '}
-                            {limitOrderMarketStats > 0 ? 'above' : 'below'} market value
+                          <ErrorText severity={stopLossMarketStats < 0 ? 4 : 0}>
+                            {Math.abs(stopLossMarketStats).toFixed(2)}% {stopLossMarketStats > 0 ? 'above' : 'below'}{' '}
+                            market value
                           </ErrorText>
                         </AutoRow>
                       </>
@@ -470,7 +470,7 @@ const LimitOrder = () => {
                   <Button
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%', background: '#05195a' }}
+                    style={{ width: '48%' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (
@@ -503,13 +503,13 @@ const LimitOrder = () => {
                       !isValid ||
                       approval !== ApprovalState.APPROVED ||
                       (priceImpactSeverity > 3 && !isExpertMode) ||
-                      limitOrderMarketStats <= 0
+                      stopLossMarketStats <= 0
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      : `Place Stop Loss${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                   </Button>
                 </RowBetween>
               ) : (
@@ -532,7 +532,7 @@ const LimitOrder = () => {
                     !isValid ||
                     (priceImpactSeverity > 3 && !isExpertMode) ||
                     !!swapCallbackError ||
-                    limitOrderMarketStats <= 0
+                    stopLossMarketStats <= 0
                   }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
@@ -540,7 +540,7 @@ const LimitOrder = () => {
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact Too High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
+                      : `Place Stop Loss${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
@@ -548,11 +548,10 @@ const LimitOrder = () => {
             </BottomGrouping>
           </CardBody>
         </Wrapper>
-          <Text style={{ fontSize: 12, textAlign: 'center' }}>Powered By <a href="https://www.autonomynetwork.io/">Autonomy Network</a></Text>
       </AppBody>
-      <AutoHistory type="Limit" />
+      <AutoHistory type="Stop" />
     </>
   )
 }
 
-export default LimitOrder
+export default StopLoss
