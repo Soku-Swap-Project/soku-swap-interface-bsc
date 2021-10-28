@@ -32,22 +32,22 @@ const InputContainer = styled.div`
 `
 
 const StyledNumericalInput = styled(NumericalInput)<{ error?: boolean }>`
-    font-size: 1.25rem;
-    outline: none;
-    border: none;
-    flex: 1 1 auto;
-    background-color: ${({ theme }) => theme.colors.background};
-    transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
-    color: ${({ error, theme }) => (error ? theme.colors.failure : theme.colors.text)};
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 500;
-    width: 100%;
-    ::placeholder {
-        color: ${({ theme }) => theme.colors.textSubtle};
-    }
-    padding: 0px;
-    -webkit-appearance: textfield;
+  font-size: 1.25rem;
+  outline: none;
+  border: none;
+  flex: 1 1 auto;
+  background-color: ${({ theme }) => theme.colors.background};
+  transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
+  color: ${({ error, theme }) => (error ? theme.colors.failure : '#05195a')};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  width: 100%;
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.textSubtle};
+  }
+  padding: 0px;
+  -webkit-appearance: textfield;
 
   ::-webkit-search-decoration {
     -webkit-appearance: none;
@@ -63,13 +63,13 @@ const StyledNumericalInput = styled(NumericalInput)<{ error?: boolean }>`
   }
 `
 const CurrentPriceTag = styled.span`
-    border: 1px solid ${({ theme }) => theme.colors.primary};
-    border-radius: 24px;
-    font-size: 0.75rem;
-    padding: .125rem .375rem;
-    margin: 0 .75rem;
-    text-transform: uppercase;
-    cursor: pointer;
+  border: 1px solid #04bbfb;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  margin: 0 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
 `
 
 export default function AutoPriceInput({
@@ -95,27 +95,27 @@ export default function AutoPriceInput({
     [onChange]
   )
 
-    return (
-        <InputPanel id={id}>
-            <ContainerRow error={error}>
-                <InputContainer>
-                    <AutoColumn gap="md">
-                        <AutoRow>
-                            <Text color={theme.colors.text} fontWeight={500} fontSize="14px">
-                                Price
-                            </Text>
-                            <CurrentPriceTag onClick={() => !disabled && handleInput(currentPrice)}>Current</CurrentPriceTag>
-                        </AutoRow>
-                        <StyledNumericalInput
-                            className="price-input"
-                            placeholder="0.0"
-                            error={error}
-                            onUserInput={handleInput}
-                            value={value}
-                        />
-                    </AutoColumn>
-                </InputContainer>
-            </ContainerRow>
-        </InputPanel>
-    )
+  return (
+    <InputPanel id={id}>
+      <ContainerRow error={error}>
+        <InputContainer>
+          <AutoColumn gap="md">
+            <AutoRow>
+              <Text color={theme.colors.text} fontWeight={500} fontSize="14px">
+                Rate
+              </Text>
+              <CurrentPriceTag onClick={() => !disabled && handleInput(currentPrice)}>Current</CurrentPriceTag>
+            </AutoRow>
+            <StyledNumericalInput
+              className="price-input"
+              placeholder="0.0"
+              error={error}
+              onUserInput={handleInput}
+              value={value}
+            />
+          </AutoColumn>
+        </InputContainer>
+      </ContainerRow>
+    </InputPanel>
+  )
 }

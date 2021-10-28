@@ -41,7 +41,6 @@ import AutoPriceInput from 'components/autonomy/AutoPriceInput'
 import AutoHistory from 'components/autonomy/AutoHistory'
 import { ErrorText } from 'components/swap/styleds'
 import AppBody from '../AppBody'
-import WarningMessage from 'components/autonomy/Warning'
 import MobileHeader from 'components/MobileHeader'
 
 const LimitOrder = () => {
@@ -313,7 +312,7 @@ const LimitOrder = () => {
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
-      <WarningMessage />
+      {/* <WarningMessage /> */}
       <AppBody>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
@@ -333,7 +332,7 @@ const LimitOrder = () => {
           />
           <PageHeader
             title={TranslateString(8, 'Limit Order')}
-            pagetype='autonomy'
+            pagetype="autonomy"
             description={TranslateString(1192, 'Trade tokens in an instant')}
           />
           <CardBody>
@@ -509,7 +508,7 @@ const LimitOrder = () => {
                   >
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      : `Place Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                   </Button>
                 </RowBetween>
               ) : (
@@ -540,7 +539,7 @@ const LimitOrder = () => {
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact Too High`
-                      : `Place Limit Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
+                      : `Place Order${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
@@ -548,7 +547,10 @@ const LimitOrder = () => {
             </BottomGrouping>
           </CardBody>
         </Wrapper>
-          <Text style={{ fontSize: 12, textAlign: 'center' }}>Powered By <a href="https://www.autonomynetwork.io/">Autonomy Network</a></Text>
+        <Text style={{ fontSize: 12, textAlign: 'center' }}>
+          Powered By <a href="https://www.autonomynetwork.io/">Autonomy Network</a>
+        </Text>
+        <Text style={{ fontSize: 12, textAlign: 'center' }}>(BETA VERSION)</Text>
       </AppBody>
       <AutoHistory type="Limit" />
     </>
