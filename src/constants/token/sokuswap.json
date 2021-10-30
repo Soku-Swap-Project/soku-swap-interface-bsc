@@ -51,12 +51,28 @@
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
     },
     {
-      "name": "TasteNFT",
-      "symbol": "TASTE",
-      "address": "0xdb238123939637d65a03e4b2b485650b4f9d91cb",
+      "name": "Trilogy",
+      "symbol": "TRIL",
+      "address": "0x0483eb3abb59ceea52df156163918facbe2e4a55",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/HnDMtBn/trilogy-logo.jpg"
+    },
+    {
+      "name": "SafeCrypto",
+      "symbol": "SCO",
+      "address": "0x52b0718d151516756ad2c36be9b191cdc4f93f54",
       "chainId": 56,
       "decimals": 9,
-      "logoURI": "https://bscscan.com/token/images/tastenft_32.png"
+      "logoURI": "https://i.ibb.co/bNCZ7FY/Safe-Crypto-256x256.png"
+    },
+    {
+      "name": "BITGATTI",
+      "symbol": "BITGATTI",
+      "address": "0x60531d9dc6ca16ac18d43588d2845d69f8a8aa59",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bitgatti.com/200x200.png"
     },
     {
       "name": "Space Token",

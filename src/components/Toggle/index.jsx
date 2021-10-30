@@ -7,29 +7,19 @@ console.log(window.location)
 const origin = window.location.origin
 
 const Toggle = () => {
-  var defaultCheckedValue = ''
-  // change default check value to be displayed in check box depending on current window location 
-  if (window.location.href == `${origin}/ethereum/#/swap`) {
-    defaultCheckedValue = false
-  } else if (window.location.href == `${origin}/bsc/#/swap`) {
-    defaultCheckedValue = !false
-  } else if (window.location.href == `${origin}/bsc/#/limit-order`){
-    defaultCheckedValue = !false
-  }
-
   // If checked, add active class to either ETH or BSC
 
   const checkbox = document.getElementById('checkbox')
   const ethToggle = document.querySelector('.ethToggle')
   const bscToggle = document.querySelector('.bscToggle')
 
-/*    if (ethToggle?.classList == ' toggleActive') {
+  if (ethToggle?.classList == ' toggleActive') {
     ethToggle?.classList.remove('toggleActive')
-  }  */
+  }
 
   checkbox?.addEventListener('change', function () {
-    // Check if toggle switch is on ETH, if eth change window to bsc 
-    if (window.location.href = `${origin}/ethereum/#/swap`) {
+    // Check if toggle switch is on BSC
+    if (this.checked) {
       window.location.href = `${origin}/bsc/#/swap`
       // console.log('Show BSC Swap')
       for (let i = 0; i < bscToggle?.classList.length; i++) {
@@ -37,14 +27,14 @@ const Toggle = () => {
           return
         } else {
           if (ethToggle != null && bscToggle != null) {
-            bscToggle.className = 'form-check-label bscToggle'
+            bscToggle.className = 'form-check-label bscToggle toggleActive'
             ethToggle.className = 'form-check-label ethToggle'
           }
         }
       }
     }
-    // Check if toggle switch is on bsc, if bsc change window to eth 
-    else if (window.location.href = `${origin}/bsc/#/swap`) {
+    // Check if toggle switch is on ETH
+    else {
       window.location.href = `${origin}/ethereum/#/swap`
       // console.log('Show ETH Swap')
       for (let i = 0; i < ethToggle?.classList.length; i++) {
@@ -52,19 +42,8 @@ const Toggle = () => {
           return
         } else {
           if (ethToggle != null && bscToggle != null) {
-            ethToggle.className = 'form-check-label ethToggle '
+            ethToggle.className = 'form-check-label ethToggle toggleActive'
             bscToggle.className = 'form-check-label bscToggle'
-          }
-        }
-      }
-    } else if (window.location.href == `${origin}/bsc/#/limit-order`){
-      for (let i = 0; i < ethToggle?.classList.length; i++) {
-        if (bscToggle.classList[i] == 'toggleActive') {
-          return
-        } else {
-          if (ethToggle != null && bscToggle != null) {
-            ethToggle.className = 'form-check-label ethToggle'
-            bscToggle.className = 'form-check-label bscToggle '
           }
         }
       }
@@ -75,10 +54,10 @@ const Toggle = () => {
     <div className="sokuswap__toggleContainer">
       <p className="form-check-label ethToggle">ETH</p>
       <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" defaultChecked={defaultCheckedValue} />
+        <CheckBox id="checkbox" type="checkbox" defaultChecked={!false} />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
-      <p className="form-check-label bscToggle">BSC</p>
+      <p className="form-check-label bscToggle toggleActive">BSC</p>
     </div>
   )
 }

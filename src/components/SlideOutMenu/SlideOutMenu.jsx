@@ -121,9 +121,9 @@ class SlideOutMenu extends React.Component {
                 <a className="nav_link" href={`${origin}/bsc/farms`}>
                   <li>Farms</li>
                 </a>
-                {/* <a className="nav_link" href={`${origin}/bsc/staking`}>
+                <a className="nav_link" href={`${origin}/bsc/staking`}>
                   <li>Staking</li>
-                </a> */}
+                </a>
               </div>
             </ul>
           </div>

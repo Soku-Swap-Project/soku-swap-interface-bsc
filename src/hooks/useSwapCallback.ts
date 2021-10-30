@@ -34,6 +34,7 @@ interface FailedCall {
   call: SwapCall
   error: Error
 }
+
 type EstimatedSwapCall = SuccessfulCall | FailedCall
 /**
  * Returns the swap calls that can be used to make the trade
@@ -398,7 +399,7 @@ export function useSwapCallback(
                           'This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.'
                         break
                       default:
-                        errorMessage = `The transaction cannot succeed due to error: ${callError.reason || callError.data?.message || callError.message}. This is probably an issue with one of the tokens you are swapping.`
+                        errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
                     }
                     return { call, error: new Error(errorMessage) }
                   })
@@ -447,9 +448,13 @@ export function useSwapCallback(
           }
 
           // @ts-ignore
-          if (TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(trade.inputAmount.currency.address || 'NonAddress')) {
-            throw new Error("Fee On Transfer isn't supported for limits and stops")
-          }
+          // if (
+          //   TRASNFER_FEE_TOKEN_ADDRESS_LIST[chainId || ChainId.MAINNET].includes(
+          //     trade.inputAmount.currency.name || 'NonAddress'
+          //   )
+          // ) {
+          //   throw new Error("Fee On Transfer isn't supported for limits and stops")
+          // }
         }
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
