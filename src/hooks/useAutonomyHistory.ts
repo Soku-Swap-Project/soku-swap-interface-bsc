@@ -31,32 +31,6 @@ export default function useTransactionHistory() {
 		return false
 	}, [executes])
 
-
-	const parseOrders = useCallback((allOrders: any[]) => {
-		return allOrders.map((order: any) => ({
-			method: methodSelector(order.get('callData')),
-			callData: order.get('callData'),
-			time: order.get('block_timestamp').toUTCString(),
-			id: order.get('uid'),
-			inputToken: findInputToken(order.get('callData')),
-			outputToken: findOutPutToken(order.get('callData')),
-			inputAmount: findInputAmount(order.get('callData'), order.get('ethForCall')),
-			outputAmount: findOutputAmount(order.get('callData')),
-			requester: order.get('user'),
-			target: order.get('target'),
-			referer: order.get('referer'),
-			initEthSent: order.get('initEthSent'),
-			ethForCall: order.get('ethForCall'),
-			verifySender: order.get('verifyUser'),
-			payWithAuto: order.get('payWithAUTO'),
-			typeof: typeSelector(order.get('callData')),
-			insertFeeAmount: order.get('insertFeeAmount'),
-			status: canCancel(order.get('uid')) ? 'cancelled' : wasExecuted(order.get('uid')) ? 'executed' : 'open',
-			// execution: wasExecuted(order.get('uid'))
-		})).filter((order: any) => order.callData.includes(ROUTER_ADDRESS.toLowerCase().substr(2)))
-	}, [canCancel, wasExecuted])
-
-
 	function methodSelector(orderData: any){
 		const sliced = orderData.slice(0, 10)
 		if (sliced === "0x873cf9f3" || sliced === "0x673f7821") return "Limit -> BNB for Tokens"
@@ -239,7 +213,39 @@ export default function useTransactionHistory() {
 			ret = decoded[7][0];
 		}
 		return ret
-	} 
+	}
+	
+	const parseOrders = useCallback((allOrders: any[]) => {
+		return  allOrders.map((order: any) => ({
+			method: methodSelector(order.get('callData')),
+			callData: order.get('callData'),
+			time: order.get('block_timestamp').toUTCString(),
+			id: order.get('uid'),
+			inputToken: findInputToken(order.get('callData')),
+			outputToken: findOutPutToken(order.get('callData')),
+			inputAmount: findInputAmount(order.get('callData'), order.get('ethForCall')),
+			outputAmount: findOutputAmount(order.get('callData')),
+			requester: order.get('user'),
+			target: order.get('target'),
+			referer: order.get('referer'),
+			initEthSent: order.get('initEthSent'),
+			ethForCall: order.get('ethForCall'),
+			verifySender: order.get('verifyUser'),
+			payWithAuto: order.get('payWithAUTO'),
+			typeof: typeSelector(order.get('callData')),
+			insertFeeAmount: order.get('insertFeeAmount'),
+			status: canCancel(order.get('uid')) ? 'cancelled' : wasExecuted(order.get('uid')) ? 'executed' : 'open',
+			// execution: wasExecuted(order.get('uid'))
+		})).filter((order: any) => order.callData.includes(ROUTER_ADDRESS.toLowerCase().substr(2))).sort((first: any, second: any) => {
+			if (parseInt(first.id) < parseInt(second.id)) {
+				return 1;
+			}
+			if (parseInt(first.id) > parseInt(second.id)) {
+				return -1;
+			}
+			return 0;
+		})
+	}, [canCancel, wasExecuted])
 
 	useEffect(() => {
 		async function init() {
@@ -247,6 +253,9 @@ export default function useTransactionHistory() {
 			const queryCancels = new Moralis.Query("RegistryCancelRequestsnew");
 			const queryExecutes = new Moralis.Query("RegistryExecutedRequestsnew")
 			queryRequests.equalTo("user", account?.toLocaleLowerCase());
+			queryRequests.limit(10000)
+			queryCancels.limit(10000)
+			queryExecutes.limit(10000)
 			const registryRequests = await queryRequests.find();
 			const registryCancelRequests = await queryCancels.find();
 			const registryExecutedRequests = await queryExecutes.find();
