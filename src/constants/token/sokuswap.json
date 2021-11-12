@@ -67,6 +67,14 @@
       "logoURI": "https://i.ibb.co/bNCZ7FY/Safe-Crypto-256x256.png"
     },
     {
+      "name": "Moonjack",
+      "symbol": "Moonjack",
+      "address": "0x44f3f45ea10ce427cd69f95073942c5632422def",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://moonjacks.io/wp-content/uploads/2021/07/Astro-768x768-1-e1635963878639.png"
+    },
+    {
       "name": "BITGATTI",
       "symbol": "BITGATTI",
       "address": "0x60531d9dc6ca16ac18d43588d2845d69f8a8aa59",
