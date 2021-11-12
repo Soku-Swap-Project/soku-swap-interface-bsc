@@ -33,6 +33,7 @@ import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 
 import { LinkStyledButton } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import Toggle from 'components/Toggle'
+import ToggleNew from 'components/ToggleNew'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
@@ -88,13 +89,13 @@ const Swap = () => {
 
   const parsedAmounts = showWrap
     ? {
-        [Field.INPUT]: parsedAmount,
-        [Field.OUTPUT]: parsedAmount,
-      }
+      [Field.INPUT]: parsedAmount,
+      [Field.OUTPUT]: parsedAmount,
+    }
     : {
-        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-      }
+      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+    }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -265,7 +266,8 @@ const Swap = () => {
       {isMobile ? <MobileHeader page={'Exchange'} /> : <CardNav />}
       {/* Toggle Switch */}
       <div className="sokuswap__toggleContainer">
-        <Toggle />
+        {/* <Toggle /> */}
+        <ToggleNew />
       </div>
       <AppBody>
         <Wrapper id="swap-page">
