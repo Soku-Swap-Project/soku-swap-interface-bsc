@@ -84,7 +84,7 @@ const Menu: React.FC = (props) => {
             <a className="nav_link" href="https://www.binance.org/en/bridge">
               <li>Bridge</li>
             </a>
-            <a className="nav_link" href={`${origin}/bsc/farms`}>
+            <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
               <li>Farms</li>
             </a>
             <a className="nav_link" href={`${origin}/bsc/staking`}>
