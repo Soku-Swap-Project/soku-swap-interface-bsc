@@ -191,7 +191,7 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
-                    <Route exact strict path="/ethereum" component={Maintenance} />
+                    <Route exact strict path="/maintenance" component={Maintenance} />
 
                     <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}

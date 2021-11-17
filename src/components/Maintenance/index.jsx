@@ -21,7 +21,7 @@ function Maintenance() {
       <div style={{ padding: '20px' }}>
         <CardNav />
         <h1 style={{ color: '#fff', opacity: '0.95', fontSize: '20px', fontWeight: '900', paddingBottom: '50px' }}>
-          Undergoing maintenance to deliver the best experience to our users.
+          Undergoing maintenance to deliver the best experience to our users on Ethereum Mainnet.
         </h1>
         <Button className="maintenance-button" as={Link} to="/swap">
           Trade on Binance Smart Chain

@@ -39,7 +39,7 @@ const Toggle = () => {
     // Check if toggle switch is on ETH
     else {
       // window.location.href = `${origin}/ethereum/#/swap`
-      history.push('/ethereum')
+      history.push('/maintenance')
 
       // console.log('Show ETH Swap')
       for (let i = 0; i < ethToggle?.classList.length; i++) {
