@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 /* eslint-disable */
 
@@ -7,8 +8,9 @@ console.log(window.location)
 const origin = window.location.origin
 
 const Toggle = () => {
-  // If checked, add active class to either ETH or BSC
+  const history = useHistory()
 
+  // If checked, add active class to either ETH or BSC
   const checkbox = document.getElementById('checkbox')
   const ethToggle = document.querySelector('.ethToggle')
   const bscToggle = document.querySelector('.bscToggle')

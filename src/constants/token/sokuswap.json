@@ -75,6 +75,22 @@
       "logoURI": "https://moonjacks.io/wp-content/uploads/2021/07/Astro-768x768-1-e1635963878639.png"
     },
     {
+      "name": "Moonlight Token",
+      "symbol": "MOONLIGHT",
+      "address": "0xb1ced2e320e3f4c8e3511b1dc59203303493f382",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/moonlighttoken_32.png"
+    },
+    {
+      "name": "HODL",
+      "symbol": "HODL",
+      "address": "0x0e9766df73973abcfedde700497c57110ee5c301",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://hodltoken.net/wp-content/uploads/2021/10/hodl-logo.png"
+    },
+    {
       "name": "BITGATTI",
       "symbol": "BITGATTI",
       "address": "0x60531d9dc6ca16ac18d43588d2845d69f8a8aa59",
