@@ -11,6 +11,7 @@ import { useWeb3React } from '@web3-react/core'
 import detectEthereumProvider from '@metamask/detect-provider'
 
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import Maintenance from 'components/Maintenance'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -190,6 +191,8 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
+                    <Route exact strict path="/ethereum" component={Maintenance} />
+
                     <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />

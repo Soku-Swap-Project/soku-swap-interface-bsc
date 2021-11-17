@@ -1,0 +1,8 @@
+.maintenance-button {
+    background: #04bbfb;
+    border-radius: 20px;
+    padding: 12px;
+    color: white;
+    font-weight: 900;
+    font-size: 14px;
+}

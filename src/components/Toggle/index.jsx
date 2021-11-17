@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom'
 
 /* eslint-disable */
 
@@ -7,8 +8,9 @@ console.log(window.location)
 const origin = window.location.origin
 
 const Toggle = () => {
-  // If checked, add active class to either ETH or BSC
+  const history = useHistory()
 
+  // If checked, add active class to either ETH or BSC
   const checkbox = document.getElementById('checkbox')
   const ethToggle = document.querySelector('.ethToggle')
   const bscToggle = document.querySelector('.bscToggle')
@@ -20,7 +22,8 @@ const Toggle = () => {
   checkbox?.addEventListener('change', function () {
     // Check if toggle switch is on BSC
     if (this.checked) {
-      window.location.href = `${origin}/bsc/#/swap`
+      // window.location.href = `${origin}/bsc/#/swap`
+      history.push('/')
       // console.log('Show BSC Swap')
       for (let i = 0; i < bscToggle?.classList.length; i++) {
         if (bscToggle.classList[i] == 'toggleActive') {
@@ -35,7 +38,9 @@ const Toggle = () => {
     }
     // Check if toggle switch is on ETH
     else {
-      window.location.href = `${origin}/ethereum/#/swap`
+      // window.location.href = `${origin}/ethereum/#/swap`
+      history.push('/ethereum')
+
       // console.log('Show ETH Swap')
       for (let i = 0; i < ethToggle?.classList.length; i++) {
         if (ethToggle.classList[i] == 'toggleActive') {
