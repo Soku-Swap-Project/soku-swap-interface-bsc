@@ -12,6 +12,7 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import Maintenance from 'components/Maintenance'
+import ComingSoon from 'pages/ComingSoon'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -192,6 +193,7 @@ export default function App() {
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
                     {/* <Route exact strict path="/maintenance" component={Maintenance} /> */}
+                    <Route exact strict path="/bsc/bridge" component={ComingSoon} />
 
                     <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}

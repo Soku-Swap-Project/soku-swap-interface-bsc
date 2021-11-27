@@ -115,9 +115,9 @@ class SlideOutMenu extends React.Component {
                 <NavLink className="nav_link" onClick={this.toggleMenu} activeClassName="active" to="/pool">
                   <li>Pool</li>
                 </NavLink>
-                <a className="nav_link" href="https://www.binance.org/en/bridge">
+                <NavLink className="nav_link" activeClassName="active" to="/bsc/bridge">
                   <li>Bridge</li>
-                </a>
+                </NavLink>
                 <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
                   <li>Farms</li>
                 </a>

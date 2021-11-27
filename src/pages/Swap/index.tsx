@@ -397,7 +397,12 @@ const Swap = () => {
               {!account ? (
                 <ConnectWalletButton />
               ) : showWrap ? (
-                <Button disabled={Boolean(wrapInputError)} onClick={onWrap} width="100%">
+                <Button
+                  style={{ background: '#04bbfb' }}
+                  disabled={Boolean(wrapInputError)}
+                  onClick={onWrap}
+                  width="100%"
+                >
                   {wrapInputError ??
                     (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
                 </Button>

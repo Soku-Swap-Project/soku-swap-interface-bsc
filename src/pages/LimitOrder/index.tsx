@@ -333,7 +333,7 @@ const LimitOrder = () => {
           <PageHeader
             title={TranslateString(8, 'Limit Order')}
             pagetype="autonomy"
-            description={TranslateString(1192, 'Trade tokens in an instant')}
+            description={TranslateString(1192, 'Place a limit order')}
           />
           <CardBody>
             <AutoColumn gap="md">
