@@ -51,6 +51,70 @@
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
     },
     {
+      "name": "Meta Shiba",
+      "symbol": "METASHIB",
+      "address": "0x8aa621be2c5f3672303c309bfb0dd4018979b970",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/hWQ26fz/Meta-Shiba.png"
+    },
+    {
+      "name": "Mogul Stars",
+      "symbol": "STARS",
+      "address": "0xbd83010eb60f12112908774998f65761cf9f6f9a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/jTVq265/mogul-stars-LOGO.png"
+    },
+    {
+      "name": "Digital Bank of Africa",
+      "symbol": "DBA",
+      "address": "0x1006ea3289b833b6720aaa82746990ec77de8c36",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://i.ibb.co/2KvpQbM/DBA-icon-black-08-01.jpg"
+    },
+    {
+      "name": "Yield Gaming",
+      "symbol": "YIELD",
+      "address": "0x941b823652b2e921e389845a78414e23a4724b43",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/GfDL0ZM/SAVE-20211106-204926.png"
+    },
+    {
+      "name": "Adamant",
+      "symbol": "ADMC",
+      "address": "0xa55ef2fb2b7b6a60371fd3def9b806e74a48be69",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/KwZ7zNS/ADAMANT-LOGO-1600-X1600-png.png"
+    },
+    {
+      "name": "BUMooN",
+      "symbol": "BUMN",
+      "address": "0x3aeff4e27e1f9144ed75ba65a80bdfee345f413e",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/18TzVwj/BUMOON.jpg"
+    },
+    {
+      "name": "CZFarm",
+      "symbol": "CZF",
+      "address": "0x7c1608C004F20c3520f70b924E2BfeF092dA0043",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/V3ts0zC/CZODIAC.jpg"
+    },
+    {
+      "name": "RoArts Token",
+      "symbol": "ROAR",
+      "address": "0x3046f5cd17cb6a7f5bbcc3a23309dd32106c9116",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://imgyukle.com/f/2021/11/26/k2IgV8.png"
+    },
+    {
       "name": "Trilogy",
       "symbol": "TRIL",
       "address": "0x0483eb3abb59ceea52df156163918facbe2e4a55",
