@@ -37,7 +37,11 @@ export default function CurrencyLogo({
 
     if (currency instanceof Token) {
       if (currency instanceof WrappedTokenInfo) {
-        return [...uriLocations, `images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
+        return [
+          ...uriLocations,
+          `https://app.sokuswap.finance/bsc/images/coins/${currency?.address ?? 'token'}.png`,
+          getTokenLogoURL(currency.address),
+        ]
       }
 
       return [`images/coins/${currency?.address ?? 'token'}.png`, getTokenLogoURL(currency.address)]
