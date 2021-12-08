@@ -103,6 +103,26 @@ const Marginer = styled.div`
 
 declare let window: any
 
+const loadNetwork = async () => {
+  const provider = window.ethereum as any
+  await provider.request({
+    method: 'wallet_addEthereumChain',
+    params: [
+      {
+        chainId: '0x38',
+        chainName: 'Binance Smart Chain',
+        rpcUrls: ['https://bsc-dataseed.binance.org/'],
+        nativeCurrency: {
+          name: 'BNB',
+          symbol: 'BNB',
+          decimals: 18,
+        },
+        blockExplorerUrls: ['https://bscscan.com'],
+      },
+    ],
+  })
+}
+
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
@@ -158,6 +178,10 @@ export default function App() {
   }, [selectedLanguage])
 
   useGetDocumentTitlePrice()
+
+  useEffect(() => {
+    loadNetwork()
+  }, [])
 
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
