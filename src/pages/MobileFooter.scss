@@ -58,7 +58,7 @@ $mobile_Height: 930px;
   background: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  z-index: 99999;
+  // z-index: 99999;
 
   @include desktop {
     display: none;

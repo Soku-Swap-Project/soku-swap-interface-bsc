@@ -16,7 +16,7 @@
   background: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  z-index: 99999;
+  /* z-index: 99999; */
 }
 
 @media (min-width: 901px) {

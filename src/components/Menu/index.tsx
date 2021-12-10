@@ -4,7 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import { ChainId } from '@pancakeswap-libs/sdk-v2'
 /* eslint-disable */
-import transakSDK from '@transak/transak-sdk'
 
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
