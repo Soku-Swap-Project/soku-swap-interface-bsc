@@ -217,8 +217,7 @@ export default function App() {
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
                     {/* <Route exact strict path="/maintenance" component={Maintenance} /> */}
-                    <Route exact strict path="/bsc/bridge" component={ComingSoon} />
-
+                    <Route exact strict path="/bridge" component={ComingSoon} />
                     <Route exact strict path="/limit-order" component={LimitOrder} />
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />

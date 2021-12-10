@@ -1,7 +1,8 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/css'
 import { NavLink } from 'react-router-dom'
+import useTransak from 'hooks/useTransak'
 
 import '../Menu/Menu.css'
 
@@ -80,16 +81,20 @@ const menuOverlay = css`
 class SlideOutMenu extends React.Component {
   state = {
     isMenuOpen: false,
+    closed: false,
   }
 
   toggleMenu = () => this.setState(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen }))
 
   render() {
     const { isMenuOpen } = this.state
+    const { launchTransak } = useTransak()
     return (
       <nav className="mobile_navbar">
         <div className="mobile_menu_logo">
-          <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
+          <NavLink to="/swap">
+            <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
+          </NavLink>
         </div>
 
         <div className={`${menuBtn} ${isMenuOpen ? 'closer' : null}`} onClick={this.toggleMenu}>
@@ -115,7 +120,7 @@ class SlideOutMenu extends React.Component {
                 <NavLink className="nav_link" onClick={this.toggleMenu} activeClassName="active" to="/pool">
                   <li>Pool</li>
                 </NavLink>
-                <NavLink className="nav_link" activeClassName="active" to="/bsc/bridge">
+                <NavLink className="nav_link" activeClassName="active" to="/bridge">
                   <li>Bridge</li>
                 </NavLink>
                 <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
@@ -123,6 +128,15 @@ class SlideOutMenu extends React.Component {
                 </a>
                 <a className="nav_link" href={`${origin}/bsc/staking`}>
                   <li>Staking</li>
+                </a>
+                <a
+                  className="nav_link"
+                  onClick={() => {
+                    this.toggleMenu()
+                    launchTransak()
+                  }}
+                >
+                  <li>Deposit</li>
                 </a>
               </div>
             </ul>
