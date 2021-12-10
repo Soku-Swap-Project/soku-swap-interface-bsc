@@ -92,7 +92,9 @@ class SlideOutMenu extends React.Component {
     return (
       <nav className="mobile_navbar">
         <div className="mobile_menu_logo">
-          <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
+          <NavLink to="/swap">
+            <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
+          </NavLink>
         </div>
 
         <div className={`${menuBtn} ${isMenuOpen ? 'closer' : null}`} onClick={this.toggleMenu}>
@@ -128,9 +130,9 @@ class SlideOutMenu extends React.Component {
                   <li>Staking</li>
                 </a>
                 <a
-                  className={`nav_link ${closed ? null : null}`}
+                  className="nav_link"
                   onClick={() => {
-                    this.setState({ closed: true })
+                    this.toggleMenu()
                     launchTransak()
                   }}
                 >
