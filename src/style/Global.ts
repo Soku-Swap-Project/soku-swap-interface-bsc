@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Poppins", sans-serif;
   }
 
+  .transak_modal {
+    width: 95% !important;
+  }
+
   button {
     box-shadow: none !important;
   }

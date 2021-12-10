@@ -1,7 +1,8 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/css'
 import { NavLink } from 'react-router-dom'
+import useTransak from 'hooks/useTransak'
 
 import '../Menu/Menu.css'
 
@@ -80,12 +81,14 @@ const menuOverlay = css`
 class SlideOutMenu extends React.Component {
   state = {
     isMenuOpen: false,
+    closed: false,
   }
 
   toggleMenu = () => this.setState(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen }))
 
   render() {
     const { isMenuOpen } = this.state
+    const { launchTransak } = useTransak()
     return (
       <nav className="mobile_navbar">
         <div className="mobile_menu_logo">
@@ -123,6 +126,15 @@ class SlideOutMenu extends React.Component {
                 </a>
                 <a className="nav_link" href={`${origin}/bsc/staking`}>
                   <li>Staking</li>
+                </a>
+                <a
+                  className={`nav_link ${closed ? null : null}`}
+                  onClick={() => {
+                    this.setState({ closed: true })
+                    launchTransak()
+                  }}
+                >
+                  <li>Deposit</li>
                 </a>
               </div>
             </ul>

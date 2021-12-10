@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import { ChainId } from '@pancakeswap-libs/sdk-v2'
+/* eslint-disable */
+import transakSDK from '@transak/transak-sdk'
 
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
@@ -14,6 +16,7 @@ import useTheme from 'hooks/useTheme'
 import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
+import useTransak from 'hooks/useTransak'
 import links from './config'
 
 import './Menu.css'
@@ -23,11 +26,7 @@ import './Menu.css'
 const Menu: React.FC = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
-  // const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-  // const { isDark, toggleTheme } = useTheme()
-  // const priceData = useGetPriceData()
-  // const cakePriceUsd = priceData ? Number(priceData.prices.Cake) : undefined
-  // const profile = useGetLocalProfile()
+  const { launchTransak } = useTransak()
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   const truncatedFirstHalf = account?.substring(0, 5)
@@ -89,6 +88,9 @@ const Menu: React.FC = (props) => {
             </a>
             <a className="nav_link" href={`${origin}/bsc/staking`}>
               <li>Staking</li>
+            </a>
+            <a className="nav_link" onClick={() => launchTransak()}>
+              <li>Deposit</li>
             </a>
             {/* <NavLink className="nav_link" to="/soku" activeClassName="active">
               <li>SOKU</li>
