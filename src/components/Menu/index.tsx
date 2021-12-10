@@ -79,7 +79,7 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>
-            <NavLink className="nav_link" activeClassName="active" to="/bsc/bridge">
+            <NavLink className="nav_link" activeClassName="active" to="/bridge">
               <li>Bridge</li>
             </NavLink>
             <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
