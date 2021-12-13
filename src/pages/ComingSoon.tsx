@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, Heading, Text, LogoIcon } from '@pancakeswap-libs/uikit'
 
@@ -6,7 +7,7 @@ const StyledNotFound = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 64px);
+  height: calc(90vh - 64px);
   justify-content: center;
 `
 
@@ -22,9 +23,11 @@ const NotFound = () => {
       <Text fontSize="20px" color="white" mb="24px">
         Coming Soon!
       </Text>
-      <Button style={{ background: '#04bbfb' }} as="a" href="/" scale="sm">
-        Back Home
-      </Button>
+      <NavLink to="/">
+        <Button style={{ background: '#04bbfb' }} scale="sm">
+          Back Home
+        </Button>
+      </NavLink>
     </StyledNotFound>
   )
 }
