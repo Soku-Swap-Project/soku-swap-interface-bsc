@@ -13,8 +13,22 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  nav[class="_3VwKb  "] {
+    width: 100%;
+  }
+
   * {
     font-family: "Poppins", sans-serif;
+  }
+
+  ._12bnP {
+    color: white;
+    background: #05195a
+  }
+
+  .V1BVY {
+    background: #04bbfb;
+    border-radius: 12px;
   }
 
   .transak_modal {
