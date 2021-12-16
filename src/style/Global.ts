@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  span[class="_1FGMl "] {
+    margin-left: 0 !important;
+  }
+
   * {
     font-family: "Poppins", sans-serif;
   }
