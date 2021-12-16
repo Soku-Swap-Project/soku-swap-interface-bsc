@@ -17,8 +17,20 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
-  span[class="_1FGMl "] {
-    margin-left: 0 !important;
+  span[class="_1FGMl "], img[class="_1FGMl _1MoP5 _217Ba"] {
+    margin-left: 3px !important;
+  }
+
+  ._2BWco {
+    flex-wrap: wrap !important;
+  }
+
+  .aOzUL {
+    padding-top: 10px;
+  }
+
+  span[class="_1HyGd"], div[class="_2humh  _2rE0A F7Ems"] {
+    display: none;
   }
 
   * {
