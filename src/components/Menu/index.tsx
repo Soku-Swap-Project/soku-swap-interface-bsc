@@ -82,7 +82,7 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" activeClassName="active" to="/bridge">
               <li>Bridge</li>
             </NavLink>
-            <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
+            <a className="nav_link" href={`${origin}/bsc/farms`}>
               <li>Farms</li>
             </a>
             <a className="nav_link" href={`${origin}/bsc/staking`}>
@@ -91,6 +91,9 @@ const Menu: React.FC = (props) => {
             <a className="nav_link" onClick={() => launchTransak()}>
               <li>Deposit</li>
             </a>
+            {/* <NavLink className="nav_link" activeClassName="active" to="/deposit">
+              <li>Deposit</li>
+            </NavLink> */}
             {/* <NavLink className="nav_link" to="/soku" activeClassName="active">
               <li>SOKU</li>
             </NavLink> */}

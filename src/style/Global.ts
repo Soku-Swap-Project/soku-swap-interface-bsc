@@ -13,8 +13,46 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  nav[class="_3VwKb  "] {
+    width: 100%;
+  }
+
+  span[class="_1FGMl "], img[class="_1FGMl _1MoP5 _217Ba"] {
+    margin-left: 3px !important;
+  }
+
+  span[class="_1HyGd"], div[class="_2humh _2rE0A F7Ems"] {
+    display: block !important;
+  }
+
+  .FJ_pt {
+      background-color: #04bbfb38 !important;
+  }
+
+  ._2BWco {
+    flex-wrap: wrap !important;
+  }
+
+  .aOzUL {
+    padding-top: 10px;
+  }
+
+  span[class="_1HyGd"], div[class="_2humh  _2rE0A F7Ems"] {
+    display: none;
+  }
+
   * {
     font-family: "Poppins", sans-serif;
+  }
+
+  ._12bnP {
+    color: white;
+    background: #05195a
+  }
+
+  .V1BVY {
+    background: #04bbfb;
+    border-radius: 12px;
   }
 
   .transak_modal {

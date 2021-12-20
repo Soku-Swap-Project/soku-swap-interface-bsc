@@ -1,0 +1,31 @@
+.onramper_container {
+  width: 42rem;
+  height: 600px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  max-width: 420px;
+}
+
+div[class='_2bouZ'] {
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+footer[class='GR8Uc'] {
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+div[class='_2bouZ'],
+footer[class='GR8Uc'] {
+  position: relative;
+  color: #05195a;
+  box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
+}
+@media (max-width: 650px) {
+  .onramper_container {
+    width: 80vw;
+    height: 70vh;
+    padding-top: 0;
+  }
+}
