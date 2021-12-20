@@ -21,6 +21,14 @@ const GlobalStyle = createGlobalStyle`
     margin-left: 3px !important;
   }
 
+  span[class="_1HyGd"], div[class="_2humh _2rE0A F7Ems"] {
+    display: block !important;
+  }
+
+  .FJ_pt {
+      background-color: #04bbfb38 !important;
+  }
+
   ._2BWco {
     flex-wrap: wrap !important;
   }
