@@ -40,7 +40,6 @@ const Menu: React.FC = (props) => {
 
   const openHiddenLinks = () => {
     const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
-    // console.log(hiddenLinks)
     if (hiddenLinks[0]?.id === 'hidden_navLinks') {
       hiddenLinks[0].id = 'open'
     } else if (hiddenLinks[0]?.id === 'open') {
