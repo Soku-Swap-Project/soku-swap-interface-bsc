@@ -51,6 +51,126 @@
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
     },
     {
+      "name": "Canada Coin v2",
+      "symbol": "CADAX",
+      "address": "0x3Fd6068E1E85017aBedaC22B8eFEfe8A1588678D",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://static.wixstatic.com/media/a22c82_9331b91a…/a22c82_9331b91adba34da884311f64d8268eea~mv2.webp"
+    },
+    {
+      "name": "ELEF WORLD",
+      "symbol": "ELEF",
+      "address": "0xd4d03e510b382244b2289637b5f7d9067bcaae85",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://static.wixstatic.com/media/a22c82_9331b91a…/a22c82_9331b91adba34da884311f64d8268eea~mv2.webp"
+    },
+    {
+      "name": "WALLET PAY",
+      "symbol": "XPAY",
+      "address": "0x43b72f3b99564257671d5c47df663585344c1459",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/walletapp_32.png"
+    },
+    {
+      "name": "Crypto Shield",
+      "symbol": "SHIELD",
+      "address": "0xc944273b805debd35c63011943abc5ab9eddb8e3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://xp.io/storage/2LTmukOm.png"
+    },
+    {
+      "name": "Moon Rocket Coin",
+      "symbol": "MRC",
+      "address": "0x9299C132c34E691edea58102d276A61a0a622dBD",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/moonrocketcoin_32.png"
+    },
+    {
+      "name": "Squoge",
+      "symbol": "SQC",
+      "address": "0xdc95937F687F74f8A8a33bb79F5676914eF4B6F2",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://squoge.com/images/png/200x200.png"
+    },
+    {
+      "name": "Predictcoin",
+      "symbol": "PRED",
+      "address": "0xbdd2e3fdb879aa42748e9d47b7359323f226ba22",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/s9gcmNt/icon-1-2-5.png"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "symbol": "AI",
+      "address": "0x4c403b1879aa6a79ba9c599a393ccc5d9fd2e788",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://artificialintelligence.finance/wp-content/uploads/2021/10/Adsiz-tasarim-3.png"
+    },
+    {
+      "name": "NFTBOOKS",
+      "symbol": "NFTBS",
+      "address": "0x3279510e89600ee1767a037dbd0ad49c974063ae",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/nftbooksV2_32a.png"
+    },
+    {
+      "name": "Bozkurt Token",
+      "symbol": "BT",
+      "address": "0x0e5366c4b3eb849a711932c027fb0d2d2d834846",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://www.bozkurttoken.com/wp-content/uploads/2021/08/logo1.png"
+    },
+    {
+      "name": "PEAKDEFI",
+      "symbol": "PEAK",
+      "address": "0x630d98424efe0ea27fb1b3ab7741907dffeaad78",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://bscscan.com/token/images/peakdefi_32.png"
+    },
+    {
+      "name": "Plant vs Undead Token",
+      "symbol": "PVU",
+      "address": "0x31471e0791fcdbe82fbf4c44943255e923f1b794",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/plantvsundead_32.png"
+    },
+    {
+      "name": "Tardigrades.Finance",
+      "symbol": "TRDG",
+      "address": "0x92a42db88ed0f02c71d439e55962ca7cab0168b5",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/tardigrades_32.png?=v4"
+    },
+    {
+      "name": "Cow Inu",
+      "symbol": "CI",
+      "address": "0xceafc372af7fddccbfd28f10329710e58bb2f970",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://www.cowinu.com/assets/images/icon/logo_light.png"
+    },
+    {
+      "name": "Shoot",
+      "symbol": "SHOO",
+      "address": "0x0fcc11F873360450a1afD8CB7Cfe0a9d787cc25E",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/nftshootout_32.png?=v2"
+    },
+    {
       "name": "Meta Shiba",
       "symbol": "METASHIB",
       "address": "0x8aa621be2c5f3672303c309bfb0dd4018979b970",
