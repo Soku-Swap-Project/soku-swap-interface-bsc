@@ -43,6 +43,14 @@
       "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
     },
     {
+      "name": "TEST2001",
+      "symbol": "TEST2001",
+      "address": "0x8CC099Ae543A245b1aA8b9690E144Afb52074B8f",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
       "name": "Earnable",
       "symbol": "EARN",
       "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
@@ -53,7 +61,7 @@
     {
       "name": "Canada Coin v2",
       "symbol": "CADAX",
-      "address": "0x3Fd6068E1E85017aBedaC22B8eFEfe8A1588678D",
+      "address": "0x4a51df0cdf11df502d83c8f00065be02eb290d04",
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://static.wixstatic.com/media/a22c82_9331b91a…/a22c82_9331b91adba34da884311f64d8268eea~mv2.webp"
@@ -112,7 +120,7 @@
       "address": "0x4c403b1879aa6a79ba9c599a393ccc5d9fd2e788",
       "chainId": 56,
       "decimals": 9,
-      "logoURI": "https://artificialintelligence.finance/wp-content/uploads/2021/10/Adsiz-tasarim-3.png"
+      "logoURI": "https://i.ibb.co/qkJnTzt/Adsiz-tasarim-3.png"
     },
     {
       "name": "NFTBOOKS",
