@@ -59,12 +59,12 @@
       "logoURI": "https://i.ibb.co/xfs5cX4/11111.png"
     },
     {
-      "name": "Canada Coin v2",
-      "symbol": "CADAX",
+      "name": "The Canada Coin",
+      "symbol": "CADACOIN",
       "address": "0x4a51df0cdf11df502d83c8f00065be02eb290d04",
       "chainId": 56,
       "decimals": 9,
-      "logoURI": "https://static.wixstatic.com/media/a22c82_9331b91a…/a22c82_9331b91adba34da884311f64d8268eea~mv2.webp"
+      "logoURI": "https://i.ibb.co/gSK98Ty/CADACOIN-FINAL.png"
     },
     {
       "name": "ELEF WORLD",
@@ -72,7 +72,7 @@
       "address": "0xd4d03e510b382244b2289637b5f7d9067bcaae85",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://static.wixstatic.com/media/a22c82_9331b91a…/a22c82_9331b91adba34da884311f64d8268eea~mv2.webp"
+      "logoURI": "https://i.ibb.co/bX1WJSb/ELEF-WORLD.png"
     },
     {
       "name": "WALLET PAY",
@@ -1032,7 +1032,7 @@
       "address": "0x25e9d05365c867e59c1904e7463af9f312296f9e",
       "chainId": 56,
       "decimals": 2,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x25e9d05365c867e59c1904e7463af9f312296f9e.png"
+      "logoURI": "https://bscscan.com/token/images/atmadrid_32.png"
     },
     {
       "name": "AS Roma",
@@ -1040,7 +1040,7 @@
       "address": "0x80d5f92c2c8c682070c95495313ddb680b267320",
       "chainId": 56,
       "decimals": 2,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x80d5f92c2c8c682070c95495313ddb680b267320.png"
+      "logoURI": "https://bscscan.com/token/images/asroma_32.png"
     },
     {
       "name": "AllianceBlock",
@@ -1264,7 +1264,7 @@
       "address": "0x5921dee8556c4593eefcfad3ca5e2f618606483b",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5921dee8556c4593eefcfad3ca5e2f618606483b.png"
+      "logoURI": "https://bscscan.com/token/images/mettalex_32.png"
     },
     {
       "name": "ZeroSwapToken",
@@ -1313,14 +1313,6 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xF35262a9d427F96d2437379eF090db986eaE5d42.png"
-    },
-    {
-      "name": "BoringDAO",
-      "symbol": "BOR",
-      "address": "0x92d7756c60dcfd4c689290e8a9f4d263b3b32241",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x92d7756c60dcfd4c689290e8a9f4d263b3b32241.png"
     },
     {
       "name": "renZEC",
@@ -1496,7 +1488,7 @@
       "address": "0x5986d5c77c65e5801a5caa4fae80089f870a71da",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5986d5c77c65e5801a5caa4fae80089f870a71da.png"
+      "logoURI": "https://bscscan.com/token/images/digg_32.png"
     },
     {
       "name": "bBADGER",
@@ -1504,7 +1496,7 @@
       "address": "0x1f7216fdb338247512ec99715587bb97bbf96eae",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x1f7216fdb338247512ec99715587bb97bbf96eae.png"
+      "logoURI": "https://bscscan.com/token/images/badger_32.png"
     },
     {
       "name": "Unitrade",
@@ -1664,7 +1656,7 @@
       "address": "0x96058f8c3e16576d9bd68766f3836d9a33158f89",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x96058f8c3e16576d9bd68766f3836d9a33158f89.png"
+      "logoURI": "https://bscscan.com/token/images/bondly_32.png"
     },
     {
       "name": "TokoCrypto",
@@ -1688,7 +1680,7 @@
       "address": "0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e.png"
+      "logoURI": "https://bscscan.com/token/images/arpachain_32.png"
     },
     {
       "name": "Perlin X",
@@ -1720,7 +1712,7 @@
       "address": "0xc5e6689c9c8b02be7c49912ef19e79cf24977f03",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xc5e6689c9c8b02be7c49912ef19e79cf24977f03.png"
+      "logoURI": "https://bscscan.com/token/images/alpaca_32.png"
     },
     {
       "name": "Horizon Protocol",
