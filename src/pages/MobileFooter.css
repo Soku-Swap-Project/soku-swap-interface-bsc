@@ -16,7 +16,7 @@
   background: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  /* z-index: 99999; */
+  z-index: 99999;
 }
 
 @media (min-width: 901px) {
@@ -81,7 +81,7 @@
   flex: 0.4;
 }
 
-.connectWallet__options__MOBILE li span {
+.connectWallet__options__MOBILE li a {
   background: #eeeeee;
   color: #05195a;
   display: -webkit-box;
@@ -93,8 +93,11 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  padding: 8px 10px;
+  padding: 5px 10px;
   border-radius: 12px;
+}
+
+.social_icon_headerMobile {
 }
 
 .account__footer {
@@ -121,7 +124,6 @@
 
 .connectWallet__options__MOBILE #hidden_navLinks {
   display: none;
-  opacity: 0;
 }
 
 .connectWallet__options__MOBILE #open {
@@ -137,10 +139,6 @@
   width: 150px;
 }
 
-.hidden_navLinksMobile {
-  top: 80vw;
-}
-
 @media (min-width: 901px) {
   .connectWallet__options__MOBILE #open {
     display: none;
@@ -149,14 +147,9 @@
 
 .connectWallet__options__MOBILE .hidden_navLinksMobile li a {
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  z-index: 99;
   display: flex;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   font-size: 14px;
   background-color: transparent;
@@ -171,7 +164,8 @@
   padding: 3px;
 }
 
-.connectWallet__options__MOBILE .hidden_navLinksMobile li p {
+.connectWallet__options__MOBILE .hidden_navLinksMobile li p,
+.social_icon_headerMobile p {
   padding-left: 3px;
   color: #05195a;
   cursor: pointer !important;
