@@ -2,7 +2,9 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
-
+import TelegramIcon from '@mui/icons-material/Telegram'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import GitHubIcon from '@mui/icons-material/GitHub'
 import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import ClaimSokuModal from 'components/ClaimSokuModal'
 import AccountModal from 'components/AccountModal'
@@ -262,21 +264,45 @@ export default function App() {
                   </ul>
                   <ul className="hidden_navLinksMobile" id="hidden_navLinks">
                     <li>
-                      <a href="https://www.sokuswap.finance/" rel="noreferrer noopener" target="_blank">
-                        <span className="material-icons">info</span>
-                        <p>About</p>
+                      <a href="/" rel="noreferrer noopener" target="_blank">
+                        <span className="material-icons">analytics</span>
+                        <p>Analytics</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://sokuswap-2.gitbook.io/sokuswap-gitbook/"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                      >
+                        <span className="material-icons">school</span>
+                        <p>Docs</p>
                       </a>
                     </li>
                     <li>
                       <a href="https://github.com/Soku-Swap-Project" rel="noreferrer noopener" target="_blank">
-                        <span className="material-icons">code</span>
-                        <p>Code</p>
+                        <GitHubIcon />
+                        <p>GitHub</p>
+                      </a>
+                    </li>
+                    <div
+                      className="social_icon_headerMobile"
+                      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '18px' }}
+                    >
+                      <p style={{ fontSize: '14px', marginLeft: '-5px' }}>Social Links</p>
+                    </div>
+                    <hr style={{ width: '65%', marginTop: '10px', paddingTop: '0' }} className="disabled_link" />
+
+                    <li>
+                      <a href="https://t.me/SokuSwap" rel="noreferrer noopener" target="_blank">
+                        <TelegramIcon />
+                        <p>Telegram</p>
                       </a>
                     </li>
                     <li>
-                      <a href="/" rel="noreferrer noopener" target="_blank">
-                        <span className="material-icons">analytics</span>
-                        <p>Analytics</p>
+                      <a href="https://twitter.com/sokuswap" rel="noreferrer noopener" target="_blank">
+                        <TwitterIcon />
+                        <p>Twitter</p>
                       </a>
                     </li>
                   </ul>

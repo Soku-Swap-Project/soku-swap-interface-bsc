@@ -337,27 +337,30 @@ nav {
 .sokuswap__navbar .hidden_navLinks li {
   list-style-type: none;
   display: flex;
-  padding: 20px 25px;
+  padding: 12px 30px;
 }
 
-.sokuswap__navbar .hidden_navLinks li p {
+.sokuswap__navbar .hidden_navLinks li p,
+.social_icon_header p {
   padding-left: 10px;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer !important;
   font-weight: 600;
 }
 
 .hidden_navLink a {
-  color: rgba(255, 255, 255, 0.87) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.hidden_navLink a:hover {
+.hidden_navLink a:hover,
+.sokuswap__navbar .hidden_navLinks li p:hover {
   color: #fff !important;
 }
 
-.disabled_link {
+.disabled_link,
+.disabled_link p,
+.disabled_link span {
   cursor: not-allowed !important;
-  pointer-events: none;
 }
 
 .disabled_link p,

@@ -27,6 +27,7 @@ import { filterTokens } from './filtering'
 import SortButton from './SortButton'
 import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
+import defaultTokenJson from '../../constants/token/sokuswap.json'
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -119,6 +120,9 @@ export function CurrencySearch({
     fixedList.current?.scrollTo(0)
   }, [])
 
+  // console.log(filteredSortedTokens.push(defaultTokenJson[0]), 'sorted')
+  // console.log(filteredSortedTokens.push(defaultTokenJson.tokens[1]), 'list')
+
   const handleEnter = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
@@ -140,6 +144,20 @@ export function CurrencySearch({
 
   const selectedListInfo = useSelectedListInfo()
   const TranslateString = useI18n()
+
+  // const soku = defaultTokenJson.tokens[1]
+  // const suteku = defaultTokenJson.tokens[3]
+
+  // console.log(soku)
+  // console.log(fixedList.current?.props.itemData)
+
+  const newList = fixedList.current
+  // fixedList.current?.props.itemData.push(soku)
+  // fixedList.current?.props.itemData.push(suteku)
+
+  // console.log(newList?.props.itemData.push(['soku']), 'new')
+
+  // console.log(fixedList.current?.props.itemData.unshift(soku), 'sorted')
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>

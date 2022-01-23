@@ -52,7 +52,14 @@ const GlobalStyle = createGlobalStyle`
 
   .V1BVY {
     background: #04bbfb;
-    border-radius: 12px;
+    border-radius: 15px;
+  }
+
+  ._1LFT7 {
+    font-size: 12px;
+    color: #04bbfb;
+    background: none;
+    font-weight: 900;
   }
 
   .transak_modal {
