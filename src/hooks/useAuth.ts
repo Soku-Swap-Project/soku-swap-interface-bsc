@@ -26,9 +26,15 @@ const useAuth = () => {
       activate(connector, async (error: Error) => {
         window.localStorage.removeItem(connectorLocalStorageKey)
         if (error instanceof UnsupportedChainIdError) {
-          toastError('Unsupported Chain Id', 'Unsupported Chain Id Error. Check your chain Id.')
+          toastError(
+            'Unsupported Chain Id',
+            'Unsupported Chain Id Error. Please make sure you are connected to the correct network.'
+          )
         } else if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-          toastError('Provider Error', 'No provider was found')
+          toastError(
+            'Provider Error',
+            'No provider was found. If on mobile, please connect to your specified wallet through WalletConnect.'
+          )
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect
