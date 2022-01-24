@@ -176,11 +176,6 @@ export default function CurrencyList({
   showETH: boolean
 }) {
   const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
-  // const soku = defaultTokenJson.tokens[1]
-  // const suteku = defaultTokenJson.tokens[3]
-  // console.log(Currency.ETHER, 'show')
-  // console.log(currencies.unshift(soku), 'itemData1')
-  // console.log(currencies.unshift(suteku), 'itemData2')
 
   const Row = useCallback(
     ({ data, index, style }) => {
