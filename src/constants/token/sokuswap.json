@@ -35,14 +35,6 @@
       "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
     },
     {
-      "name": "TEST2001",
-      "symbol": "TEST2001",
-      "address": "0x8CC099Ae543A245b1aA8b9690E144Afb52074B8f",
-      "chainId": 97,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
       "name": "Earnable",
       "symbol": "EARN",
       "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
@@ -57,6 +49,78 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://i.ibb.co/gSK98Ty/CADACOIN-FINAL.png"
+    },
+    {
+      "name": "COLUMBUS",
+      "symbol": "CBS",
+      "address": "0x5a9908ec2173bac7423f490bfd2b24ae9cba7115",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/columbustoken2_32.png"
+    },
+    {
+      "name": "GOIN",
+      "symbol": "GOIN",
+      "address": "0x32ff208a18A5fbC81F6Fd262020b1415bfcb3b33",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/GOinfluencer_32.png"
+    },
+    {
+      "name": "Many Worlds",
+      "symbol": "MANY",
+      "address": "0x3e2ed75f718251fd011312b9e33bf10a4dbfda54",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/Many_32.png"
+    },
+    {
+      "name": "New Year Token",
+      "symbol": "NYT",
+      "address": "0xfdff7a8eda6a3739132867f989be4bf84e803c15",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/nytoken_32.png"
+    },
+    {
+      "name": "StreetPunks",
+      "symbol": "PUNKS",
+      "address": "0xf428fc1126b7c1b1bd266f1e415ac05255fa7748",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/hXdrjSM/Street-Punks-PNG-512x512.png"
+    },
+    {
+      "name": "SpaceGrime",
+      "symbol": "GRIMEX",
+      "address": "0x89671544190ee39e469c8393009875df6565457a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": ""
+    },
+    {
+      "name": "Proton",
+      "symbol": "XPR",
+      "address": "0x5de3939b2f811a61d830e6f52d13b066881412ab",
+      "chainId": 56,
+      "decimals": 4,
+      "logoURI": "https://bscscan.com/token/images/proton_32.png"
+    },
+    {
+      "name": "DogeWhisky",
+      "symbol": "DogeWhisky",
+      "address": "0x06285e401843192833F557002dBDAE31bBe1F4D9",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.imgur.com/E35q47x.png"
+    },
+    {
+      "name": "SYL",
+      "symbol": "SYL",
+      "address": "0x7e52a123ed6db6ac872a875552935fbbd2544c86",
+      "chainId": 56,
+      "decimals": 6,
+      "logoURI": "https://bscscan.com/token/images/syl_32.png"
     },
     {
       "name": "ELEF WORLD",
