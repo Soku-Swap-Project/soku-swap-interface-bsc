@@ -35,14 +35,6 @@
       "logoURI": "https://i.ibb.co/ZfBZpjN/Suteku-Logo.png"
     },
     {
-      "name": "TEST2001",
-      "symbol": "TEST2001",
-      "address": "0x8CC099Ae543A245b1aA8b9690E144Afb52074B8f",
-      "chainId": 97,
-      "decimals": 18,
-      "logoURI": ""
-    },
-    {
       "name": "Earnable",
       "symbol": "EARN",
       "address": "0x839153689469fe23236d1e0671430c8d7fee0337",
@@ -57,6 +49,22 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://i.ibb.co/gSK98Ty/CADACOIN-FINAL.png"
+    },
+    {
+      "name": "COLUMBUS",
+      "symbol": "CBS",
+      "address": "0x5a9908ec2173bac7423f490bfd2b24ae9cba7115",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/columbustoken2_32.png"
+    },
+    {
+      "name": "GOIN",
+      "symbol": "GOIN",
+      "address": "0x32ff208a18A5fbC81F6Fd262020b1415bfcb3b33",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/GOinfluencer_32.png"
     },
     {
       "name": "ELEF WORLD",
