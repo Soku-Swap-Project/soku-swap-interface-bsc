@@ -57,6 +57,9 @@ export function CurrencySearch({
   const [invertSearchOrder, setInvertSearchOrder] = useState<boolean>(false)
   const allTokens = useAllTokens()
 
+  // console.log('all', allTokens)
+  // console.log('fixed', fixedList)
+
   // if they input an address, use it
   const isAddressSearch = isAddress(searchQuery)
   const searchToken = useToken(searchQuery)
@@ -87,8 +90,14 @@ export function CurrencySearch({
     return [
       ...(searchToken ? [searchToken] : []),
       // sort any exact symbol matches first
-      ...sorted.filter((token) => token.symbol?.toLowerCase() === symbolMatch[0]),
-      ...sorted.filter((token) => token.symbol?.toLowerCase() !== symbolMatch[0]),
+      // ...sorted.filter((token) => token.symbol === 'SOKU' || token.symbol === 'SUTEKU'),
+
+      ...filteredTokens.filter((token) => token.symbol?.includes('SOKU') || token.symbol?.includes('SUTEKU')),
+
+      ...sorted.filter(
+        (token) =>
+          token.symbol?.toLowerCase() !== symbolMatch[0] && token.symbol !== 'SOKU' && token.symbol !== 'SUTEKU'
+      ),
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
 
@@ -120,7 +129,6 @@ export function CurrencySearch({
     fixedList.current?.scrollTo(0)
   }, [])
 
-  // console.log(filteredSortedTokens.push(defaultTokenJson[0]), 'sorted')
   // console.log(filteredSortedTokens.push(defaultTokenJson.tokens[1]), 'list')
 
   const handleEnter = useCallback(
