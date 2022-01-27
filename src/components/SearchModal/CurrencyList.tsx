@@ -99,6 +99,7 @@ function CurrencyRow({
 }) {
   const { account, chainId } = useActiveWeb3React()
   const key = currencyKey(currency)
+
   const selectedTokenList = useSelectedTokenList()
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
   const customAdded = useIsUserAddedToken(currency)
@@ -177,11 +178,14 @@ export default function CurrencyList({
 }) {
   const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
 
+  // console.log('currencies', currencies)
+
   const Row = useCallback(
     ({ data, index, style }) => {
       const currency: Currency = data[index]
       const isSelected = Boolean(selectedCurrency && currencyEquals(selectedCurrency, currency))
       const otherSelected = Boolean(otherCurrency && currencyEquals(otherCurrency, currency))
+
       const handleSelect = () => onCurrencySelect(currency)
       return (
         <CurrencyRow
@@ -197,6 +201,8 @@ export default function CurrencyList({
   )
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
+
+  // console.log('list', fixedListRef)
 
   return (
     <FixedSizeList
