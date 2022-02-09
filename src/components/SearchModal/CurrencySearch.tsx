@@ -2,7 +2,7 @@
 import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk-v2'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Tooltip, OverlayTrigger, Button } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'

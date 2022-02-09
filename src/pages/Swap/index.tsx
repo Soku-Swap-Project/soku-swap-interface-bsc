@@ -2,8 +2,10 @@
 
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowDown } from 'react-feather'
 import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
+import ModalVideo from 'react-modal-video'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
@@ -41,6 +43,8 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
 import MobileHeader from 'components/MobileHeader'
 
+import 'react-modal-video/css/modal-video.css'
+
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
@@ -52,6 +56,7 @@ const Swap = () => {
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const [isSyrup, setIsSyrup] = useState<boolean>(false)
+
   const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
@@ -70,6 +75,9 @@ const Swap = () => {
   const theme = useContext(ThemeContext)
 
   const [isExpertMode] = useExpertModeManager()
+
+  // modal video
+  const [isOpen, setOpen] = useState(false)
 
   // get custom setting values for user
   const [deadline] = useUserDeadline()
@@ -267,7 +275,11 @@ const Swap = () => {
       <div className="sokuswap__toggleContainer">
         <Toggle />
       </div>
+
       <AppBody>
+        <div className="modal_video">
+          <ModalVideo channel="youtube" autoplay isOpen={isOpen} videoId="dWzaN5DEBEs" onClose={() => setOpen(false)} />
+        </div>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
             isOpen={showConfirm}
@@ -491,6 +503,20 @@ const Swap = () => {
                       : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginTop: '20px',
+                  fontWeight: '900',
+                }}
+              >
+                <p style={{ color: '#04bbfb', fontSize: '14px', cursor: 'pointer' }} onClick={() => setOpen(true)}>
+                  How to buy SOKU?
+                </p>
+              </div>
+
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
             </BottomGrouping>

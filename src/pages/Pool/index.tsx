@@ -1,8 +1,9 @@
 /* eslint-disable */
 
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk-v2'
+import ModalVideo from 'react-modal-video'
 
 // import { Pair } from '../../entities/pair'
 import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
@@ -26,11 +27,14 @@ import AppBody from '../AppBody'
 import MobileHeader from 'components/MobileHeader'
 
 import './pools.css'
+import 'react-modal-video/css/modal-video.css'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
   const TranslateString = useI18n()
+  // modal video
+  const [isOpen, setOpen] = useState(false)
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
@@ -71,6 +75,9 @@ export default function Pool() {
   return (
     <>
       {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      <div className="modal_video">
+        <ModalVideo channel="youtube" autoplay isOpen={isOpen} videoId="2HXOv6nTm0E" onClose={() => setOpen(false)} />
+      </div>
       <AppBody>
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>
@@ -129,6 +136,19 @@ export default function Pool() {
                 <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   {TranslateString(1172, 'Or, if you staked your LP tokens in a farm, unstake them to see them here.')}
                 </Text>
+                <div
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '20px',
+                    fontWeight: '900',
+                  }}
+                >
+                  <p style={{ color: '#04bbfb', fontSize: '14px', cursor: 'pointer' }} onClick={() => setOpen(true)}>
+                    How to add liquidity?
+                  </p>
+                </div>
               </div>
             </AutoColumn>
           </CardBody>
