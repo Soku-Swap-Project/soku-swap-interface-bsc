@@ -344,6 +344,22 @@ svg[color="primary"] {
   outline: 0;
 }
 
+.modal-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000000;
+    cursor: pointer;
+    opacity: 1;
+    animation-timing-function: ease-out;
+    animation-duration: .3s;
+    animation-name: modal-video;
+    transition: opacity .3s ease-out;
+}
+
 @media (max-width: 800px) {
   #chatbot-chat {
     background-color: transparent;
