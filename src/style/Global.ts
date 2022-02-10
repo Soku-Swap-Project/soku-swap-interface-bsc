@@ -340,6 +340,11 @@ svg[color="primary"] {
   fill: #04bbfb;
 }
 
+div[class="styles_body__child__16rp6 styles_grow__2_vwt"] button, . {
+  background: #05195a !important;
+  color: #fff !important;
+}
+
 *:focus {
   outline: 0;
 }
