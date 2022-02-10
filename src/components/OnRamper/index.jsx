@@ -16,14 +16,28 @@ export default function WidgetContainer() {
     <div className="onramper_container">
       <OnramperWidget
         API_KEY={api}
-        color={'05195a'}
+        color={'#05195a'}
         fontFamily={'Helvetica'}
         defaultAddrs={wallets}
         defaultAmount={100}
         defaultCrypto={'BNB'}
         defaultFiat={'USD'}
         defaultFiatSoft={'USD'}
-        defaultPaymentMethod={'creditCard'}
+        defaultPaymentMethod={
+          ('creditCard',
+          'bankTransfer',
+          'applePay',
+          'googlePay',
+          'paynow',
+          'fps',
+          'alipay-hk',
+          'prompt-pay',
+          'instapay',
+          'upi',
+          'gojek-id',
+          'viettel-pay',
+          'duit-now')
+        }
       />
     </div>
   )
