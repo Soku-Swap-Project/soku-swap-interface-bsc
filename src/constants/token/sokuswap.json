@@ -139,6 +139,94 @@
       "logoURI": "https://bscscan.com/token/images/walletapp_32.png"
     },
     {
+      "name": "MMACoin",
+      "symbol": "MMA",
+      "address": "0x270A84DCdfb305cC68be21e767Ef11Aac5Dc5cF0",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/mmacoin_32.png"
+    },
+    {
+      "name": "BRICK Token",
+      "symbol": "BRICK",
+      "address": "0x4e5aB517719a2BDbafEFC22C712d7b5BC5F5544E",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/brick_32.png"
+    },
+    {
+      "name": "ArtOnline",
+      "symbol": "ART",
+      "address": "0x535e67270f4FEb15BFFbFE86FEE308b81799a7a5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/artonline_32.png"
+    },
+    {
+      "name": "SNAIL TOKEN",
+      "symbol": "SNAIL",
+      "address": "0x53a07D6DDf2eAa3891cBF9E39CFcDBebf5f21b9b",
+      "chainId": 56,
+      "decimals": 0,
+      "logoURI": "https://i.ibb.co/K5MT8Kt/SNAILCOINLOGO512.png"
+    },
+    {
+      "name": "KING FOREVER",
+      "symbol": "KFR",
+      "address": "0xAcFF4E9E9110971E1A4D8f013F5f97dd8fB4F430",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/kingforevertoken_32.png"
+    },
+    {
+      "name": "Meme Machine",
+      "symbol": "MeMa",
+      "address": "0xe340aADC9DB4a73B94b13e299c26E6C8C89AcD35",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/mematoken_32.png"
+    },
+    {
+      "name": "BLACK SHIBA INU",
+      "symbol": "SHIB B",
+      "address": "0xfA0Ed2a3904A060d5A3096df810EbbBb7CD1F4F0",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/blackshibainu_32.png"
+    },
+    {
+      "name": "Centcex",
+      "symbol": "CENX",
+      "address": "0x739e81BCd49854d7BDF526302989f14A2E7994B2",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://bscscan.com/token/images/centcex_32.png"
+    },
+    {
+      "name": "Transplantcoin",
+      "symbol": "TPC",
+      "address": "0xc4DAB0f6b014E655A4600CF8F486D9Ee2fcE39be",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/dBLK33p/transplant-token-logo.jpg"
+    },
+    {
+      "name": "METAFLIP",
+      "symbol": "METAFLIP",
+      "address": "0xA49F7E4c67d62D11b0867079F5C63cF4a600b55c",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://i.ibb.co/NWdJw0N/METAFLIP-LOGO.png"
+    },
+    {
+      "name": "TIPSY",
+      "symbol": "TIPSY",
+      "address": "0xf380334b9A181F54BF2f32FDD3e153D259472eBB",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://bscscan.com/token/images/tipsy_32.png"
+    },
+    {
       "name": "Crypto Shield",
       "symbol": "SHIELD",
       "address": "0xc944273b805debd35c63011943abc5ab9eddb8e3",
