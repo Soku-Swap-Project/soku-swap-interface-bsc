@@ -95,8 +95,7 @@ export function CurrencySearch({
       ...filteredTokens.filter((token) => token.symbol?.includes('SOKU') || token.symbol?.includes('SUTEKU')),
 
       ...sorted.filter(
-        (token) =>
-          token.symbol?.toLowerCase() !== symbolMatch[0] && token.symbol !== 'SOKU' && token.symbol !== 'SUTEKU'
+        (token) => token.symbol !== 'SOKU' && token.symbol !== 'SUTEKU'
       ),
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
