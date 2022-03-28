@@ -123,6 +123,30 @@
       "logoURI": "https://bscscan.com/token/images/syl_32.png"
     },
     {
+      "name": "PayFlow",
+      "symbol": "PFT",
+      "address": "0xe3B42852a85d38b18076Ab2dd96B0F894CC0636c",
+      "chainId": 56,
+      "decimals": 6,
+      "logoURI": "https://bscscan.com/token/images/payflowtoken2_32.png"
+    },
+    {
+      "name": "Treat",
+      "symbol": "TREAT",
+      "address": "0x01bd7acb6fF3B6Dd5aefA05CF085F2104f3fC53F",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/K2RfPXs/treat-DAO.png"
+    },
+    {
+      "name": "Batcoin",
+      "symbol": "TREAT",
+      "address": "0xAa731Eb48f701C132D5FA69B69f5eb4064d9BE34",
+      "chainId": 56,
+      "decimals": 0,
+      "logoURI": "https://www.linkpicture.com/q/photo_2022-03-20_18-41-13-1.png"
+    },
+    {
       "name": "ELEF WORLD",
       "symbol": "ELEF",
       "address": "0xd4d03e510b382244b2289637b5f7d9067bcaae85",
