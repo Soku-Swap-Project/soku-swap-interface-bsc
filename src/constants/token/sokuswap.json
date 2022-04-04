@@ -140,7 +140,7 @@
     },
     {
       "name": "Batcoin",
-      "symbol": "TREAT",
+      "symbol": "BATCOIN",
       "address": "0xAa731Eb48f701C132D5FA69B69f5eb4064d9BE34",
       "chainId": 56,
       "decimals": 0,
