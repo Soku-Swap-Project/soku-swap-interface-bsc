@@ -81,9 +81,9 @@ const Menu: React.FC = (props) => {
             <NavLink className="nav_link" to="/pool" activeClassName="active">
               <li>Pool</li>
             </NavLink>
-            <NavLink className="nav_link" activeClassName="active" to="/bridge">
+            <a className="nav_link" href={`${origin}/bridge`}>
               <li>Bridge</li>
-            </NavLink>
+            </a>
             <a className="nav_link" href={`${origin}/bsc/farms`}>
               <li>Farms</li>
             </a>
