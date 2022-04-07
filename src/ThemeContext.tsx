@@ -5,8 +5,8 @@ import { light, dark } from '@pancakeswap-libs/uikit'
 const CACHE_KEY = 'IS_DARK'
 
 export interface ThemeContextType {
-  isDark: boolean;
-  toggleTheme: () => void;
+  isDark: boolean
+  toggleTheme: () => void
 }
 
 const ThemeContext = React.createContext<ThemeContextType>({ isDark: false, toggleTheme: () => null })
@@ -24,11 +24,7 @@ const ThemeContextProvider: React.FC = ({ children }) => {
     })
   }
 
-  return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <SCThemeProvider theme={isDark ? dark : light}>{children}</SCThemeProvider>
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={{ isDark, toggleTheme }}>{children}</ThemeContext.Provider>
 }
 
 export { ThemeContext, ThemeContextProvider }
