@@ -43,7 +43,7 @@ export default function SwapModalHeader({
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   return (
     <AutoColumn gap="md" style={{ marginTop: '20px' }}>

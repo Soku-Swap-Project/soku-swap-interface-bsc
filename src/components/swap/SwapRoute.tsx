@@ -6,7 +6,7 @@ import { ThemeContext } from 'styled-components'
 import CurrencyLogo from '../CurrencyLogo'
 
 export default memo(function SwapRoute({ trade }: { trade: Trade }) {
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
   return (
     <Flex
       px="1rem"
