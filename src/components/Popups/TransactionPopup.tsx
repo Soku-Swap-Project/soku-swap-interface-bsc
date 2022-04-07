@@ -23,16 +23,12 @@ export default function TransactionPopup({
 }) {
   const { chainId } = useActiveWeb3React()
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   return (
     <RowNoFlex>
       <div style={{ paddingRight: 16 }}>
-        {success ? (
-          <CheckCircle color={theme.colors.success} size={24} />
-        ) : (
-          <AlertCircle color={theme.colors.failure} size={24} />
-        )}
+        {success ? <CheckCircle color="green" size={24} /> : <AlertCircle color="red" size={24} />}
       </div>
       <AutoColumn gap="8px">
         <Text>{summary ?? `Hash: ${hash.slice(0, 8)}...${hash.slice(58, 65)}`}</Text>

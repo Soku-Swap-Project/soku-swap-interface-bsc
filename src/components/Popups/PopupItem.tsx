@@ -65,7 +65,7 @@ export default function PopupItem({
     }
   }, [removeAfterMs, removeThisPopup])
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   let popupContent
   if ('txn' in content) {
@@ -88,7 +88,7 @@ export default function PopupItem({
 
   return (
     <Popup>
-      <StyledClose color={theme.colors.textSubtle} onClick={removeThisPopup} />
+      <StyledClose color="#05195a" onClick={removeThisPopup} />
       {popupContent}
       {removeAfterMs !== null ? <AnimatedFader style={faderStyle} /> : null}
     </Popup>

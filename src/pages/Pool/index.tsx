@@ -30,7 +30,7 @@ import './pools.css'
 import 'react-modal-video/css/modal-video.css'
 
 export default function Pool() {
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
   const TranslateString = useI18n()
   // modal video
@@ -91,7 +91,7 @@ export default function Pool() {
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
               <RowBetween padding="0 8px">
-                <Text color={theme.colors.text}>{TranslateString(107, 'Your Liquidity')}</Text>
+                <Text color="#04b9fb">{TranslateString(107, 'Your Liquidity')}</Text>
                 <Question
                   text={TranslateString(
                     1170,
