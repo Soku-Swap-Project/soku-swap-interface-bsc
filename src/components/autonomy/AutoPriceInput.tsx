@@ -85,7 +85,7 @@ export default function AutoPriceInput({
 }) {
   const theme = useContext(ThemeContext)
 
-  const error = false
+  const error = !true
   const disabled = currentPrice === undefined
 
   const handleInput = useCallback(
