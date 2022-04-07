@@ -83,7 +83,7 @@ export default function AutoPriceInput({
   currentPrice?: string
   onChange: (value: string) => void
 }) {
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   const error = !true
   const disabled = currentPrice === undefined
@@ -101,7 +101,7 @@ export default function AutoPriceInput({
         <InputContainer>
           <AutoColumn gap="md">
             <AutoRow>
-              <Text color={theme.colors.text} fontWeight={500} fontSize="14px">
+              <Text color="#04bbfb" fontWeight={500} fontSize="14px">
                 Rate
               </Text>
               <CurrentPriceTag onClick={() => !disabled && handleInput(currentPrice)}>Current</CurrentPriceTag>
