@@ -69,7 +69,7 @@ const StopLoss = () => {
   }, [])
 
   const { account } = useActiveWeb3React()
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   const [isExpertMode] = useExpertModeManager()
 

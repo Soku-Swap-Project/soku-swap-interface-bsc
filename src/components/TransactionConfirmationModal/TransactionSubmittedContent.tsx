@@ -14,14 +14,14 @@ type TransactionSubmittedContentProps = {
 }
 
 const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSubmittedContentProps) => {
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   return (
     <Wrapper>
       <Section>
         <ContentHeader onDismiss={onDismiss}>Transaction submitted</ContentHeader>
         <ConfirmedIcon>
-          <ArrowUpCircle strokeWidth={0.5} size={97} color={theme.colors.primary} />
+          <ArrowUpCircle strokeWidth={0.5} size={97} color="#05195a" />
         </ConfirmedIcon>
         <AutoColumn gap="8px" justify="center">
           {chainId && hash && (

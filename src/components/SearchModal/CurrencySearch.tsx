@@ -50,7 +50,7 @@ export function CurrencySearch({
 }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   const fixedList = useRef<FixedSizeList>()
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -94,9 +94,7 @@ export function CurrencySearch({
 
       ...filteredTokens.filter((token) => token.symbol?.includes('SOKU') || token.symbol?.includes('SUTEKU')),
 
-      ...sorted.filter(
-        (token) => token.symbol !== 'SOKU' && token.symbol !== 'SUTEKU'
-      ),
+      ...sorted.filter((token) => token.symbol !== 'SOKU' && token.symbol !== 'SUTEKU'),
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
 
@@ -242,7 +240,7 @@ export function CurrencySearch({
                 </Row>
               ) : null}
               <LinkStyledButton
-                style={{ fontWeight: 500, color: theme.colors.textSubtle, fontSize: 16 }}
+                style={{ fontWeight: 500, color: '#05195a', fontSize: 16 }}
                 onClick={onChangeList}
                 id="currency-search-change-list-button"
                 className="currency-search-change"

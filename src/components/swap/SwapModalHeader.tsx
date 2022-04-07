@@ -43,7 +43,7 @@ export default function SwapModalHeader({
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
-  const theme = useContext(ThemeContext)
+  // const theme = useContext(ThemeContext)
 
   return (
     <AutoColumn gap="md" style={{ marginTop: '20px' }}>
@@ -52,7 +52,7 @@ export default function SwapModalHeader({
           <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
           <Text
             fontSize="24px"
-            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.colors.primary : 'text'}
+            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? '#05195a' : 'text'}
           >
             {trade.inputAmount.toSignificant(6)}
           </Text>
@@ -64,7 +64,7 @@ export default function SwapModalHeader({
         </RowFixed>
       </RowBetween>
       <RowFixed>
-        <ArrowDown size="16" color={theme.colors.textSubtle} style={{ marginLeft: '4px', minWidth: '16px' }} />
+        <ArrowDown size="16" color="#05195a" style={{ marginLeft: '4px', minWidth: '16px' }} />
       </RowFixed>
       <RowBetween align="flex-end">
         <RowFixed gap="0px">
@@ -74,7 +74,7 @@ export default function SwapModalHeader({
             style={{ marginLeft: '10px', fontWeight: 500 }}
             color={
               priceImpactSeverity > 2
-                ? theme.colors.failure
+                ? 'red'
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
                 ? '#04bbfb'
                 : 'text'
