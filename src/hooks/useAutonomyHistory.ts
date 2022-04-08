@@ -5,8 +5,8 @@ import { utils } from 'ethers'
 import { useActiveWeb3React } from 'hooks'
 import { ROUTER_ADDRESS } from '../constants'
 
-Moralis.initialize('xyVcRAQ2mZ7HksFdxB2LvtxWtR2kOl5gSJBbqFDR')
-Moralis.serverURL = 'https://vnvnloowbs4q.usemoralis.com:2053/server'
+Moralis.initialize('0InOR7cWvu3rRwDZRHTDdDZ26Vj7Jc7HOBiYiGWa')
+Moralis.serverURL = 'https://mz4k8ltjvwtm.usemoralis.com:2053/server'
 
 export default function useTransactionHistory() {
   const [orders, setOrders] = useState<Array<any>>([])
@@ -368,9 +368,9 @@ export default function useTransactionHistory() {
 
   useEffect(() => {
     async function init() {
-      const queryRequests = new Moralis.Query('RegistryRequestsnew')
-      const queryCancels = new Moralis.Query('RegistryCancelRequestsnew')
-      const queryExecutes = new Moralis.Query('RegistryExecutedRequestsnew')
+      const queryRequests = new Moralis.Query('RegistryRequests')
+      const queryCancels = new Moralis.Query('RegistryCancelRequests')
+      const queryExecutes = new Moralis.Query('RegistryExecutedRequests')
       queryRequests.equalTo('user', account?.toLocaleLowerCase())
       queryRequests.limit(10000)
       queryCancels.limit(10000)
