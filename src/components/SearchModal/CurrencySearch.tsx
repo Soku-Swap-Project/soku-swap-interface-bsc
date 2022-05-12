@@ -149,20 +149,8 @@ export function CurrencySearch({
 
   const selectedListInfo = useSelectedListInfo()
   const TranslateString = useI18n()
-
-  // const soku = defaultTokenJson.tokens[1]
-  // const suteku = defaultTokenJson.tokens[3]
-
-  // console.log(soku)
-  // console.log(fixedList.current?.props.itemData)
-
+  
   const newList = fixedList.current
-  // fixedList.current?.props.itemData.push(soku)
-  // fixedList.current?.props.itemData.push(suteku)
-
-  // console.log(newList?.props.itemData.push(['soku']), 'new')
-
-  // console.log(fixedList.current?.props.itemData.unshift(soku), 'sorted')
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
