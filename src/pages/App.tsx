@@ -33,7 +33,7 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
-
+import NewVersionModal from "../components/NewVersionModal"
 import Menu from '../components/Menu'
 
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
@@ -217,6 +217,7 @@ export default function App() {
               {isMobile ? <SlideOutMenu /> : <Menu />}
               <BodyWrapper>
                 <Popups />
+                <NewVersionModal />
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
