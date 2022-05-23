@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { HashRouter, Route, Switch, useHistory } from 'react-router-dom'
+import { HashRouter, Route, Switch, useHistory , Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
 import TelegramIcon from '@mui/icons-material/Telegram'
@@ -16,6 +16,7 @@ import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import Maintenance from 'components/Maintenance'
 import WidgetContainer from 'components/OnRamper'
 import ComingSoon from 'pages/ComingSoon'
+import RedirectToV2 from 'components/RedirectToV2'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -24,12 +25,12 @@ import AddLiquidity from './AddLiquidity'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
-import Swap from './Swap'
+// import Swap from './Swap'
 import LimitOrder from './LimitOrder'
 import SlideOutMenu from '../components/SlideOutMenu/SlideOutMenu'
 
 // import StopLoss from './StopLoss/index.tsx'
-import { RedirectPathToSwapOnly } from './Swap/redirects'
+// import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
@@ -220,7 +221,8 @@ export default function App() {
                 <NewVersionModal />
                 <Web3ReactManager>
                   <Switch>
-                    <Route exact strict path="/swap" component={Swap} />
+                    {/* <Route exact strict path="/swap" component={Swap} /> */}
+                    <Route path="/swap" component={RedirectToV2} />
                     {/* <Route exact strict path="/maintenance" component={Maintenance} /> */}
                     <Route exact strict path="/bridge" component={ComingSoon} />
                     <Route exact strict path="/limit-order" component={LimitOrder} />
@@ -237,7 +239,8 @@ export default function App() {
                     <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
                     {/* <Route exact path="" component={RedirectHashRoutes} /> */}
 
-                    <Route component={RedirectPathToSwapOnly} />
+                    {/* <Route component={RedirectPathToSwapOnly} /> */}
+                    <Redirect to="/pool" />
                   </Switch>
                 </Web3ReactManager>
                 <Marginer />

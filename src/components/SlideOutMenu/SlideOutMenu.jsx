@@ -92,7 +92,7 @@ class SlideOutMenu extends React.Component {
     return (
       <nav className="mobile_navbar">
         <div className="mobile_menu_logo">
-          <NavLink to="/swap">
+          <NavLink to="/pool">
             <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
           </NavLink>
         </div>
