@@ -14,7 +14,6 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import Maintenance from 'components/Maintenance'
-import WidgetContainer from 'components/OnRamper'
 import ComingSoon from 'pages/ComingSoon'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -217,14 +216,14 @@ export default function App() {
               {isMobile ? <SlideOutMenu /> : <Menu />}
               <BodyWrapper>
                 <Popups />
-                <NewVersionModal />
+                {/* <NewVersionModal /> */}
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
                     {/* <Route exact strict path="/maintenance" component={Maintenance} /> */}
                     <Route exact strict path="/bridge" component={ComingSoon} />
                     <Route exact strict path="/limit-order" component={LimitOrder} />
-                    <Route exact strict path="/deposit" component={WidgetContainer} />
+                    {/* <Route exact strict path="/deposit" component={WidgetContainer} /> */}
                     {/* <Route exact strict path="/stop-loss" component={StopLoss} /> */}
                     <Route exact strict path="/find" component={PoolFinder} />
                     <Route exact path="/pool" component={Pool} />
