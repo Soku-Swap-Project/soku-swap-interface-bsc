@@ -27,6 +27,14 @@
       "logoURI": "https://i.ibb.co/sm60Zb7/Soku-Logo-400x400.png"
     },
     {
+      "name": "HOBI",
+      "symbol": "HOBI",
+      "address": "0xa58223b144c645f8822707d77a0a3fd9e08aad08",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://i.ibb.co/j5sWKRL/hobi.png"
+    },
+    {
       "name": "Suteku Soku Reward Token",
       "symbol": "SUTEKU",
       "address": "0x198800aF50914004A9E9D19cA18C0b24587a50cf",
