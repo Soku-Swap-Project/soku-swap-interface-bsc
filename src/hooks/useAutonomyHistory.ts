@@ -68,6 +68,7 @@ export default function useTransactionHistory() {
     const sliced = callData.slice(0, 10)
     const actualData = `0x${callData.slice(10, callData.length + 1)}`
     let decoded: any
+    console.log(decoded[4], 'decoded')
     let ret = ''
     // Limits
     // BNB for Tokens
