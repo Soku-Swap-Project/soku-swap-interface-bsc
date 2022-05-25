@@ -214,9 +214,9 @@ export default function App() {
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               {isMobile ? <SlideOutMenu /> : <Menu />}
+              <NewVersionModal />
               <BodyWrapper>
                 <Popups />
-                {/* <NewVersionModal /> */}
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
