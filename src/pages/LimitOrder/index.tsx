@@ -307,7 +307,7 @@ const LimitOrder = () => {
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Limit Orders'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Limit Orders'} />}
       {/* Toggle Switch */}
       {/* <div className="sokuswap__toggleContainer">
         <Toggle />
