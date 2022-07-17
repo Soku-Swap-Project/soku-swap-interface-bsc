@@ -149,7 +149,7 @@ export function CurrencySearch({
 
   const selectedListInfo = useSelectedListInfo()
   const TranslateString = useI18n()
-  
+
   const newList = fixedList.current
 
   const renderTooltip = (props) => (
@@ -159,18 +159,16 @@ export function CurrencySearch({
   )
 
   return (
-    <Column style={{ width: '100%', flex: '1 1' }}>
+    <Column
+      className="emphasized_swap_layout"
+      style={{ width: '100%', flex: '1 1', borderRadius: '14px', padding: '1rem' }}
+    >
       <PaddedColumn gap="14px">
         <RowBetween>
-          <Text className="modal_text">
+          <Text style={{ fontWeight: 700 }} className="modal_text">
             {TranslateString(82, 'Select a token')}
-            <OverlayTrigger placement="left" delay={{ show: 7, hide: 7 }} overlay={renderTooltip}>
-              <Button className="material-icons helper" variant="success">
-                help_outline
-              </Button>
-            </OverlayTrigger>
           </Text>
-          <CloseIcon className="modal_text" onClick={onDismiss} />
+          <CloseIcon style={{ fill: '#05195a' }} className="modal_text" onClick={onDismiss} />
         </RowBetween>
         <SearchInput
           type="text"
@@ -180,16 +178,18 @@ export function CurrencySearch({
           ref={inputRef as RefObject<HTMLInputElement>}
           onChange={handleInput}
           onKeyDown={handleEnter}
+          style={{ marginBottom: '16px', borderRadius: '14px', border: 'none' }}
+          className="hover_shadow"
         />
         {showCommonBases && (
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
-        <RowBetween>
+        {/* <RowBetween>
           <Text className="modal_text" fontSize="14px">
             {TranslateString(126, 'Token name')}
           </Text>
           <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder((iso) => !iso)} />
-        </RowBetween>
+        </RowBetween> */}
       </PaddedColumn>
 
       <Separator />

@@ -1,0 +1,6 @@
+:root {
+    --primary: #ECF1F8;
+    --text-primary: #05195a;
+    --font-sans: "DM Sans", -apple-system, system-ui, BlinkMacSystemFont, 'Poppins', sans-serif;
+    --scrollbar-width: 14px;
+}

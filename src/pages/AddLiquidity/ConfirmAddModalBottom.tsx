@@ -45,7 +45,7 @@ export function ConfirmAddModalBottom({
           }`}
         </Text>
       </RowBetween>
-      <RowBetween style={{ justifyContent: 'flex-end' }}>
+      <RowBetween style={{ justifyContent: 'center' }}>
         <Text color="#05195a">
           {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
             currencies[Field.CURRENCY_A]?.symbol
@@ -56,7 +56,12 @@ export function ConfirmAddModalBottom({
         <Text color="#05195a">Share of Pool:</Text>
         <Text color="#05195a">{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
-      <Button mt="20px" style={{ background: '#04bbfb' }} onClick={onAdd}>
+      <Button
+        className="emphasize_swap_button hover_shadow"
+        mt="20px"
+        style={{ background: '#04bbfb' }}
+        onClick={onAdd}
+      >
         {noLiquidity ? TranslateString(250, 'Create Pool & Supply') : TranslateString(252, 'Confirm Supply')}
       </Button>
     </>

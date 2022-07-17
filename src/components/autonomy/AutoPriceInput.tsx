@@ -9,10 +9,11 @@ const InputPanel = styled.div`
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  border-radius: 1.25rem;
-  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 14px;
+  // background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
   width: 100%;
+  box-shadow: rgba(33, 33, 33, 0.2) 0px 0px 16px;
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -36,7 +37,7 @@ const StyledNumericalInput = styled(NumericalInput)<{ error?: boolean }>`
   outline: none;
   border: none;
   flex: 1 1 auto;
-  background-color: ${({ theme }) => theme.colors.background};
+  // background-color: ${({ theme }) => theme.colors.background};
   transition: color 300ms ${({ error }) => (error ? 'step-end' : 'step-start')};
   color: ${({ error, theme }) => (error ? theme.colors.failure : '#05195a')};
   overflow: hidden;
@@ -64,6 +65,8 @@ const StyledNumericalInput = styled(NumericalInput)<{ error?: boolean }>`
 `
 const CurrentPriceTag = styled.span`
   border: 1px solid #04bbfb;
+  background: #04bbfb;
+  color: white;
   border-radius: 24px;
   font-size: 0.75rem;
   padding: 0.125rem 0.375rem;
@@ -98,7 +101,7 @@ export default function AutoPriceInput({
   return (
     <InputPanel id={id}>
       <ContainerRow error={error}>
-        <InputContainer>
+        <InputContainer className="hover_shadow" style={{ borderRadius: '14px', background: 'rgb(236 241 248)' }}>
           <AutoColumn gap="md">
             <AutoRow>
               <Text color="#04bbfb" fontWeight={500} fontSize="14px">

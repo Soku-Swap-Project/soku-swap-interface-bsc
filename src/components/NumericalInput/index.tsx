@@ -5,9 +5,9 @@ import { escapeRegExp } from '../../utils'
 const StyledInput = styled.input<{ error?: boolean; fontSize?: string; align?: string }>`
   color: ${({ error, theme }) => (error ? theme.colors.failure : '#000')};
   width: 0;
-  font-family: 'Roboto Mono', monospace;
+  // font-family: 'Roboto Mono', monospace;
   position: relative;
-  font-weight: 500;
+  font-weight: 700;
   outline: none;
   border: none;
   flex: 1 1 auto;

@@ -69,9 +69,10 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: 16px;
-  background-color: #fff;
+  border-radius: 14px;
+  background-color: rgb(236 241 248);
   border: 1px solid #ebebeb;
+  box-shadow: rgb(33 33 33 / 20%) 0px 0px 16px;
 `
 interface CurrencyInputPanelProps {
   value: string
@@ -115,7 +116,11 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
   return (
-    <InputPanel className="inputPanel" id={id}>
+    <InputPanel
+      className="hover_shadow"
+      style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', background: 'rgb(236 241 248)' }}
+      id={id}
+    >
       <div className="currency_input">
         <Container hideInput={hideInput} className="sokuSwap__container">
           {!hideInput && (
@@ -146,7 +151,7 @@ export default function CurrencyInputPanel({
             {!hideInput && (
               <>
                 <NumericalInput
-                  className="token-amount-input sokuswap__fromAmount"
+                  className="token-amount-input"
                   value={value}
                   onUserInput={(val) => {
                     onUserInput(val)
@@ -161,12 +166,14 @@ export default function CurrencyInputPanel({
             )}
             <CurrencySelect
               selected={!!currency}
-              className="open-currency-select-button currencySelector"
+              className="network_modal_button text-sm"
+              // className="open-currency-select-button currencySelector"
               onClick={() => {
                 if (!disableCurrencySelect) {
                   setModalOpen(true)
                 }
               }}
+              style={{ background: 'transparent' }}
             >
               <Aligner>
                 {pair ? (
@@ -179,16 +186,18 @@ export default function CurrencyInputPanel({
                     {pair?.token0.symbol}:{pair?.token1.symbol}
                   </Text>
                 ) : (
-                  <Text id="pair">
-                    {(currency && currency.symbol && currency.symbol.length > 20
-                      ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                          currency.symbol.length - 5,
-                          currency.symbol.length
-                        )}`
-                      : currency?.symbol) || TranslateString(1196, 'Select a currency')}
-                  </Text>
+                  <div style={{ display: 'flex' }}>
+                    <Text id="pair">
+                      {(currency && currency.symbol && currency.symbol.length > 20
+                        ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
+                            currency.symbol.length - 5,
+                            currency.symbol.length
+                          )}`
+                        : currency?.symbol) || TranslateString(1196, 'Select a Token')}
+                    </Text>
+                    {!disableCurrencySelect && <ChevronDownIcon />}
+                  </div>
                 )}
-                {!disableCurrencySelect && <ChevronDownIcon />}
               </Aligner>
             </CurrencySelect>
           </InputRow>

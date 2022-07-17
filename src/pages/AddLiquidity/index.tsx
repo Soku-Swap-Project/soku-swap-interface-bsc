@@ -300,12 +300,12 @@ export default function AddLiquidity({
   }, [onFieldAInput, txHash])
 
   document.title = 'SokuSwap | Add Liquidity'
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
       {/* eslint-disable react/jsx-curly-brace-presence */}
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
 
       <AppBody>
         <div className="add_liquidity_box">
@@ -454,6 +454,7 @@ export default function AddLiquidity({
                           ? 'danger'
                           : 'primary'
                       }
+                      className="emphasize_swap_button hover_shadow"
                       width="100%"
                       style={{ background: '#04bbfb' }}
                     >

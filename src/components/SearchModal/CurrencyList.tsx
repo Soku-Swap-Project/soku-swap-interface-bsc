@@ -17,8 +17,9 @@ import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
 import defaultTokenJson from '../../constants/token/sokuswap.json'
+import { ZERO } from '../../constants'
 
-import './CurrencyList.css'
+// import './CurrencyList.css'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -29,7 +30,8 @@ const StyledBalanceText = styled(Text)`
   overflow: hidden;
   max-width: 5rem;
   text-overflow: ellipsis;
-  color: #04bbfb !important;
+  color: #05195a !important;
+  font-weight: 700;
 `
 
 const Tag = styled.div`
@@ -47,7 +49,12 @@ const Tag = styled.div`
 `
 
 function Balance({ balance }: { balance: CurrencyAmount }) {
-  return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
+  return (
+    <StyledBalanceText title={balance.toExact()}>
+      {' '}
+      {balance.greaterThan(ZERO) ? balance.toFixed(9) : '0.00'}
+    </StyledBalanceText>
+  )
 }
 
 const TagContainer = styled.div`
@@ -108,18 +115,20 @@ function CurrencyRow({
   const removeToken = useRemoveUserAddedToken()
   const addToken = useAddUserToken()
 
+  const hasBalance = balance !== undefined
+
   // only show add or remove buttons if not on selected list
   return (
     <MenuItem
       style={style}
-      className={`token-item-${key}`}
+      className={`token-item-${key} currency_selector hover_shadow`}
       onClick={() => (isSelected ? null : onSelect())}
       disabled={isSelected}
       selected={otherSelected}
     >
       <CurrencyLogo currency={currency} size="24px" />
       <Column>
-        <Text className="currencyText" title={currency.name}>
+        <Text className="currencyText" style={{ fontWeight: 700, color: '#05195a' }} title={currency.name}>
           {currency.symbol}
         </Text>
         <FadedSpan>
@@ -153,7 +162,7 @@ function CurrencyRow({
       </Column>
       <TokenTags currency={currency} />
       <RowFixed style={{ justifySelf: 'flex-end' }}>
-        {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
+        {hasBalance ? <Balance balance={balance} /> : account ? <Loader /> : null}
       </RowFixed>
     </MenuItem>
   )

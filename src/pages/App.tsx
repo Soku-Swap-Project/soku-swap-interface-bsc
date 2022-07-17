@@ -2,16 +2,9 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import useAuth from 'hooks/useAuth'
-import TelegramIcon from '@mui/icons-material/Telegram'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import GitHubIcon from '@mui/icons-material/GitHub'
 import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
-import ClaimSokuModal from 'components/ClaimSokuModal'
-import AccountModal from 'components/AccountModal'
 
 import { useWeb3React } from '@web3-react/core'
-import detectEthereumProvider from '@metamask/detect-provider'
-
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import Maintenance from 'components/Maintenance'
 import ComingSoon from 'pages/ComingSoon'
@@ -32,12 +25,13 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
-import NewVersionModal from "../components/NewVersionModal"
+import NewVersionModal from '../components/NewVersionModal'
 import Menu from '../components/Menu'
 
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
-import './MobileFooter.css'
+// import './MobileFooter.css'
+import '../styles/index.css'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -45,7 +39,7 @@ const AppWrapper = styled.div`
   align-items: flex-start;
   overflow-x: hidden;
   overflow-y: auto;
-  background: linear-gradient(250deg, #05195a 20%, #040f31);
+  background-color: #e0e6f0;
   min-height: 92vh;
   height: 100vh;
   // max-height: 100vh;
@@ -203,7 +197,7 @@ export default function App() {
     }
   }
 
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <Suspense fallback={null}>
@@ -240,7 +234,7 @@ export default function App() {
                   </Switch>
                 </Web3ReactManager>
                 <Marginer />
-                <div className="connectWallet__options__MOBILE">
+                {/* <div className="connectWallet__options__MOBILE">
                   <ul>
                     {account ? (
                       <li className="account__footer">
@@ -306,7 +300,7 @@ export default function App() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
               </BodyWrapper>
             </TranslationsContext.Provider>
           </LanguageContext.Provider>

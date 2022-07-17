@@ -17,7 +17,7 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
   // const theme = useContext(ThemeContext)
 
   return (
-    <Wrapper>
+    <Wrapper className="network_modal">
       <Section>
         <ContentHeader onDismiss={onDismiss}>Transaction submitted</ContentHeader>
         <ConfirmedIcon>

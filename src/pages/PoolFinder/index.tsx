@@ -84,12 +84,12 @@ export default function PoolFinder() {
   )
 
   document.title = 'SokuSwap | BSC | Pool Finder'
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
       {/* eslint-disable react/jsx-curly-brace-presence */}
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
 
       <AppBody>
         <FindPoolTabs />
@@ -103,7 +103,7 @@ export default function PoolFinder() {
               startIcon={currency0 ? <CurrencyLogo currency={currency0} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               width="100%"
-              className="poolFinder__button"
+              className="emphasize_swap_button hover_shadow poolFinder__button"
             >
               {currency0 ? currency0.symbol : TranslateString(82, 'Select a Token')}
             </Button>
@@ -120,7 +120,7 @@ export default function PoolFinder() {
               startIcon={currency1 ? <CurrencyLogo currency={currency1} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               width="100%"
-              className="poolFinder__button"
+              className="emphasize_swap_button hover_shadow poolFinder__button"
             >
               {currency1 ? currency1.symbol : TranslateString(82, 'Select a Token')}
             </Button>

@@ -10,7 +10,7 @@ type ConfirmationModalContentProps = {
 
 const ConfirmationModalContent = ({ title, bottomContent, onDismiss, topContent }: ConfirmationModalContentProps) => {
   return (
-    <Wrapper>
+    <Wrapper className="network_modal">
       <Section>
         <ContentHeader onDismiss={onDismiss}>{title}</ContentHeader>
         {topContent()}

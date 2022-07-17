@@ -3,7 +3,13 @@ import { Button, ButtonProps, useWalletModal } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import useAuth from 'hooks/useAuth'
 
-import './ConnectWalletButton.css'
+// import './ConnectWalletButton.css'
+import styled from 'styled-components'
+
+const StyledButton = styled(Button)`
+  border-radius: 14px;
+  height: 52px;
+`
 
 const UnlockButton = () => {
   const TranslateString = useI18n()
@@ -11,9 +17,13 @@ const UnlockButton = () => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <button className="sokuswap__swapButton swap_connectWallet" onClick={onPresentConnectModal} type="button">
+    <StyledButton
+      className="hover_shadow emphasize_swap_button"
+      style={{ background: '#05195a', fontWeight: 700 }}
+      onClick={onPresentConnectModal}
+    >
       Connect Wallet
-    </button>
+    </StyledButton>
   )
 }
 

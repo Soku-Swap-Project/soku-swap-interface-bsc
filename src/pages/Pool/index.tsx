@@ -70,11 +70,11 @@ export default function Pool() {
 
   document.title = 'SokuSwap | BSC | Pools'
 
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
       <div className="modal_video">
         <ModalVideo channel="youtube" autoplay isOpen={isOpen} videoId="2HXOv6nTm0E" onClose={() => setOpen(false)} />
       </div>
@@ -82,7 +82,7 @@ export default function Pool() {
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>
           <div>
-            <Button id="join-pool-button" as={Link} to="/add/">
+            <Button className="hover_shadow emphasize_swap_button" as={Link} to="/add/">
               {TranslateString(168, 'Add Liquidity')}
             </Button>
           </div>
@@ -129,7 +129,7 @@ export default function Pool() {
               <div>
                 <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   {TranslateString(106, "Don't see a pool you joined?")}{' '}
-                  <StyledInternalLink id="import-pool-link" to="/find">
+                  <StyledInternalLink className="hover_shadow_icon" id="import-pool-link" to="/find">
                     {TranslateString(108, 'Import it.')}
                   </StyledInternalLink>
                 </Text>
@@ -144,6 +144,7 @@ export default function Pool() {
                     marginTop: '20px',
                     fontWeight: '900',
                   }}
+                  className="hover_shadow_icon"
                 >
                   <p style={{ color: '#04bbfb', fontSize: '14px', cursor: 'pointer' }} onClick={() => setOpen(true)}>
                     How to add liquidity?

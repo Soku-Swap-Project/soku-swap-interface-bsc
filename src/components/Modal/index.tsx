@@ -33,8 +33,6 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
   &[data-reach-dialog-content] {
     margin: 0 0 2rem 0;
     // border: 1px solid #05195a;
-    background-color: #fff;
-    box-shadow: 0 4px 8px 0 #05195a;
     padding: 0px;
     width: 80%;
     overflow: visible;
@@ -53,7 +51,7 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
         min-height: ${minHeight}vh;
       `}
     display: flex;
-    border-radius: 20px;
+    border-radius: 32px;
 
     ${({ theme }) => theme.mediaQueries.lg} {
       width: 65vw;
@@ -93,9 +91,15 @@ export default function Modal({
       {fadeTransition.map(
         ({ item, key, props }) =>
           item && (
-            <StyledDialogOverlay key={key} style={props} onDismiss={onDismiss} initialFocusRef={initialFocusRef}>
+            <StyledDialogOverlay
+              className="network_modal_container"
+              key={key}
+              style={props}
+              onDismiss={onDismiss}
+              initialFocusRef={initialFocusRef}
+            >
               <StyledDialogContent
-                aria-label="dialog content"
+                // aria-label="dialog content"
                 minHeight={minHeight}
                 maxHeight={maxHeight}
                 mobile={isMobile}

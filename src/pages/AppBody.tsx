@@ -5,9 +5,9 @@ import { Card } from '@pancakeswap-libs/uikit'
 export const BodyWrapper = styled(Card)`
   display: block;
   position: relative;
-  border: 1px solid white;
+  // border: 1px solid white;
   border-radius: 25px;
-  background-color: #fff;
+  // background-color: #fff;
   width: 42rem;
   max-width: 420px;
   padding: 20px;
@@ -26,5 +26,5 @@ export const BodyWrapper = styled(Card)`
  * The styled container element that wraps the content of most pages and the tabs.
  */
 export default function AppBody({ children }: { children: React.ReactNode }) {
-  return <BodyWrapper>{children}</BodyWrapper>
+  return <BodyWrapper className="emphasized_swap_layout_no_hover">{children}</BodyWrapper>
 }

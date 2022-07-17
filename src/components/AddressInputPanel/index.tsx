@@ -2,12 +2,12 @@ import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
+import { getBscScanLink } from 'utils'
 import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
 import { ExternalLink } from '../Shared'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
-import { getBscScanLink } from '../../utils'
 
 const InputPanel = styled.div`
   display: flex;

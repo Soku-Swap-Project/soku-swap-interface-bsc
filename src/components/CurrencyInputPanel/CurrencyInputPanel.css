@@ -1,17 +1,18 @@
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #c9c9c9 !important;
+  color: #7f7f7f !important;
+  font-weight: 700;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #c9c9c9 !important;
+  color: #7f7f7f !important;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #c9c9c9 !important;
+  color: #7f7f7f !important;
 }
 
 .maxButton {
@@ -22,9 +23,9 @@
 }
 
 #pair {
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
+  /* color: #000; */
+  /* font-size: 12px; */
+  font-weight: 700;
 }
 
 .currencySelector svg {
@@ -34,7 +35,10 @@
 }
 
 .token-amount-input {
-  font-size: 12px;
+  padding: 10px;
+  font-weight: 700;
+
+  /* font-size: 12px; */
   /* border: 1px solid red !important; */
 }
 
@@ -49,7 +53,7 @@
 .sokuswap__fromAmount input:focus,
 .sokuswap__toAmount input,
 .sokuswap__toAmount input:focus {
-  font-family: 'Roboto Mono', monospace;
+  /* font-family: 'Roboto Mono', monospace; */
   border: none;
   outline: none;
   font-size: 18px !important;

@@ -9,11 +9,10 @@ const QuestionWrapper = styled.div`
   justify-content: center;
   padding: 0.2rem;
   border: none;
-  background: none;
+  background: transparent;
   outline: none;
   cursor: default;
   border-radius: 36px;
-  background-color: ${({ theme }) => theme.colors.invertedContrast};
   color: #04bbfb !important;
 
   :hover,
@@ -32,7 +31,7 @@ export default function QuestionHelper({ text }: { text: string }) {
   return (
     <span style={{ marginLeft: 4 }}>
       <Tooltip text={text} show={show}>
-        <QuestionWrapper onClick={open} onMouseEnter={open} onMouseLeave={close}>
+        <QuestionWrapper className="hover_shadow_icon" onClick={open} onMouseEnter={open} onMouseLeave={close}>
           <Question size={16} />
         </QuestionWrapper>
       </Tooltip>

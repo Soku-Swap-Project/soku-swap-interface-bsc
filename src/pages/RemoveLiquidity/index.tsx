@@ -453,7 +453,7 @@ export default function RemoveLiquidity({
   )
 
   document.title = 'SokuSwap | Remove Liquidity'
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>

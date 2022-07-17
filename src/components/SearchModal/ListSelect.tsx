@@ -21,7 +21,7 @@ import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
 
-import './CurrencyList.css'
+// import './CurrencyList.css'
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
