@@ -26,7 +26,7 @@ export default function TransactionPopup({
   // const theme = useContext(ThemeContext)
 
   return (
-    <RowNoFlex className="emphasized_swap_layout">
+    <RowNoFlex>
       <div style={{ paddingRight: 16 }}>
         {success ? <CheckCircle color="green" size={24} /> : <AlertCircle color="red" size={24} />}
       </div>
