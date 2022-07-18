@@ -6,7 +6,7 @@ import { Pair } from '@pancakeswap-libs/sdk-v2'
 import ModalVideo from 'react-modal-video'
 
 // import { Pair } from '../../entities/pair'
-import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Button, CardBody, Flex, Text } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
@@ -89,7 +89,7 @@ export default function Pool() {
         </div>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
-            <AutoColumn gap="12px" style={{ width: '100%' }}>
+            <Flex flexDirection="column">
               <RowBetween padding="0 8px">
                 <Text color="#04b9fb">{TranslateString(107, 'Your Liquidity')}</Text>
                 <Question
@@ -151,7 +151,7 @@ export default function Pool() {
                   </p>
                 </div>
               </div>
-            </AutoColumn>
+            </Flex>
           </CardBody>
         </AutoColumn>
       </AppBody>

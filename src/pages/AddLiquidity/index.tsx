@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap-libs/sdk-v2'
-import { Button, CardBody, AddIcon, Text as UIKitText } from '@pancakeswap-libs/uikit'
+import { Button, CardBody, AddIcon, Text as UIKitText, Flex } from '@pancakeswap-libs/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { LightCard } from 'components/Card'
 import { AutoColumn, ColumnCenter } from 'components/Column'
@@ -397,7 +397,7 @@ export default function AddLiquidity({
                 {!account ? (
                   <ConnectWalletButton />
                 ) : (
-                  <AutoColumn gap="md">
+                  <Flex>
                     {(approvalA === ApprovalState.NOT_APPROVED ||
                       approvalA === ApprovalState.PENDING ||
                       approvalB === ApprovalState.NOT_APPROVED ||
@@ -460,7 +460,7 @@ export default function AddLiquidity({
                     >
                       {error ?? 'Supply'}
                     </Button>
-                  </AutoColumn>
+                  </Flex>
                 )}
               </AutoColumn>
             </CardBody>

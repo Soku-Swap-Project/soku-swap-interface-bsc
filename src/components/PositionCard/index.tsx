@@ -146,7 +146,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
       : [undefined, undefined]
 
   return (
-    <HoverCard className="shadow hover_shadow">
+    <HoverCard style={{ marginTop: '14px' }} className="shadow hover_shadow">
       <AutoColumn gap="20px">
         <FixedHeightRow onClick={() => setShowMore(!showMore)} style={{ cursor: 'pointer' }}>
           <RowFixed>
