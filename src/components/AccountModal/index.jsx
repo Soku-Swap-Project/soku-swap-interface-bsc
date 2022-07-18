@@ -79,7 +79,7 @@ export default function AccountModal() {
           style={{ color: '#fff', background: '#05195a', padding: '12px 24px', borderRadius: '14px' }}
           href={getBscScanLink(chainId, account, 'address')}
         >
-          <h2 className="pr-2">View on BscScan</h2>
+          <h2 className="pr-2">View on Bscscan</h2>
           <OpenInNewIcon />
         </a>
         {/* <button className="account_logout" onClick={logoutAccount()}>
