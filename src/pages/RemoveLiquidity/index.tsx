@@ -363,7 +363,7 @@ export default function RemoveLiquidity({
 
   function modalBottom() {
     return (
-      <div style={{ background: '#fff', width: '100%' }}>
+      <div>
         <RowBetween>
           <Text color="textSubtle">{`LP ${currencyA?.symbol}/${currencyB?.symbol}`} Burned</Text>
           <RowFixed>
@@ -388,7 +388,8 @@ export default function RemoveLiquidity({
           </>
         )}
         <Button
-          style={{ background: '#04bbfb', width: '100%' }}
+          className="emphasize_swap_button hover_shadow"
+          style={{ background: '#04bbfb', width: '100%', marginTop: '14px' }}
           disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
           onClick={onRemove}
         >
@@ -457,7 +458,7 @@ export default function RemoveLiquidity({
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
 
       <AppBody>
         <AddRemoveTabs adding={false} />
@@ -479,7 +480,10 @@ export default function RemoveLiquidity({
           />
           <AutoColumn gap="12px" style={{ width: '350px' }}>
             <Body>
-              <OutlineCard>
+              <OutlineCard
+                className="hover_shadow"
+                style={{ boxShadow: 'rgb(33 33 33 / 20%) 0px 0px 16px', padding: '14px' }}
+              >
                 <AutoColumn>
                   <RowBetween>
                     <Text>Amount</Text>
@@ -501,6 +505,7 @@ export default function RemoveLiquidity({
                       </Flex>
                       <Flex justifyContent="space-around">
                         <Button
+                          className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
@@ -508,6 +513,7 @@ export default function RemoveLiquidity({
                           25%
                         </Button>
                         <Button
+                          className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
@@ -515,6 +521,7 @@ export default function RemoveLiquidity({
                           50%
                         </Button>
                         <Button
+                          className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
@@ -522,6 +529,7 @@ export default function RemoveLiquidity({
                           75%
                         </Button>
                         <Button
+                          className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
@@ -540,7 +548,10 @@ export default function RemoveLiquidity({
                   <ArrowDown size="16" color="#05195a" />
                 </ColumnCenter>
                 <Body>
-                  <OutlineCard>
+                  <OutlineCard
+                    className="hover_shadow"
+                    style={{ boxShadow: 'rgb(33 33 33 / 20%) 0px 0px 16px', padding: '14px' }}
+                  >
                     <AutoColumn gap="10px">
                       <RowBetween>
                         <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
@@ -653,6 +664,7 @@ export default function RemoveLiquidity({
                 ) : (
                   <RowBetween>
                     <Button
+                      className="emphasize_swap_button hover_shadow"
                       onClick={onAttemptToApprove}
                       style={{ background: '#04bbfb', width: '50%' }}
                       disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
@@ -667,6 +679,7 @@ export default function RemoveLiquidity({
                       )}
                     </Button>
                     <Button
+                      className="emphasize_swap_button hover_shadow"
                       onClick={() => {
                         setShowConfirm(true)
                       }}
