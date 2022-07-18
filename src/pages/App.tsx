@@ -213,7 +213,7 @@ export default function App() {
                 {/* <NewVersionModal /> */}
                 <Web3ReactManager>
                   <Switch>
-                    <Route exact strict path="/swap" component={Swap} />
+                    {/* <Route exact strict path="/swap" component={Swap} /> */}
                     {/* <Route exact strict path="/maintenance" component={Maintenance} /> */}
                     <Route exact strict path="/bridge" component={ComingSoon} />
                     <Route exact strict path="/limit-order" component={LimitOrder} />

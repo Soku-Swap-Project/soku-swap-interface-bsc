@@ -7,7 +7,7 @@ import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import useI18n from 'hooks/useI18n'
 import { useActiveWeb3React } from '../../hooks'
@@ -38,6 +38,10 @@ interface CurrencySearchProps {
   showCommonBases?: boolean
   onChangeList: () => void
 }
+
+const StyledColumn = styled(Column)`
+  width: 32rem !important;
+`
 
 export function CurrencySearch({
   selectedCurrency,
@@ -159,14 +163,14 @@ export function CurrencySearch({
   )
 
   return (
-    <Column
-      className="emphasized_swap_layout"
-      style={{ width: '100%', flex: '1 1', borderRadius: '14px', padding: '1rem' }}
+    <StyledColumn
+      className="emphasized_swap_layout_no_hover"
+      style={{ flex: '1 1', borderRadius: '14px', padding: '1rem' }}
     >
       <PaddedColumn gap="14px">
         <RowBetween>
           <Text style={{ fontWeight: 700 }} className="modal_text">
-            {TranslateString(82, 'Select a token')}
+            {TranslateString(82, 'Select a Token')}
           </Text>
           <CloseIcon style={{ fill: '#05195a' }} className="modal_text" onClick={onDismiss} />
         </RowBetween>
@@ -239,7 +243,7 @@ export function CurrencySearch({
           </Card>
         </>
       )}
-    </Column>
+    </StyledColumn>
   )
 }
 

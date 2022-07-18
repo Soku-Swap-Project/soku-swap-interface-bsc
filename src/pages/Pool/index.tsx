@@ -82,7 +82,7 @@ export default function Pool() {
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>
           <div>
-            <Button className="hover_shadow emphasize_swap_button" as={Link} to="/add/">
+            <Button className="hover_shadow emphasize_swap_button" style={{ fontWeight: 500 }} as={Link} to="/add/">
               {TranslateString(168, 'Add Liquidity')}
             </Button>
           </div>
@@ -102,7 +102,7 @@ export default function Pool() {
 
               {!account ? (
                 <LightCard padding="40px">
-                  <Text color="textDisabled" textAlign="center">
+                  <Text color="textDisabled" style={{ padding: '14px' }} textAlign="center">
                     {TranslateString(156, 'Connect to a wallet to view your liquidity.')}
                   </Text>
                 </LightCard>

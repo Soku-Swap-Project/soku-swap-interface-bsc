@@ -33,13 +33,13 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
   &[data-reach-dialog-content] {
     margin: 0 0 2rem 0;
     // border: 1px solid #05195a;
-    padding: 0px;
-    width: 80%;
+    padding: 20px;
+    width: 50vw;
     overflow: visible;
 
     align-self: ${({ mobile }) => (mobile ? 'flex-end' : 'center')};
 
-    max-width: 420px;
+    max-width: 42rem;
     ${({ maxHeight }) =>
       maxHeight &&
       css`
