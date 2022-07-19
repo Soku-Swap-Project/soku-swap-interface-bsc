@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import './Card.css'
 
 const Card = styled.div<any>`
-  width: 100%;
-  border-radius: 32px;
-  padding: 0.1rem;
+  // width: 100%;
+  // border-radius: 32px;
+  padding: 1.25rem;
   border: ${({ border }) => border};
   border-radius: ${({ borderRadius }) => borderRadius};
 `
