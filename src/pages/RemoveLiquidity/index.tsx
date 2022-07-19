@@ -373,13 +373,13 @@ export default function RemoveLiquidity({
         </RowBetween>
         {pair && (
           <>
-            <RowBetween style={{ padding: '0.5rem' }}>
+            <RowBetween style={{ padding: '0.5rem 0' }}>
               <Text color="textSubtle">{TranslateString(1182, 'Price')}</Text>
               <Text>
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
             </RowBetween>
-            <RowBetween style={{ padding: '0.5rem' }}>
+            <RowBetween style={{ padding: '0.5rem 0' }}>
               <div />
               <Text>
                 1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
