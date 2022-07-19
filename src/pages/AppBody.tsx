@@ -18,8 +18,9 @@ export const BodyWrapper = styled(Card)`
   // padding-bottom: 35px;
 
   @media (max-width: 650px) {
-    width: 20rem;
-    min-width: 16rem;
+    width: 20rem !important;
+    min-width: 16rem !important;
+    padding: 20px !important;
   }
 `
 
