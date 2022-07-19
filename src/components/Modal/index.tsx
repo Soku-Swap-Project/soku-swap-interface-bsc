@@ -41,6 +41,10 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...r
     justify-content: center;
 
     max-width: 42rem;
+
+    @media (max-width: 800px) {
+      width: 95vw;
+    }
     ${({ maxHeight }) =>
       maxHeight &&
       css`
