@@ -409,13 +409,13 @@ const LimitOrder = () => {
                   display="block"
                   position="relative"
                   // border="1px solid white"
-                  border-radius="25px"
+                  border-radius="16px"
                   // background-color="#fff"
                   width="70%"
                   max-width="420px"
                   padding="20px"
                   color="#000"
-                  box-shadow="0.5px 0.5px 13px 0.1px #000"
+                  // box-shadow="0.5px 0.5px 13px 0.1px #000"
                   box-sizing="content-box"
                 >
                   <AutoColumn gap="4px">

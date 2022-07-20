@@ -41,7 +41,7 @@ const Menu = (props) => {
 
   return (
     <>
-      <header className="w-full lg:block bottom_border">
+      <header style={{ width: '100%' }} className="w-full lg:block bottom_border">
         <nav
           style={{ boxShadow: 'none' }}
           className="backdrop-blur-fallback border-none w-full h-full before:backdrop-saturate-[1.2] before:backdrop-blur-[20px] before:z-[-1] before:absolute before:w-full before:h-full border-b border-light-800"

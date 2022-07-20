@@ -6,13 +6,13 @@ export const BodyWrapper = styled(Card)`
   display: block;
   position: relative;
   // border: 1px solid white;
-  border-radius: 25px;
+  border-radius: 16px;
   // background-color: #fff;
   width: 42rem;
   max-width: 420px;
   padding: 20px;
   color: #05195a;
-  box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
+  // box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
   overflow: visible;
   box-sizing: content-box;
   // padding-bottom: 35px;
