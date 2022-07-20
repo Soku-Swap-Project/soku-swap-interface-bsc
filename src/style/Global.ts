@@ -62,6 +62,10 @@ const GlobalStyle = createGlobalStyle`
     background: transparent !important;
   }
 
+  button {
+    box-shadow: none !important;
+  }
+
   .logo_shadow {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.2));
   }

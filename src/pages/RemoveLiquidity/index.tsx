@@ -59,6 +59,10 @@ const Body = styled.div`
   // padding-right: 204px;
 `
 
+const StyledButton = styled(Button)`
+  box-shadow: none;
+`
+
 export default function RemoveLiquidity({
   history,
   match: {
@@ -480,10 +484,7 @@ export default function RemoveLiquidity({
           />
           <AutoColumn gap="12px" style={{ width: '350px' }}>
             <Body>
-              <OutlineCard
-                className="hover_shadow"
-                style={{ boxShadow: 'rgb(33 33 33 / 20%) 0px 0px 16px', padding: '14px' }}
-              >
+              <OutlineCard className="hover_shadow" style={{ padding: '14px' }}>
                 <AutoColumn>
                   <RowBetween>
                     <Text>Amount</Text>
@@ -504,38 +505,38 @@ export default function RemoveLiquidity({
                         <Slider value={innerLiquidityPercentage} onChange={setInnerLiquidityPercentage} />
                       </Flex>
                       <Flex justifyContent="space-around">
-                        <Button
+                        <StyledButton
                           className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
                         >
                           25%
-                        </Button>
-                        <Button
+                        </StyledButton>
+                        <StyledButton
                           className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
                         >
                           50%
-                        </Button>
-                        <Button
+                        </StyledButton>
+                        <StyledButton
                           className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
                         >
                           75%
-                        </Button>
-                        <Button
+                        </StyledButton>
+                        <StyledButton
                           className="hover_shadow emphasize_swap_button"
                           style={{ background: '#04bbfb', color: '#fff' }}
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                         >
                           {TranslateString(166, 'Max')}
-                        </Button>
+                        </StyledButton>
                       </Flex>
                     </>
                   )}
@@ -548,10 +549,7 @@ export default function RemoveLiquidity({
                   <ArrowDown size="16" color="#05195a" />
                 </ColumnCenter>
                 <Body>
-                  <OutlineCard
-                    className="hover_shadow"
-                    style={{ boxShadow: 'rgb(33 33 33 / 20%) 0px 0px 16px', padding: '14px' }}
-                  >
+                  <OutlineCard className="hover_shadow" style={{ padding: '14px' }}>
                     <AutoColumn gap="10px">
                       <RowBetween>
                         <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>

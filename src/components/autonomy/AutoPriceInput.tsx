@@ -13,7 +13,6 @@ const InputPanel = styled.div`
   // background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
   width: 100%;
-  box-shadow: rgba(33, 33, 33, 0.2) 0px 0px 16px;
 `
 
 const ContainerRow = styled.div<{ error: boolean }>`
@@ -67,7 +66,7 @@ const CurrentPriceTag = styled.span`
   border: 1px solid #04bbfb;
   background: #04bbfb;
   color: white;
-  border-radius: 24px;
+  border-radius: 14px;
   font-size: 0.75rem;
   padding: 0.125rem 0.375rem;
   margin: 0 0.75rem;

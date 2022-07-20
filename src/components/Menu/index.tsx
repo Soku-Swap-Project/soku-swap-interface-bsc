@@ -60,35 +60,35 @@ const Menu = (props) => {
                 <div className="sokuswap__navbar">
                   <nav className="soku_nav">
                     <ul className="navbar__items">
-                      <a className="nav_link hover_shadow" href={`${origin}/swap`}>
+                      <a className="nav_link hover_transparent" href={`${origin}/swap`}>
                         Trade
                       </a>
 
                       <NavLink
-                        className="nav_link hover_shadow"
+                        className="nav_link hover_transparent"
                         activeClassName="emphasized-selected active_mobile_link"
                         to="/limit-order"
                       >
                         Limit Orders
                       </NavLink>
                       <NavLink
-                        className="nav_link hover_shadow"
+                        className="nav_link hover_transparent"
                         activeClassName="emphasized-selected active_mobile_link"
                         to="/pool"
                       >
                         Pool
                       </NavLink>
-                      <a className="nav_link hover_shadow" href={`${origin}/bridge`}>
+                      <a className="nav_link hover_transparent" href={`${origin}/bridge`}>
                         Bridge
                       </a>
-                      <a className="nav_link hover_shadow" href={`${origin}/bsc/farms/`}>
+                      <a className="nav_link hover_transparent" href={`${origin}/bsc/farms/`}>
                         Farms
                       </a>
-                      <a className="nav_link hover_shadow" href={`${origin}/bsc/staking/`}>
+                      <a className="nav_link hover_transparent" href={`${origin}/bsc/staking/`}>
                         Staking
                       </a>
 
-                      <a className="nav_link hover_shadow" onClick={() => launchTransak()}>
+                      <a className="nav_link hover_transparent" onClick={() => launchTransak()}>
                         Deposit
                       </a>
                     </ul>
@@ -108,7 +108,7 @@ const Menu = (props) => {
                       {account ? (
                         <AccountModal />
                       ) : (
-                        <li className="hover_shadow account_modal">
+                        <li className="hover_transparent account_modal">
                           <button
                             type="button"
                             style={{ color: '#05195a', fontWeight: 'bold' }}

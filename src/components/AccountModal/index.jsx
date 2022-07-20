@@ -76,7 +76,7 @@ export default function AccountModal() {
         <a
           target="_blank"
           className="view_on_scan hover_shadow emphasize_swap_button"
-          style={{ color: '#fff', background: '#05195a', padding: '12px 24px', borderRadius: '14px' }}
+          style={{ color: '#fff', background: '#05195a', padding: '12px 24px', borderRadius: '7px' }}
           href={getBscScanLink(chainId, account, 'address')}
         >
           <h2 className="pr-2">View on Bscscan</h2>
@@ -94,7 +94,7 @@ export default function AccountModal() {
     <>
       <li
         type="button"
-        className={isMobile ? 'account_modal_mobile' : 'account_modal' + ' hover_shadow p-3'}
+        className={isMobile ? 'account_modal_mobile' : 'account_modal' + ' hover_transparent p-3'}
         onClick={handleOpen}
       >
         <span>Account:</span>

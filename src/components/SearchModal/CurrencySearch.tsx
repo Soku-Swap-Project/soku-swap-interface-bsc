@@ -165,7 +165,7 @@ export function CurrencySearch({
   return (
     <StyledColumn
       className="emphasized_swap_layout_no_hover"
-      style={{ flex: '1 1', borderRadius: '14px', padding: '1rem' }}
+      style={{ flex: '1 1', borderRadius: '7px', padding: '1rem' }}
     >
       <PaddedColumn gap="14px">
         <RowBetween>
@@ -182,7 +182,7 @@ export function CurrencySearch({
           ref={inputRef as RefObject<HTMLInputElement>}
           onChange={handleInput}
           onKeyDown={handleEnter}
-          style={{ marginBottom: '16px', borderRadius: '14px', border: 'none' }}
+          style={{ marginBottom: '16px', borderRadius: '7px', border: 'none' }}
           className="hover_shadow"
         />
         {showCommonBases && (

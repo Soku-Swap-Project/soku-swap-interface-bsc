@@ -116,11 +116,7 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
   return (
-    <InputPanel
-      className="hover_shadow"
-      style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', background: 'rgb(236 241 248)' }}
-      id={id}
-    >
+    <InputPanel className="hover_shadow" style={{ background: 'rgb(236 241 248)' }} id={id}>
       <div className="currency_input">
         <Container hideInput={hideInput} className="sokuSwap__container">
           {!hideInput && (

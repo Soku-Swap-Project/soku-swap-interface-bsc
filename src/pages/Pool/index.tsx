@@ -4,6 +4,7 @@ import React, { useContext, useMemo, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk-v2'
 import ModalVideo from 'react-modal-video'
+import styled from 'styled-components'
 
 // import { Pair } from '../../entities/pair'
 import { Button, CardBody, Flex, Text } from '@pancakeswap-libs/uikit'
@@ -82,7 +83,12 @@ export default function Pool() {
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>
           <div>
-            <Button className="hover_shadow emphasize_swap_button" style={{ fontWeight: 500 }} as={Link} to="/add/">
+            <Button
+              className="hover_transparent emphasize_swap_button"
+              style={{ fontWeight: 500, boxShadow: 'none' }}
+              as={Link}
+              to="/add/"
+            >
               {TranslateString(168, 'Add Liquidity')}
             </Button>
           </div>
