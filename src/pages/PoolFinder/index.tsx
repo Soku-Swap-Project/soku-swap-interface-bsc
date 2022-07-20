@@ -29,11 +29,7 @@ enum Fields {
 }
 
 const StyledButton = styled(Button)`
-  width: 100%;
-
-  @media (max-width: 800px) {
-    width: auto;
-  }
+  width: auto;
 `
 
 export default function PoolFinder() {
