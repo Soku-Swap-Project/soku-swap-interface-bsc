@@ -19,7 +19,7 @@ const UnlockButton = () => {
   return (
     <StyledButton
       className="hover_shadow emphasize_swap_button"
-      style={{ background: '#05195a', fontWeight: 700, width: '100%' }}
+      style={{ background: '#05195a', fontWeight: 700 }}
       onClick={onPresentConnectModal}
     >
       Connect Wallet
