@@ -16,6 +16,10 @@
   box-sizing: inherit;
 }
 
+* {
+  cursor: url('../assets/white-round-cursor.png'), url('../assets/blue-round-cursor.png'), pointer !important;
+}
+
 html {
   height: 100%;
   box-sizing: border-box;
