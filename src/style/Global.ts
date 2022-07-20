@@ -173,7 +173,10 @@ input:checked + .slider:before {
   svg[color="textSubtle"] {
     fill: #04bbfb;
     width: 18px;
+  }
 
+  svg[color="text"] {
+    fill: #05195a;
   }
 
 //   input[pattern='^[0-9]*[.,]?[0-9]*$']:focus:not(:disabled) {
