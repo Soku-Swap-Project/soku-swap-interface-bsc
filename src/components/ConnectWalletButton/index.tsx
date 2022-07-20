@@ -9,7 +9,6 @@ import styled from 'styled-components'
 const StyledButton = styled(Button)`
   border-radius: 14px;
   height: 52px;
-  width: 100%;
 `
 
 const UnlockButton = () => {
@@ -20,7 +19,7 @@ const UnlockButton = () => {
   return (
     <StyledButton
       className="hover_shadow emphasize_swap_button"
-      style={{ background: '#05195a', fontWeight: 700, width: 'auto' }}
+      style={{ background: '#05195a', fontWeight: 700, width: 'auto', padding: '0px' }}
       onClick={onPresentConnectModal}
     >
       Connect Wallet
