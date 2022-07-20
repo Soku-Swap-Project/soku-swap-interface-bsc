@@ -441,7 +441,7 @@ const LimitOrder = () => {
                 </Card>
               )}
             </AutoColumn>
-            <BottomGrouping>
+            <AutoColumn gap="20px">
               {!account ? (
                 <ConnectWalletButton />
               ) : showWrap ? (
@@ -547,7 +547,7 @@ const LimitOrder = () => {
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
-            </BottomGrouping>
+            </AutoColumn>
           </CardBody>
         </Wrapper>
         <Text style={{ fontSize: 12, textAlign: 'center' }}>
