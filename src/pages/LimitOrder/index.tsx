@@ -537,7 +537,7 @@ const LimitOrder = () => {
                     limitOrderMarketStats <= 0
                   }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
-                  width="100%"
+                  width="auto"
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
