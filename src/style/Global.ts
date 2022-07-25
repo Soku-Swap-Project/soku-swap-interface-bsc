@@ -332,6 +332,21 @@ button[id='wallet-connect-binance chain wallet'] div,
   fill: #04bbfb !important;
 }
 
+button[id='wallet-connect-metamask'],
+button[id='wallet-connect-walletconnect'],
+button[id='wallet-connect-binance chain wallet'] {
+  transition: all 0.2s ease-in-out !important;
+  background: transparent;
+  border-radius: 7px;
+}
+
+button[id='wallet-connect-metamask']:hover,
+button[id='wallet-connect-walletconnect']:hover,
+button[id='wallet-connect-binance chain wallet']:hover {
+    box-shadow: 1px 8px 7px 1px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(1.025) !important;
+}
+
 a[href='https://docs.pancakeswap.finance/help/faq#how-do-i-connect-my-wallet-to-pancakeswap'] {
   display: none !important;
 }
