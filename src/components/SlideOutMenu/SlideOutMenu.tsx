@@ -161,7 +161,7 @@ const SlideOutMenu: FC = () => {
               )}
             </div>
             <div className="mobile_menu_list">
-              <a className="nav_link hover_shadow" href={`${origin}/swap`}>
+              <a className="nav_link hover_shadow" href="https://swap.app.sokuswap.finance">
                 Trade
               </a>
 

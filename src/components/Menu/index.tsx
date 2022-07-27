@@ -60,7 +60,7 @@ const Menu = (props) => {
                 <div className="sokuswap__navbar">
                   <nav className="soku_nav">
                     <ul className="navbar__items">
-                      <a className="nav_link hover_transparent" href={`${origin}/swap`}>
+                      <a className="nav_link hover_transparent" href="https://swap.app.sokuswap.finance">
                         Trade
                       </a>
 
