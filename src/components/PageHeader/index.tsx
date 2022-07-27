@@ -42,12 +42,12 @@ const PageHeader = ({ title, description, children, pagetype }: PageHeaderProps)
       <div className="sokuswap__heading">
         <h2>{title}</h2>
         <div className="settings_transactions">
-          <button type="button" onClick={onPresentSettings}>
+          {/* <button type="button" onClick={onPresentSettings}>
             <span className="material-icons">settings</span>
-          </button>
-          <button type="button" onClick={onPresentRecentTransactions}>
+          </button> */}
+          {/* <button type="button" onClick={onPresentRecentTransactions}>
             <span className="material-icons">history</span>
-          </button>
+          </button> */}
         </div>
       </div>
     </StyledPageHeader>

@@ -1,5 +1,6 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap-libs/sdk-v2'
 import React, { useCallback, useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from '@pancakeswap-libs/uikit'
 import CardNav from 'components/CardNav'
 import { LightCard } from 'components/Card'
@@ -26,6 +27,10 @@ enum Fields {
   TOKEN0 = 0,
   TOKEN1 = 1,
 }
+
+const StyledButton = styled(Button)`
+  width: auto;
+`
 
 export default function PoolFinder() {
   const { account } = useActiveWeb3React()
@@ -84,46 +89,44 @@ export default function PoolFinder() {
   )
 
   document.title = 'SokuSwap | BSC | Pool Finder'
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
       {/* eslint-disable react/jsx-curly-brace-presence */}
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
 
       <AppBody>
         <FindPoolTabs />
         <CardBody>
           <AutoColumn gap="md">
-            <Button
+            <StyledButton
               onClick={() => {
                 setShowSearch(true)
                 setActiveField(Fields.TOKEN0)
               }}
               startIcon={currency0 ? <CurrencyLogo currency={currency0} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              width="100%"
-              className="poolFinder__button"
+              className="emphasize_swap_button hover_shadow poolFinder__button"
             >
               {currency0 ? currency0.symbol : TranslateString(82, 'Select a Token')}
-            </Button>
+            </StyledButton>
 
             <ColumnCenter>
               <AddIcon color="#d8d8d8" />
             </ColumnCenter>
 
-            <Button
+            <StyledButton
               onClick={() => {
                 setShowSearch(true)
                 setActiveField(Fields.TOKEN1)
               }}
               startIcon={currency1 ? <CurrencyLogo currency={currency1} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              width="100%"
-              className="poolFinder__button"
+              className="emphasize_swap_button hover_shadow poolFinder__button"
             >
               {currency1 ? currency1.symbol : TranslateString(82, 'Select a Token')}
-            </Button>
+            </StyledButton>
 
             {hasPosition && (
               <ColumnCenter

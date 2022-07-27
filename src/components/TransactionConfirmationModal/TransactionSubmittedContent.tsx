@@ -17,7 +17,7 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
   // const theme = useContext(ThemeContext)
 
   return (
-    <Wrapper>
+    <Wrapper className="network_modal">
       <Section>
         <ContentHeader onDismiss={onDismiss}>Transaction submitted</ContentHeader>
         <ConfirmedIcon>
@@ -25,9 +25,16 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
         </ConfirmedIcon>
         <AutoColumn gap="8px" justify="center">
           {chainId && hash && (
-            <LinkExternal href={getBscScanLink(chainId, hash, 'transaction')}>View on BscScan</LinkExternal>
+            <LinkExternal className="hover_shadow_icon" href={getBscScanLink(chainId, hash, 'transaction')}>
+              View on BscScan
+            </LinkExternal>
           )}
-          <Button style={{ background: '#04bbfb' }} onClick={onDismiss} mt="20px">
+          <Button
+            className="emphasize_swap_button hover_shadow"
+            style={{ background: '#04bbfb' }}
+            onClick={onDismiss}
+            mt="20px"
+          >
             Close
           </Button>
         </AutoColumn>

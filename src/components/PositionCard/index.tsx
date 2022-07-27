@@ -62,7 +62,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   return (
     <>
       {userPoolBalance && (
-        <UIKitCard>
+        <UIKitCard className="emphasized_swap_layout">
           <CardBody>
             <AutoColumn gap="12px">
               <FixedHeightRow>
@@ -146,7 +146,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
       : [undefined, undefined]
 
   return (
-    <HoverCard>
+    <HoverCard style={{ marginTop: '14px' }} className="hover_transparent">
       <AutoColumn gap="20px">
         <FixedHeightRow onClick={() => setShowMore(!showMore)} style={{ cursor: 'pointer' }}>
           <RowFixed>
@@ -201,15 +201,17 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
 
             <RowBetween marginTop="10px">
               <Button
+                className="hover_shadow emphasize_swap_button"
                 as={Link}
                 to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
-                style={{ width: '48%', background: '#05195a', boxShadow: 'none' }}
+                style={{ width: '48%', background: '#04bbfb', boxShadow: 'none', color: 'white' }}
               >
                 Add
               </Button>
               <Button
+                className="hover_shadow emphasize_swap_button"
                 as={Link}
-                style={{ width: '48%', background: '#05195a', boxShadow: 'none' }}
+                style={{ width: '48%', background: '#04bbfb', boxShadow: 'none', color: 'white' }}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
               >
                 Remove

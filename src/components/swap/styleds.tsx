@@ -32,6 +32,10 @@ export const SectionBreak = styled.div`
 
 export const BottomGrouping = styled.div`
   margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex: 1;
 `
 
 export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`

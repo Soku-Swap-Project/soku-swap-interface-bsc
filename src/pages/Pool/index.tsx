@@ -4,9 +4,10 @@ import React, { useContext, useMemo, useState } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk-v2'
 import ModalVideo from 'react-modal-video'
+import styled from 'styled-components'
 
 // import { Pair } from '../../entities/pair'
-import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Button, CardBody, Flex, Text } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
@@ -70,11 +71,11 @@ export default function Pool() {
 
   document.title = 'SokuSwap | BSC | Pools'
 
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Liquidity Pools'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Liquidity Pools'} />}
       <div className="modal_video">
         <ModalVideo channel="youtube" autoplay isOpen={isOpen} videoId="2HXOv6nTm0E" onClose={() => setOpen(false)} />
       </div>
@@ -82,14 +83,19 @@ export default function Pool() {
         <div className="sokuswap__heading">
           <h2>Liquidity</h2>
           <div>
-            <Button id="join-pool-button" as={Link} to="/add/">
+            <Button
+              className="hover_transparent emphasize_swap_button"
+              style={{ fontWeight: 500, boxShadow: 'none' }}
+              as={Link}
+              to="/add/"
+            >
               {TranslateString(168, 'Add Liquidity')}
             </Button>
           </div>
         </div>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
-            <AutoColumn gap="12px" style={{ width: '100%' }}>
+            <Flex flexDirection="column">
               <RowBetween padding="0 8px">
                 <Text color="#04b9fb">{TranslateString(107, 'Your Liquidity')}</Text>
                 <Question
@@ -102,7 +108,7 @@ export default function Pool() {
 
               {!account ? (
                 <LightCard padding="40px">
-                  <Text color="textDisabled" textAlign="center">
+                  <Text color="textDisabled" style={{ padding: '14px' }} textAlign="center">
                     {TranslateString(156, 'Connect to a wallet to view your liquidity.')}
                   </Text>
                 </LightCard>
@@ -129,7 +135,7 @@ export default function Pool() {
               <div>
                 <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   {TranslateString(106, "Don't see a pool you joined?")}{' '}
-                  <StyledInternalLink id="import-pool-link" to="/find">
+                  <StyledInternalLink className="hover_shadow_icon" id="import-pool-link" to="/find">
                     {TranslateString(108, 'Import it.')}
                   </StyledInternalLink>
                 </Text>
@@ -144,13 +150,14 @@ export default function Pool() {
                     marginTop: '20px',
                     fontWeight: '900',
                   }}
+                  className="hover_shadow_icon"
                 >
                   <p style={{ color: '#04bbfb', fontSize: '14px', cursor: 'pointer' }} onClick={() => setOpen(true)}>
                     How to add liquidity?
                   </p>
                 </div>
               </div>
-            </AutoColumn>
+            </Flex>
           </CardBody>
         </AutoColumn>
       </AppBody>

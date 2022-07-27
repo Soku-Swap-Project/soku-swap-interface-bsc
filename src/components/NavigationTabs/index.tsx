@@ -29,7 +29,7 @@ export function FindPoolTabs() {
     <Tabs>
       <RowBetween style={{ padding: '1rem' }}>
         <HistoryLink to="/pool">
-          <StyledArrowLeft />
+          <StyledArrowLeft className="hover_shadow_icon" />
         </HistoryLink>
         <ActiveText>Import Pool</ActiveText>
         <div className="question__helper">
@@ -51,7 +51,7 @@ export function AddRemoveTabs({ adding }: { adding: boolean }) {
     <Tabs>
       <RowBetween style={{ padding: '1rem' }}>
         <HistoryLink to="/pool">
-          <StyledArrowLeft />
+          <StyledArrowLeft className="hover_shadow_icon" />
         </HistoryLink>
         <ActiveText>{adding ? TranslateString(258, 'Add') : TranslateString(260, 'Remove')} Liquidity</ActiveText>
         <QuestionHelper

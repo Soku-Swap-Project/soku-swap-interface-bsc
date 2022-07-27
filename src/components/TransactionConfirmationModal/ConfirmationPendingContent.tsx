@@ -19,7 +19,7 @@ const CustomLightSpinner = styled(Spinner)<{ size: string }>`
 
 const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPendingContentProps) => {
   return (
-    <Wrapper>
+    <Wrapper className="network_modal">
       <Section>
         <ContentHeader onDismiss={onDismiss}>Waiting for confirmation</ContentHeader>
         <ConfirmedIcon>
@@ -27,7 +27,7 @@ const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPend
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
           <AutoColumn gap="12px" justify="center">
-            <Text fontSize="14px">
+            <Text color="#04bbfb" fontSize="14px">
               <strong>{pendingText}</strong>
             </Text>
           </AutoColumn>

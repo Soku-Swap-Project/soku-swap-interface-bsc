@@ -303,15 +303,15 @@ const LimitOrder = () => {
 
   document.title = 'SokuSwap | Limit Order'
 
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   return (
     <>
-      {isMobile ? <MobileHeader page={'Limit Orders'} /> : <CardNav />}
+      {isMobile && <MobileHeader page={'Limit Orders'} />}
       {/* Toggle Switch */}
-      <div className="sokuswap__toggleContainer">
+      {/* <div className="sokuswap__toggleContainer">
         <Toggle />
-      </div>
+      </div> */}
       {/* <WarningMessage /> */}
       <AppBody>
         <Wrapper id="swap-page">
@@ -408,14 +408,14 @@ const LimitOrder = () => {
                 <Card
                   display="block"
                   position="relative"
-                  border="1px solid white"
-                  border-radius="25px"
-                  background-color="#fff"
+                  // border="1px solid white"
+                  border-radius="16px"
+                  // background-color="#fff"
                   width="70%"
                   max-width="420px"
                   padding="20px"
                   color="#000"
-                  box-shadow="0.5px 0.5px 13px 0.1px #000"
+                  // box-shadow="0.5px 0.5px 13px 0.1px #000"
                   box-sizing="content-box"
                 >
                   <AutoColumn gap="4px">
@@ -441,7 +441,7 @@ const LimitOrder = () => {
                 </Card>
               )}
             </AutoColumn>
-            <BottomGrouping>
+            <AutoColumn gap="20px">
               {!account ? (
                 <ConnectWalletButton />
               ) : showWrap ? (
@@ -467,9 +467,10 @@ const LimitOrder = () => {
               ) : showApproveFlow ? (
                 <RowBetween>
                   <Button
+                    className="emphasize_swap_button hover_shadow"
                     onClick={approveCallback}
                     disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                    style={{ width: '48%', background: '#05195a' }}
+                    style={{ width: '48%', background: '#05195a', marginRight: '10px' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
                     {approval === ApprovalState.PENDING ? (
@@ -483,6 +484,7 @@ const LimitOrder = () => {
                     )}
                   </Button>
                   <Button
+                    className="emphasize_swap_button hover_shadow"
                     onClick={() => {
                       if (isExpertMode) {
                         handleSwap()
@@ -513,6 +515,7 @@ const LimitOrder = () => {
                 </RowBetween>
               ) : (
                 <Button
+                  className="emphasize_swap_button hover_shadow"
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -534,7 +537,7 @@ const LimitOrder = () => {
                     limitOrderMarketStats <= 0
                   }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
-                  width="100%"
+                  width="auto"
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
@@ -544,7 +547,7 @@ const LimitOrder = () => {
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
-            </BottomGrouping>
+            </AutoColumn>
           </CardBody>
         </Wrapper>
         <Text style={{ fontSize: 12, textAlign: 'center' }}>

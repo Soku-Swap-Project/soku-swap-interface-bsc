@@ -5,8 +5,8 @@ import { utils } from 'ethers'
 import { useActiveWeb3React } from 'hooks'
 import { ROUTER_ADDRESS } from '../constants'
 
-Moralis.initialize('0InOR7cWvu3rRwDZRHTDdDZ26Vj7Jc7HOBiYiGWa')
-Moralis.serverURL = 'https://mz4k8ltjvwtm.usemoralis.com:2053/server'
+Moralis.initialize('YNf7mPTYTt9RYuz5GpswPDx2oy6gE4PUUKSzuzYv')
+Moralis.serverURL = 'https://b9q9aw8wxn08.usemoralis.com:2053/server'
 
 export default function useTransactionHistory() {
   const [orders, setOrders] = useState<Array<any>>([])

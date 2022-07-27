@@ -34,7 +34,7 @@ export default ({ tx, tokenPair }: TxProps) => {
     await transaction.wait()
   }, [tx, registryContract])
 
-  const isMobile = window.innerWidth <= 500
+  const isMobile = window.innerWidth <= 1200
 
   const inputAmount = ethers.utils.formatUnits(tx.inputAmount, tokenPair.input?.decimals)
   const outputAmount = ethers.utils.formatUnits(tx.outputAmount, tokenPair.output?.decimals)

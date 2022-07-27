@@ -6,8 +6,8 @@ import TransactionDeadlineSetting from './TransactionDeadlineSetting'
 import AutonomyPrepaySetting from './AutonomyPrepaySetting'
 
 type SettingsModalProps = {
-  onDismiss?: () => void,
-  translateString: (translationId: number, fallback: string) => (string),
+  onDismiss?: () => void
+  translateString: (translationId: number, fallback: string) => string
   pagetype?: string
 }
 
@@ -16,12 +16,10 @@ const defaultOnDismiss = () => null
 
 const SettingsModal = ({ onDismiss = defaultOnDismiss, translateString, pagetype }: SettingsModalProps) => {
   return (
-    <Modal title={translateString(1200, 'Settings')} onDismiss={onDismiss}>
-      <SlippageToleranceSetting translateString={translateString}/>
-      <TransactionDeadlineSetting translateString={translateString}/>
-      { pagetype === 'autonomy' &&
-        <AutonomyPrepaySetting />
-      }
+    <Modal className="network_modal" title={translateString(1200, 'Settings')} onDismiss={onDismiss}>
+      <SlippageToleranceSetting translateString={translateString} />
+      <TransactionDeadlineSetting translateString={translateString} />
+      {pagetype === 'autonomy' && <AutonomyPrepaySetting />}
     </Modal>
   )
 }

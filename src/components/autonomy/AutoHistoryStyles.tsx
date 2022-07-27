@@ -5,15 +5,16 @@ export const Container = styled.div`
   width: 100%;
   max-width: 462px;
   background: ${({ theme }) => theme.colors.background};
-  border-radius: 30px;
+  border-radius: 16px;
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  z-index: -1;
 `
 
 export const Tabs = styled.div`
   display: flex;
   .tabItem {
-    border-radius: 12px;
+    border-radius: 7px;
     margin-right: 5px;
     padding: 8px 12px;
     color: #fff;
@@ -49,7 +50,7 @@ export const Transaction = styled.div`
         display: flex;
         align-items: center;
         background-color: #fff;
-        border-radius: 12px;
+        border-radius: 14px;
         box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
         color: rgb(5, 25, 90);
         font-weight: 500;
@@ -89,7 +90,7 @@ export const Transaction = styled.div`
     button {
       background: ${({ theme }) => theme.colors.contrast};
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 0.5rem;
       font-size: 0.6rem;
       color: white;

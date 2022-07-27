@@ -50,12 +50,31 @@ export default function CurrencyLogo({
   }, [currency, uriLocations])
 
   if (currency === ETHER) {
-    return <StyledBnbLogo src="https://app.sokuswap.finance/bsc/images/coins/bnb.png" size={size} style={style} />
+    return (
+      <StyledBnbLogo
+        className="logo_shadow"
+        src="https://app.sokuswap.finance/bsc/images/coins/bnb.png"
+        size={size}
+        style={style}
+      />
+    )
   }
 
   return (currency as any)?.symbol ? (
-    <CoinLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
+    <CoinLogo
+      className="logo_shadow"
+      size={size}
+      srcs={srcs}
+      alt={`${currency?.symbol ?? 'token'} logo`}
+      style={style}
+    />
   ) : (
-    <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
+    <StyledLogo
+      className="logo_shadow"
+      size={size}
+      srcs={srcs}
+      alt={`${currency?.symbol ?? 'token'} logo`}
+      style={style}
+    />
   )
 }
