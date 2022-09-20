@@ -3,8 +3,8 @@ export enum SupportedChainId {
   ETHEREUM = 1,
 }
 
-const Bsc = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/bsc.jpg'
-const Mainnet = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/mainnet.jpg'
+const Bsc = 'https://res.cloudinary.com/sushi-cdn/image/fetch/f_auto,c_limit,w_64,q_auto/https://raw.githubusercontent.com/sushiswap/icons/master/network/bsc.jpg'
+const Mainnet = 'https://res.cloudinary.com/sushi-cdn/image/fetch/f_auto,c_limit,w_64,q_auto/https://raw.githubusercontent.com/sushiswap/icons/master/network/mainnet.jpg'
 
 export const NETWORK_ICON: Record<number, string> = {
   [SupportedChainId.ETHEREUM]: Mainnet,
