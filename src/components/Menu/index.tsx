@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu as UikitMenu, useWalletModal } from '@pancakeswap-libs/uikit'
 import { NavLink } from 'react-router-dom'
 import GitHubIcon from '@mui/icons-material/GitHub'
@@ -15,6 +15,7 @@ import config from './config'
 import ClaimSokuModal from 'components/ClaimSokuModal'
 import AccountModal from 'components/AccountModal'
 import { NETWORK_ICON, NETWORK_LABEL_SHORT, SupportedChainId } from 'config/networks'
+import SwitchNetworkModal from 'components/SwitchNetworkModal'
 
 // import './Menu.css'
 
@@ -33,6 +34,12 @@ const Menu = (props) => {
     } else if (hiddenLinks[0]?.id === 'open') {
       hiddenLinks[0].id = 'hidden_navLinks'
     }
+  }
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const toggleNetworkModal = () => {
+    setIsModalOpen(!isModalOpen)
   }
 
   const isMobile = window.innerWidth <= 1200
@@ -94,7 +101,18 @@ const Menu = (props) => {
                     </ul>
                     <ul className="connectWallet__options__DESKTOP">
                       {chainId && (
-                        <div style={{ display: 'flex', padding: '10px', fontWeight: 'bold', alignItems: 'center' }}>
+                        <div
+                          onClick={toggleNetworkModal}
+                          className="hover_transparent"
+                          style={{
+                            cursor: 'pointer',
+                            display: 'flex',
+                            padding: '10px',
+                            fontWeight: 'bold',
+                            alignItems: 'center',
+                            borderRadius: '7px',
+                          }}
+                        >
                           <img
                             src={NETWORK_ICON[chainId as number]}
                             width="24px"
@@ -105,6 +123,7 @@ const Menu = (props) => {
                           {NETWORK_LABEL_SHORT[chainId as number]}
                         </div>
                       )}
+                      <SwitchNetworkModal isModalOpen={isModalOpen} toggleNetworkModal={toggleNetworkModal} />
                       {account ? (
                         <AccountModal />
                       ) : (
