@@ -29,7 +29,7 @@ export default function AccountModal() {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false)
   // const { login, logout } = useAuth()
-  const { account, chainId, deactivate } = useWeb3React()
+  const { account, chainId, deactivate, connector } = useWeb3React()
 
   const truncatedFirstHalf = account?.substring(0, 5)
   const truncatedLastHalf = account?.substring(account.length - 5, account.length)

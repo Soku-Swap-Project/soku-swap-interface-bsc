@@ -180,7 +180,7 @@ export default function App() {
     loadNetwork()
   }, [])
 
-  const { account } = useWeb3React()
+  const { account, chainId } = useWeb3React()
   const { login, logout } = useAuth()
   const { onPresentConnectModal } = useWalletModal(login, logout)
   const truncatedFirstHalf = account?.substring(0, 5)
