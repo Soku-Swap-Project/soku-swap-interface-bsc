@@ -83,20 +83,23 @@ export default function AccountModal() {
           <h2 className="pr-2">View on Bscscan</h2>
           <OpenInNewIcon />
         </a>
-        <button
-          style={{
-            color: 'rgb(255, 255, 255)',
-            background: 'rgb(5, 25, 90)',
-            padding: ' 9px 18px',
-            borderRadius: '7px',
-            fontSize: '14px',
-          }}
-          className="account_logout view_on_scan hover_shadow"
-          onClick={deactivate}
-        >
-          <h2 style={{ paddingRight: '8px' }}>Sign Out</h2>
-          <LogoutIcon />
-        </button>
+        {((isMobile && connector?.constructor?.name !== 'InjectedConnector' && connector?.constructor?.name !== 't') ||
+          !isMobile) && (
+          <button
+            style={{
+              color: 'rgb(255, 255, 255)',
+              background: 'rgb(5, 25, 90)',
+              padding: ' 9px 18px',
+              borderRadius: '7px',
+              fontSize: '14px',
+            }}
+            className="account_logout view_on_scan hover_shadow"
+            onClick={deactivate}
+          >
+            <h2 style={{ paddingRight: '8px' }}>Sign Out</h2>
+            <LogoutIcon />
+          </button>
+        )}
       </div>
     </div>
   )
