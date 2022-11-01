@@ -96,7 +96,7 @@ const Menu = (props) => {
                       </a>
 
                       <a className="nav_link hover_transparent" onClick={() => launchTransak()}>
-                        Deposit
+                        Buy/Sell
                       </a>
                     </ul>
                     <ul className="connectWallet__options__DESKTOP">

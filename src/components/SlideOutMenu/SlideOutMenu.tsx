@@ -199,7 +199,7 @@ const SlideOutMenu: FC = () => {
               </a>
 
               <a className="nav_link hover_shadow" onClick={() => launchTransak()}>
-                Deposit
+                Buy/Sell
               </a>
               <hr style={{ height: '1px', border: 0, backgroundColor: '#05195a', margin: '20px' }} />
               <a
